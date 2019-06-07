@@ -1,0 +1,27 @@
+﻿<ScriptableScraper>
+  <details>
+    <name>mamedb.com</name>
+    <author>Brownard</author>
+    <description>Grabs game data from mamedb.com</description>
+    <id>10</id>
+    <version major="1" minor="0" point="0"/>
+    <published month="13" day="6" year="2013"/>
+    <type>MovieDetailsFetcher|MovieCoverFetcher</type>
+    <language>en</language>
+  </details>
+
+  <action name="search">
+    <if test="${search.platform}=Arcade">
+      <set name="rxDetailsPage"><![CDATA[<h1>Game Details</h1><br/><b>Name:&nbsp</b>([^<]*)<br/><b>Year:&nbsp</b>\s*<a[^>]*>(\d*)</a><br/><b>Manufacturer:&nbsp</b>\s*<a[^>]*>([^<]*)</a><br/><b>Filename:&nbsp;</b>([^<]*)<br/><b>Category:&nbsp;</b>\s*<a[^>]*>([^<]*)</a><br/><b>Status:&nbsp;</b>([^<]*)<br/>]]></set>
+      <retrieve name="directPage" url="http://www.mamedb.com/game/${search.title:safe}"/>
+      <parse name="directMatch" input="${directPage}" regex="${rxDetailsPage}" />
+      <if test="${directMatch.count}=1">
+        <set name="game[0].site_id" value="${directMatch[0][3]:htmldecode}"/>
+        <set name="game[0].title" value="${directMatch[0][0]:htmldecode}"/>
+        <set name="game[0].yearmade" value="${directMatch[0][1]:htmldecode}"/>
+        <set name="game[0].system" value="Arcade"/>
+        <set name="game[0].details_url" value="http://www.mamedb.com/game/${directMatch[0][3]}"/>
+      </if>
+    </if>    
+  </action>
+</ScriptableScraper>

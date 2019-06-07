@@ -1,0 +1,110 @@
+﻿<ScriptableScraper>
+  <details>
+    <name>maws.mameworld.info</name>
+    <author>Brownard</author>
+    <description>Grabs Mame game data from maws.mameworld.info</description>
+    <id>99999998</id>
+    <version major="1" minor="0" point="0"/>
+    <published month="3" day="9" year="2011"/>
+    <type>MovieDetailsFetcher|MovieCoverFetcher</type>
+    <language>en</language>
+  </details>
+
+  <action name="search">
+    <set name="offset" value="0" />
+    <!-- Regular Expressions -->
+    <set name="rx_search_results">
+      <![CDATA[<tr class="searchResultOri">\s*<td>.*?</td>\s*<td><a[^>]*>([^<]*)</a></td>\s*<td><a[^>]*>([^<]*)</a></td>\s*<td>.*?</td>\s*<td><a[^>]*>([^<]*)]]>
+    </set>
+
+    <!-- Retrieve results using Title ${search.system:safe} -->
+    <retrieve name="search_page" url="http://maws.mameworld.info/maws/srch.php?search_text=${search.title:safe}" />
+
+    <!-- Search result page is used. -->
+    <parse name="game_details" input="${search_page}" regex="${rx_search_results}" />
+    <loop name="curr_details" on="game_details">
+      <add name="counter" value1="${count}" value2="${offset}" />
+      <set name="game[${counter}].site_id" value="${curr_details[0]:htmldecode}"/>
+      <set name="game[${counter}].title" value="${curr_details[1]:htmldecode}"/>
+      <set name="game[${counter}].yearmade" value="${curr_details[2]:htmldecode}"/>
+      <set name="game[${counter}].system" value="Arcade"/>
+      <set name="game[${counter}].details_url" value="http://maws.mameworld.info/maws/romset/${curr_details[0]}"/>
+    </loop>
+  </action>
+
+  <action name="get_details">
+    <set name="rx_title">
+      <![CDATA[<td class="oriEntryLabel">title</td>\s*<td class="oriEntryText">([^<]*)</td>]]>
+    </set>
+    <set name="rx_company">
+      <![CDATA[<td class="oriEntryLabel">manufacturer</td>\s*<td class="oriEntryText"><a.*?>([^<]*)</a></td>]]>
+    </set>
+    <set name="rx_yearmade">
+      <![CDATA[<td class="oriEntryLabel">year</td>\s*<td class="oriEntryText"><a.*?>([^<]*)</a></td>]]>
+    </set>
+    <set name="rx_genre">
+      <![CDATA[<td class="oriEntryLabel">genre</td>\s*<td class="oriEntryText"><a.*?>([^<]*)</a>]]>
+    </set>
+    <set name="rx_grade">
+      <![CDATA[<td class="oriEntryLabel">rating</td>\s*<td class="oriEntryText"><div title=".*?(\d\d)]]>
+    </set>
+
+    <retrieve name="details_page" url="http://maws.mameworld.info/maws/romset/${game.site_id}"/>
+
+    <parse name="title" input="${details_page}" regex="${rx_title}"/>
+    <set name="game.title" value="${title[0][0]:htmldecode}"/>
+
+    <parse name="company" input="${details_page}" regex="${rx_company}"/>
+    <set name="game.company" value="${company[0][0]:htmldecode}"/>
+
+    <parse name="yearmade" input="${details_page}" regex="${rx_yearmade}"/>
+    <set name="game.yearmade" value="${yearmade[0][0]:htmldecode}"/>
+
+    <parse name="grade" input="${details_page}" regex="${rx_grade}"/>
+    <set name="game.grade" value="${grade[0][0]:htmldecode}"/>
+
+    <parse name="genre" input="${details_page}" regex="${rx_genre}"/>
+    <set name="game.genre" value="${genre[0][0]:htmldecode}"/>
+  </action>
+
+  <action name="get_cover_art">
+    <if test="${game.site_id}!=">
+      <retrieve name="details_page" url="http://maws.mameworld.info/maws/romset/${game.site_id}"/>
+      <set name="rx_coverblock">
+        <![CDATA[<span title="other artwork">.*?<br />]]>
+      </set>
+      <set name="rx_cover">
+        <![CDATA[href="(.*?)"]]>
+      </set>
+
+      <parse name="cover_block" input="${details_page}" regex="${rx_coverblock}"/>
+      <parse name="game_covers" input="${cover_block}" regex="${rx_cover}"/>
+      <set name="game.covers" value=""/>
+      <loop name="currCover" on="game_covers">
+        <set name="game.covers" value="${game.covers}|http://maws.mameworld.info${currCover[0]:htmldecode}"/>
+      </loop>
+    </if>
+  </action>
+
+  <action name="get_screenshots">
+    <if test="${game.site_id}!=">
+      <retrieve name="details_page" url="http://maws.mameworld.info/maws/romset/${game.site_id}"/>
+      <set name="rx_screenshotblock">
+        <![CDATA[<td class="oriEntryLabel">snapshots</td>.*?<span title="other artwork">]]>
+      </set>
+      <set name="rx_screenshot">
+        <![CDATA[document.snapshot.src='([.][.]/)?(.*?)']]>
+      </set>
+
+      <parse name="screenshot_block" input="${details_page}" regex="${rx_screenshotblock}"/>
+      <set name="game.screenshotsbaseurl" value="http://maws.mameworld.info/maws/"/>
+      <set name="game.screenshots" value=""/>
+      <parse name="game_screenshots" input="${screenshot_block}" regex="${rx_screenshot}"/>
+      <loop name="currShot" on="game_screenshots">
+        <if test="${currShot[1]}!=">
+          <set name="game.screenshots" value="${game.screenshots}|${currShot[1]:htmldecode}"/>
+        </if>
+      </loop>
+    </if>
+  </action>
+</ScriptableScraper>

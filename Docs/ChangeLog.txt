@@ -1,0 +1,24 @@
+﻿Updated search to latest MobyGames search - provides much better results
+Fixed search by platform
+Details/Thumb downloads now asynchronous, added info on progress
+Basic auto-import implemented
+Option to background import games and get details/thumbs from within MP GUI
+Improved search result selection logic. Will prefer exact title and platform match, then exact title match(if there is only 1 match), then exact platform match(if only 1) and finally and optionally first result
+Improved thumb selection logic
+
+GUI completely re-written, fixing various bugs but probably breaking most old skins
+Added Coverflow support
+Added option to set 'Favourites' layout
+
+Added option to clean Database of files that no longer exist or don't have a valid rom extension
+Fixed various bugs with thumb saving, images are now converted if necessary
+Cover art can be converted to correct aspect ratio based on platform - currently the aspect ratio is determined by matching the emulator title against an entry in 'myEmulatorsAspectRatios.xml'
+
+Fixed PC games
+PC 'emulator' will be shown when at least 1 PC Game has been configured
+
+**EXPERIMENTAL** - Added ability to map a key to stop emulation, tested with Project64 and ePSXe
+
+Added ability to define thumb save location
+
+Fanart and image loading improved, added option to disable fanart/gameart and set delay

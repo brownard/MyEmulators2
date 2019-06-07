@@ -1,0 +1,311 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<window>
+  <controls>
+    <!-- Selected Category Item -->
+    <control>
+      <type>image</type>
+      <id>0</id>
+      <posX>0</posX>
+      <posY>675</posY>
+      <width>1280</width>
+      <height>47</height>
+      <texture>imagestreamtitle.png</texture>
+      <animation effect="fade" time="150">WindowOpen</animation>
+      <animation effect="fade" time="250">WindowClose</animation>
+      <animation effect="slide" time="150" start="800,0">WindowOpen</animation>
+      <animation effect="slide" time="250" end="800,0">WindowClose</animation>
+    </control>
+    <control>
+      <description>Top Title Background</description>
+      <type>image</type>
+      <id>0</id>
+      <posX>77</posX>
+      <posY>11</posY>
+      <width>437</width>
+      <height>35</height>
+      <texture>tvtitlebg.png</texture>
+      <animation effect="slide" start="-514,0" end="0,0" tween="quadratic" time="150" delay="0">Visible</animation>
+      <animation effect="fade" time="150" delay="0">WindowClose</animation>
+      <visible>control.isvisible(50)</visible>
+    </control>
+    <control>
+      <description>Current Filter</description>
+      <type>fadelabel</type>
+      <id>0</id>
+      <posX>493</posX>
+      <posY>13</posY>
+      <width>350</width>
+      <font>mediastream12c</font>
+      <align>right</align>
+      <visible>yes</visible>
+      <label>#Emulators2.currentfilter</label>
+      <wrapString> |  </wrapString>
+      <animation effect="slide" start="-514,0" end="0,0" tween="quadratic" time="150" delay="0">Visible</animation>
+      <animation effect="fade" time="150" delay="0">WindowClose</animation>
+      <visible>control.isvisible(50)</visible>
+    </control>
+    <control>
+      <description>Plugin title bg</description>
+      <type>image</type>
+      <id>0</id>
+      <posX>1113</posX>
+      <posY>10</posY>
+      <width>159</width>
+      <height>28</height>
+      <texture>mediacountbackground.png</texture>
+      <visible>control.isvisible(50)</visible>
+      <animation effect="fade" time="250" delay="0">WindowClose</animation>
+    </control>
+    <control>
+      <description>Plugin Title Label</description>
+      <type>fadelabel</type>
+      <label>#Emulators2.plugintitle</label>
+      <id>0</id>
+      <posX>1123</posX>
+      <posY>14</posY>
+      <width>145</width>
+      <font>mediastream10tc</font>
+      <textcolor>ff909090</textcolor>
+      <visible>!control.isvisible(51)+control.isvisible(50)</visible>
+      <animation effect="fade" time="250" delay="0">WindowClose</animation>
+    </control>
+    <!-- Facade Spin Background -->
+    <control>
+      <description>Page Count Background</description>
+      <type>image</type>
+      <id>0</id>
+      <posX>1013</posX>
+      <posY>684</posY>
+      <width>260</width>
+      <height>30</height>
+      <texture>mediacountbg_Spin.png</texture>
+      <visible>!facadeview.coverflow+control.isvisible(50)</visible>
+      <animation effect="fade" time="250">WindowOpen</animation>
+      <animation effect="fade" time="250">WindowClose</animation>
+    </control>
+    <control>
+      <description>Page Label</description>
+      <type>label</type>
+      <label>30009</label>
+      <id>0</id>
+      <posX>1023</posX>
+      <posY>688</posY>
+      <font>mediastream12tc</font>
+      <textcolor>ff909090</textcolor>
+      <visible>!facadeview.coverflow+control.isvisible(50)</visible>
+      <animation effect="fade" time="250">WindowOpen</animation>
+      <animation effect="fade" time="250">WindowClose</animation>
+    </control>
+    
+    <control>
+      <type>facadeview</type>
+      <id>50</id>
+      <animation effect="fade" time="250" delay="0">WindowClose</animation>
+      <control>
+        <description>Movie List</description>
+        <type>listcontrol</type>
+        <id>50</id>
+        <onleft>10</onleft>
+        <onright>10</onright>
+        <width>490</width>
+        <posX>786</posX>
+        <posY>317</posY>
+        <height>390</height>
+        <textXOff>0</textXOff>
+        <textXOff2>0</textXOff2>
+        <!-- List Control Popup -->
+        <explicitlyEnableScrollLabel>yes</explicitlyEnableScrollLabel>
+        <!-- Spin Controls -->
+        <spinWidth>50</spinWidth>
+        <spinHeight>37</spinHeight>
+        <spinPosX>1175</spinPosX>
+        <spinPosY>681</spinPosY>
+        <spinAlign>Right</spinAlign>
+        <spinColor>ff006698</spinColor>
+        <textureUp>arrow_round_up_nofocus.png</textureUp>
+        <textureDown>arrow_round_down_nofocus.png</textureDown>
+        <textureUpFocus>arrow_round_up_focus.png</textureUpFocus>
+        <textureDownFocus>arrow_round_down_focus.png</textureDownFocus>
+      </control>
+      <control>
+        <description>Filmstrip</description>
+        <type>filmstrip</type>
+        <id>50</id>
+        <onup>10</onup>
+        <onright>50</onright>
+        <posX>12</posX>
+        <posY>512</posY>
+        <width>1280</width>
+        <height>220</height>
+        <keepaspectratio>yes</keepaspectratio>
+        <scrollOffset>4</scrollOffset>
+        <itemWidth>142</itemWidth>
+        <itemHeight>156</itemHeight>
+        <textureWidth>120</textureWidth>
+        <textureHeight>170</textureHeight>
+        <thumbWidth>106</thumbWidth>
+        <thumbHeight>156</thumbHeight>
+        <thumbPosX>7</thumbPosX>
+        <thumbPosY>7</thumbPosY>
+        <thumbs flipY="true" diffuse="diffusemirrorwide.png" />
+        <InfoImage>
+        </InfoImage>
+        <imageFolder>-</imageFolder>
+        <imageFolderFocus>thumbborder.png</imageFolderFocus>
+        <frame>-</frame>
+        <frameFocus>-</frameFocus>
+        <showFrame>no</showFrame>
+        <showFolder>yes</showFolder>
+        <showBackGround>no</showBackGround>
+        <showInfoImage>no</showInfoImage>
+        <thumbAnimation effect="zoom" start="100,100" end="120,120" tween="quadratic" time="0">focus</thumbAnimation>
+        <!-- Spin Controls -->
+        <spinWidth>50</spinWidth>
+        <spinHeight>37</spinHeight>
+        <spinPosX>1175</spinPosX>
+        <spinPosY>681</spinPosY>
+        <spinAlign>Right</spinAlign>
+        <spinColor>ff006698</spinColor>
+        <textureUp>arrow_round_up_nofocus.png</textureUp>
+        <textureDown>arrow_round_down_nofocus.png</textureDown>
+        <textureUpFocus>arrow_round_up_focus.png</textureUpFocus>
+        <textureDownFocus>arrow_round_down_focus.png</textureDownFocus>
+      </control>
+      <control>
+        <description>Thumbnail Panel</description>
+        <type>thumbnailpanel</type>
+        <id>50</id>
+        <onleft>10</onleft>
+        <onright>10</onright>
+        <posX>530</posX>
+        <posY>230</posY>
+        <width>750</width>
+        <height>480</height>
+        <keepaspectratio>yes</keepaspectratio>
+        <!-- Small Icons 0.66 aspect ratio -->
+        <itemWidth>100</itemWidth>
+        <itemHeight>145</itemHeight>
+        <textureWidth>100</textureWidth>
+        <textureHeight>144</textureHeight>
+        <thumbWidth>90</thumbWidth>
+        <thumbHeight>135</thumbHeight>
+        <thumbPosX>5</thumbPosX>
+        <thumbPosY>5</thumbPosY>
+        <!-- Large Icons 0.66 aspect ratio -->
+        <textureWidthBig>148</textureWidthBig>
+        <textureHeightBig>217</textureHeightBig>
+        <itemWidthBig>147</itemWidthBig>
+        <itemHeightBig>215</itemHeightBig>
+        <thumbWidthBig>132</thumbWidthBig>
+        <thumbHeightBig>200</thumbHeightBig>
+        <thumbPosXBig>8</thumbPosXBig>
+        <thumbPosYBig>8</thumbPosYBig>
+        <imageFolderFocus>thumbborder3.png</imageFolderFocus>
+        <font>font12</font>
+        <suffix>|</suffix>
+        <thumbZoom>no</thumbZoom>
+        <enableFocusZoom>no</enableFocusZoom>
+        <!-- Spin Controls -->
+        <spinWidth>50</spinWidth>
+        <spinHeight>37</spinHeight>
+        <spinPosX>1175</spinPosX>
+        <spinPosY>681</spinPosY>
+        <spinAlign>Right</spinAlign>
+        <spinColor>ff006698</spinColor>
+        <textureUp>arrow_round_up_nofocus.png</textureUp>
+        <textureDown>arrow_round_down_nofocus.png</textureDown>
+        <textureUpFocus>arrow_round_up_focus.png</textureUpFocus>
+        <textureDownFocus>arrow_round_down_focus.png</textureDownFocus>
+      </control>
+      <control>
+        <description>Cover Flow</description>
+        <type>coverflow</type>
+        <keepaspectratio>yes</keepaspectratio>
+        <colordiffuse>90ffffff</colordiffuse>
+        <dimColor>90ffffff</dimColor>
+        <id>50</id>
+        <posX>0</posX>
+        <posY>240</posY>
+        <width>1280</width>
+        <height>720</height>
+        <onup>10</onup>
+        <onright>50</onright>
+        <selectedCard>0</selectedCard>
+        <cardWidth>250</cardWidth>
+        <cardHeight>375</cardHeight>
+        <angle>45</angle>
+        <sideShift>220</sideShift>
+        <sideGap>100</sideGap>
+        <sideDepth>250</sideDepth>
+        <offsetY>0</offsetY>
+        <selectedOffsetY>0</selectedOffsetY>
+        <thumbZoom>no</thumbZoom>
+        <speed>4</speed>
+        <backgroundHeight>250</backgroundHeight>
+        <backgroundWidth>1280</backgroundWidth>
+        <backgroundX>0</backgroundX>
+        <backgroundY>470</backgroundY>
+        <backgroundDiffuse>FF000000</backgroundDiffuse>
+        <background>filmstrip_overlay.png</background>
+        <showBackground>no</showBackground>
+        <foregroundHeight>724</foregroundHeight>
+        <foregroundWidth>1284</foregroundWidth>
+        <foregroundX>-2</foregroundX>
+        <foregroundY>-2</foregroundY>
+        <foregroundDiffuse>FF000000</foregroundDiffuse>
+        <foreground>-</foreground>
+        <showForeground>no</showForeground>
+        <showFrame>no</showFrame>
+        <frame>-</frame>
+        <frameFocus>-</frameFocus>
+        <frameWidth>250</frameWidth>
+        <frameHeight>375</frameHeight>
+        <spinSpeed>8</spinSpeed>
+        <unfocusedAlpha>FF</unfocusedAlpha>
+        <folderPrefix>[</folderPrefix>
+        <folderSuffix>]</folderSuffix>
+        <font1>mediastream14tc</font1>
+        <font2>mediastream12tc</font2>
+        <label1>#Emulators2.CurrentItem.title</label1>
+        <label2>#Emulators2.CurrentItem.coverflowlabel</label2>
+        <textColor>FFFFFFFF</textColor>
+        <remoteColor>FFFF0000</remoteColor>
+        <playedColor>FFFFFFFF</playedColor>
+        <downloadColor>FF00FF00</downloadColor>
+        <selectedColor>FFFFFFFF</selectedColor>
+        <shadowAngle>45</shadowAngle>
+        <shadowDistance>2</shadowDistance>
+        <shadowColor>FF222222</shadowColor>
+        <label1YOff>395</label1YOff>
+        <label2YOff>420</label2YOff>
+        <pageSize>5</pageSize>
+        <scrollbarBackground>bar_hor.png</scrollbarBackground>
+        <scrollbarLeft>mouse_left_horizontal.png</scrollbarLeft>
+        <scrollbarRight>mouse_right_horizontal.png</scrollbarRight>
+        <scrollbarYOff>462</scrollbarYOff>
+        <showScrollbar>no</showScrollbar>
+        <cards flipY="yes" diffuse="Thumb_Mask.png" mask="video_poster_square_mask.png" />
+        <subitems>
+          <subitem>
+            <![CDATA[
+              <controls>
+                  <control>
+                    <description>background</description>
+                    <type>image</type>
+                    <posX>0</posX>
+                    <posY>0</posY>
+                    <width>250</width>
+                    <height>375</height>
+                    <texture flipY="yes" diffuse="Thumb_Mask.png" mask="video_poster_square_mask.png">#Emulators2.CurrentItem.backcoverpath</texture>
+                    <keepaspectratio>yes</keepaspectratio>
+                    <valign>bottom</valign>
+                  </control>
+                  
+                </controls>
+            ]]>
+          </subitem>
+        </subitems>
+      </control>
+    </control>
+  </controls>
+</window>

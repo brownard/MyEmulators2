@@ -1,0 +1,270 @@
+My Emulators 3.0 FAQ
+
+
+Q: Why won't ___ emulator work? (Project 64, ePSXe...)
+
+Q: Which emulators are the best?
+
+Q: Where can I download system thumbnails?
+
+Q: Where can I download thumbnails for games?
+
+Q: Where can I find the most recent version of the 
+   My Emulators plugin?
+
+Q: My system thumbnails won't show up
+
+Q: My thumbnails for games won't show up
+
+Q: How can I exit every emulator with the same key press?
+
+Q: How do I select more than one file type to search for
+   in the "Filter for showing files"?
+
+Q: Can I categorize games into subfolders or browse by
+   letter or search for games within MediaPortal?
+
+Q: Can you add support for the ___ skin?
+
+Q: How do I add descriptions, ratings or genres or change
+   the name of games?
+
+Q: I have a question not answered here
+
+
+
+
+---------------------------------------------------------
+
+Q: Why won't ___ emulator work? (Project 64, ePSXe...)
+
+A: Check this thread for working configs:
+   http://forum.team-mediaportal.com/my-emulators-247/emulator-configurations-44459/
+
+   Here are some common settings
+
+   Project 64:
+   Uncheck the option "Use quotes in paths".
+
+   ePSXe:
+   The Arguments to emulator has to be include these switches 
+   at the end (including a space after)
+   -nogui -loadbin 
+   So it would look like this:
+   "-nogui -loadbin " 
+   (minus the quotes).
+
+   Gens:
+   If you have problems with the GENS emulator starting
+   windowed after closing with alt+f4, you could either
+   try Gens+ (Gens Plus):
+   http://www.emulator-zone.com/doc.php/genesis/gens_plus.html
+
+   or in the gens.cfg file try changing Full Screen=0 to
+   Full Screen=1. If it still starts windowed, also set
+   gens.cfg to Read-only (this prevents preferences from
+   changing).
+
+   Other:
+   To pass argments to the emulator, just add them in the
+   Arguments to Emulator field, ie -switch1.
+
+   To have switches after the executable, add the widcard
+   %ROM% where the path is to be inserted, ie
+   -switch1 %ROM% -switch2.
+
+   When a game is launched from the list, the wildcard
+   will be replaced by the correct game file. If no %ROM%
+   is defined, the path to the game file will be inserted
+   at the end.
+
+   You can also set .bat files as emulators if that helps.
+
+
+
+Q: Which emulators are the best?
+
+A: The highest rated ones on http://www.emulator-zone.com/
+
+
+
+Q: Where can I download system thumbnails?
+
+A: http://forum.team-mediaportal.com/attachments/my-emulators-247/2448d1168379310-my-emulators-emulator_icons.rar
+
+
+
+Q: Where can I download thumbnails for games?
+
+A: http://localarcade.com/screenshotarchive/
+
+
+
+Q: Where can I find the most recent version of the 
+   My Emulators plugin?
+
+A: Download the file myEmulators.rar from:
+   https://myemulators.svn.sourceforge.net/svnroot/myemulators
+
+
+
+Q: My system thumbnails won't show up
+
+A: The image should be named exactly the same as the name
+   of the emulator in MediaPortal. Supported file types
+   are gif, jpg and png. Make sure the images are in one
+   of these folders (depending on your system):
+
+   WinXP: C:\Documents and Settings\All Users\Application Data\Team MediaPortal\MediaPortal\thumbs\myEmulators\emulators
+   Vista: C:\ProgramData\Team MediaPortal\MediaPortal\thumbs\myEmulators\emulators
+
+   Example: C:\Documents and Settings\All Users\Application Data\Team MediaPortal\MediaPortal\thumbs\myEmulators\emulators\N64.jpg
+
+   If you can't see the Application Data folder, go to the
+   windows control panel and go into Folder Options, go to
+   the View tab and select "Show hidden files and folders".
+
+   For Mediaportal versions before 1.0.0.0
+   you can try the thumbs\myEmulators\emulators folder
+   in the folder you installed MediaPortal into. Usually:
+   C:\Program Files\Team Mediaportal\Mediaportal\thumbs\myEmulators\emulators\
+
+   
+
+Q: My thumbnails for games won't show up
+
+A: Supported file types are gif, jpg and png. Create a
+   subfolder named as the emulator in one of these folders
+   (depending on your system), and name the image exactly
+   the same as the game name in MediaPortal:
+
+   WinXP: C:\Documents and Settings\All Users\Application Data\Team MediaPortal\MediaPortal\thumbs\myEmulators\games
+   Vista: C:\ProgramData\Team MediaPortal\MediaPortal\thumbs\myEmulators\games
+
+   Example: C:\Documents and Settings\All Users\Application Data\Team MediaPortal\MediaPortal\thumbs\myEmulators\games\N64\1080 Snowboarding.jpg
+
+   If you can't see the Application Data folder, go to the
+   windows control panel and go into Folder Options, go to
+   the View tab and select "Show hidden files and folders".
+
+   For Mediaportal versions before 1.0.0.0
+   you can try the thumbs\myEmulators\games folder in the
+   folder you installed MediaPortal into, usually:
+   C:\Program Files\Team Mediaportal\Mediaportal\thumbs\myEmulators\games
+   with a subdirectory named as the emulator and the image
+   named exactly the same as the game name in MediaPortal.
+
+
+
+Q: How can I exit every emulator with the same key press?
+
+A: You can go to this site which has a list of emulators
+   that have been modified to be closed with the same key
+   press (esc):
+
+   http://localarcade.com/screenshotarchive/downloads_emus.htm
+
+
+   Or you can get one of these programs to map key presses
+   to remotes/gamepads and set a button to Alt+F4 to close
+   emulators (although it does not work in every situation,
+   e.g. ePSXe wont save...):
+
+   JoyToKey (simplest)
+      http://www.oneswitch.org.uk/2/I/JoyToKey/JoyToKey.htm
+
+   Xpadder (has many options)
+      http://www.xpadder.com/
+
+   ControlMK (pretty simple)
+      http://www.redcl0ud.com/controlmk/index.html
+
+   AutoHotkey (uses scripts)
+      http://www.autohotkey.com/
+
+   HIP (main purpose is remotes, has small delay)
+      http://www.byremote.com.au/HIP/
+
+   Pinnacle Game Profiler (costs money)
+      http://www.pinnaclegameprofiler.com/
+
+   Total Game Control (costs money)
+      http://www.digitaltransforms.com/
+
+   Notes: ePSXe has to be closed with Esc. If it is closed
+   with Alt+F4 it won't save the game and the process will
+   still be running.
+
+   In ZSNES if you go into 'Misc' then 'Misc Keys' and click
+   'Exit' you can define it as one of your remote/gamepad
+   buttons or a custom key. The exit key for ZSNES only
+   works when a rom is loaded though, not when ZSNES is just
+   sitting idle.
+
+
+   You can check this thread for more solutions:
+   http://forum.team-mediaportal.com/my-emulators-247/how-close-emulator-remote-36398/
+
+
+
+Q: How do I select more than one file type to search for
+   in the "Filter for showing files"?
+
+A: Separate with ; Eg: *.nes;*.rom
+
+
+
+Q: Can I categorize games into subfolders or browse by
+   letter or search for games within MediaPortal?
+
+A: Subdirectories are supported now (v2.5).
+
+   You can search for games in the configuration window,
+   on the database tab by pressing Ctrl + F.
+
+   You can not search for games within mediaportal yet.
+
+
+
+Q: Can you add support for the ___ skin?
+
+A: You could try asking the creator of that skin or in its
+   thread on the Mediaportal forums.
+
+   http://forum.team-mediaportal.com/skins-50/
+
+   Also, if you have made/modified an xml file to work with
+   a skin please post it in the My Emulators skin thread:
+
+   http://forum.team-mediaportal.com/my-emulators-247/post-skin-files-here-42074/
+
+   Currently supported skins:
+   Blue3
+   BlueTwo
+   BlueTwo wide
+   Project Mayhem 3
+
+
+
+Q: How do I add descriptions, ratings or genres or change
+   the name of games?
+
+A: In the My Emulators configuration on the Game Database
+   tab.
+
+
+
+Q: I have a question not answered here
+
+A: Check the readme and search through this thread:
+   http://forum.team-mediaportal.com/my-emulators-247/my-emulators-12771/
+
+   If its not in there then make a new post. The author
+   (Chreekar) checks that thread regularly.
+
+
+   Thanks to the forum users for a lot of these answers.
+
+
+---------------------------------------------------------
+Created by gamingexpert, modified by Chreekar.  01-12-09

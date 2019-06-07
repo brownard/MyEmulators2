@@ -1,0 +1,1039 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PackageClass xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Version>2.0</Version>
+  <Groups>
+    <Items>
+      <GroupItem Name="Plugin">
+        <ParentGroup />
+        <DisplayName>Plugin</DisplayName>
+        <DefaulChecked>true</DefaulChecked>
+        <Description>The files that My Emulators 2 needs to run</Description>
+        <Files>
+          <Items>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="true">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>Release\MyEmulators2.dll</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{d4e8eaf8-3f5e-48b3-8c2f-dca8144eecae}-myEmulators.dll</ZipFileName>
+              <DestinationFilename>%Plugins%\Windows\MyEmulators2.dll</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="true">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>Release\Language\English.xml</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{55392011-21fc-46f0-b6a1-3087d7baf037}-English.xml</ZipFileName>
+              <DestinationFilename>%Language%\Emulators2\English.xml</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="true">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>Release\SharpCompress.3.5.dll</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{42d1c24a-7041-40a9-a548-200108673f0c}-SharpCompress.3.5.dll</ZipFileName>
+              <DestinationFilename>%Plugins%\Windows\SharpCompress.3.5.dll</DestinationFilename>
+            </FileItem>
+          </Items>
+        </Files>
+      </GroupItem>
+      <GroupItem Name="Default">
+        <ParentGroup>Skins</ParentGroup>
+        <DisplayName>Default</DisplayName>
+        <DefaulChecked>true</DefaulChecked>
+        <Description>Default skin files</Description>
+        <Files>
+          <Items>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>OverwriteIfOlder</UpdateOption>
+              <LocalFileName>Release\Skin\Default\Emulators2.detailsview.xml</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{cfdebb5f-066f-41d9-9a68-f771ff334f22}-Emulators2.detailsview.xml</ZipFileName>
+              <DestinationFilename>%Skin%\Default\Emulators2.detailsview.xml</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>OverwriteIfOlder</UpdateOption>
+              <LocalFileName>Release\Skin\Default\Emulators2.facade.xml</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{fb7e1e0e-36c1-4244-a89a-a93dcb7dda4d}-Emulators2.facade.xml</ZipFileName>
+              <DestinationFilename>%Skin%\Default\Emulators2.facade.xml</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>OverwriteIfOlder</UpdateOption>
+              <LocalFileName>Release\Skin\Default\Emulators2.listview.xml</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{aa4ff7bb-c5de-48ca-8f4d-af6d39612651}-Emulators2.listview.xml</ZipFileName>
+              <DestinationFilename>%Skin%\Default\Emulators2.listview.xml</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>OverwriteIfOlder</UpdateOption>
+              <LocalFileName>Release\Skin\Default\Emulators2.xml</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{221a1760-ca1c-4f37-bc74-67c405542f51}-Emulators2.xml</ZipFileName>
+              <DestinationFilename>%Skin%\Default\Emulators2.xml</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>OverwriteIfOlder</UpdateOption>
+              <LocalFileName>Release\Skin\Default\Media\Emulators2_favourite.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{e809fd5c-cd18-4b10-af53-6eaa541068f1}-Emulators2_favourite.png</ZipFileName>
+              <DestinationFilename>%Skin%\Default\Media\Emulators2_favourite.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>OverwriteIfOlder</UpdateOption>
+              <LocalFileName>Release\Skin\Default\Media\Emulators2_goodmerge.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{6053fd55-f340-4237-8199-69c548730c96}-Emulators2_goodmerge.png</ZipFileName>
+              <DestinationFilename>%Skin%\Default\Media\Emulators2_goodmerge.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>OverwriteIfOlder</UpdateOption>
+              <LocalFileName>Release\Skin\Default\Media\Emulators2_Logo.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{f41dea70-0371-4400-8779-177260fdfd82}-Emulators2_Logo.png</ZipFileName>
+              <DestinationFilename>%Skin%\Default\Media\Emulators2_Logo.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>OverwriteIfOlder</UpdateOption>
+              <LocalFileName>Release\Skin\Default\Media\hover_Emulators2.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{3831090f-18ed-40ea-9aa8-8391f50d310b}-hover_Emulators2.png</ZipFileName>
+              <DestinationFilename>%Skin%\Default\Media\hover_Emulators2.png</DestinationFilename>
+            </FileItem>
+          </Items>
+        </Files>
+      </GroupItem>
+      <GroupItem Name="DefaultWide">
+        <ParentGroup>Skins</ParentGroup>
+        <DisplayName>DefaultWide</DisplayName>
+        <DefaulChecked>true</DefaulChecked>
+        <Description>DefaultWide skin files</Description>
+        <Files>
+          <Items>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>OverwriteIfOlder</UpdateOption>
+              <LocalFileName>Release\Skin\DefaultWide\Emulators2.detailsview.xml</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{5608b96c-be18-4e84-b691-77a7de7c1b29}-Emulators2.detailsview.xml</ZipFileName>
+              <DestinationFilename>%Skin%\DefaultWide\Emulators2.detailsview.xml</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>OverwriteIfOlder</UpdateOption>
+              <LocalFileName>Release\Skin\DefaultWide\Emulators2.facade.xml</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{d768c008-3b83-4458-8d3d-757a35bf6147}-Emulators2.facade.xml</ZipFileName>
+              <DestinationFilename>%Skin%\DefaultWide\Emulators2.facade.xml</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>OverwriteIfOlder</UpdateOption>
+              <LocalFileName>Release\Skin\DefaultWide\Emulators2.listview.xml</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{41634992-9660-4195-a7c0-bfe316c136ca}-Emulators2.listview.xml</ZipFileName>
+              <DestinationFilename>%Skin%\DefaultWide\Emulators2.listview.xml</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>OverwriteIfOlder</UpdateOption>
+              <LocalFileName>Release\Skin\DefaultWide\Emulators2.xml</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{97f04d95-bfe9-49fe-b82e-39d4d8618414}-Emulators2.xml</ZipFileName>
+              <DestinationFilename>%Skin%\DefaultWide\Emulators2.xml</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>OverwriteIfOlder</UpdateOption>
+              <LocalFileName>Release\Skin\DefaultWide\Media\Emulators2_favourite.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{b29d287d-eeca-4eac-8c89-5faf404c4295}-Emulators2_favourite.png</ZipFileName>
+              <DestinationFilename>%Skin%\DefaultWide\Media\Emulators2_favourite.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>OverwriteIfOlder</UpdateOption>
+              <LocalFileName>Release\Skin\DefaultWide\Media\Emulators2_goodmerge.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{e95bdb43-b872-45ed-b91e-921e44e7f4cc}-Emulators2_goodmerge.png</ZipFileName>
+              <DestinationFilename>%Skin%\DefaultWide\Media\Emulators2_goodmerge.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>OverwriteIfOlder</UpdateOption>
+              <LocalFileName>Release\Skin\DefaultWide\Media\Emulators2_Logo.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{4e348017-8e19-4496-80be-5ffe6bd440dc}-Emulators2_Logo.png</ZipFileName>
+              <DestinationFilename>%Skin%\DefaultWide\Media\Emulators2_Logo.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>OverwriteIfOlder</UpdateOption>
+              <LocalFileName>Release\Skin\DefaultWide\Media\hover_Emulators2.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{1759e1ac-114a-4789-9732-e38ca3b871c8}-hover_Emulators2.png</ZipFileName>
+              <DestinationFilename>%Skin%\DefaultWide\Media\hover_Emulators2.png</DestinationFilename>
+            </FileItem>
+          </Items>
+        </Files>
+      </GroupItem>
+      <GroupItem Name="StreamedMP">
+        <ParentGroup>Skins</ParentGroup>
+        <DisplayName>StreamedMP</DisplayName>
+        <DefaulChecked>true</DefaulChecked>
+        <Description>StreamedMP skin files</Description>
+        <Files>
+          <Items>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>OverwriteIfOlder</UpdateOption>
+              <LocalFileName>Release\Skin\StreamedMP\Emulators2.coverflowview.xml</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{961fa8f2-e892-4388-a593-11506c2a5e61}-Emulators2.coverflowview.xml</ZipFileName>
+              <DestinationFilename>%Skin%\StreamedMP\Emulators2.coverflowview.xml</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>OverwriteIfOlder</UpdateOption>
+              <LocalFileName>Release\Skin\StreamedMP\Emulators2.detailsview.xml</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{557b99a6-351d-4371-8d61-d3ad42d6932f}-Emulators2.detailsview.xml</ZipFileName>
+              <DestinationFilename>%Skin%\StreamedMP\Emulators2.detailsview.xml</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>OverwriteIfOlder</UpdateOption>
+              <LocalFileName>Release\Skin\StreamedMP\Emulators2.facade.xml</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{8d8d63cf-bebc-4385-a6ad-5ac5e9fe89ac}-Emulators2.facade.xml</ZipFileName>
+              <DestinationFilename>%Skin%\StreamedMP\Emulators2.facade.xml</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>OverwriteIfOlder</UpdateOption>
+              <LocalFileName>Release\Skin\StreamedMP\Emulators2.filmstripview.xml</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{096d79c4-820f-45d8-8176-acd8bb634738}-Emulators2.filmstripview.xml</ZipFileName>
+              <DestinationFilename>%Skin%\StreamedMP\Emulators2.filmstripview.xml</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>OverwriteIfOlder</UpdateOption>
+              <LocalFileName>Release\Skin\StreamedMP\Emulators2.listview.xml</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{767d86ea-d7b8-4cda-8025-b62e7ead40ea}-Emulators2.listview.xml</ZipFileName>
+              <DestinationFilename>%Skin%\StreamedMP\Emulators2.listview.xml</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>OverwriteIfOlder</UpdateOption>
+              <LocalFileName>Release\Skin\StreamedMP\Emulators2.overlays.xml</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{777f7143-f316-4ff5-a4d2-b743eb3bc9e0}-Emulators2.overlays.xml</ZipFileName>
+              <DestinationFilename>%Skin%\StreamedMP\Emulators2.overlays.xml</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>OverwriteIfOlder</UpdateOption>
+              <LocalFileName>Release\Skin\StreamedMP\Emulators2.thumbsview.xml</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{a208c176-a405-445d-b90d-43e5ec76edc3}-Emulators2.thumbsview.xml</ZipFileName>
+              <DestinationFilename>%Skin%\StreamedMP\Emulators2.thumbsview.xml</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>OverwriteIfOlder</UpdateOption>
+              <LocalFileName>Release\Skin\StreamedMP\Emulators2.xml</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{bf8c75fe-1ab6-4be9-9be0-2fdcd4e1ed8d}-Emulators2.xml</ZipFileName>
+              <DestinationFilename>%Skin%\StreamedMP\Emulators2.xml</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>OverwriteIfOlder</UpdateOption>
+              <LocalFileName>Release\Skin\StreamedMP\Media\Emulators2_favourite.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{940b9718-5277-4fe3-9a2a-41fdce9a8512}-Emulators2_favourite.png</ZipFileName>
+              <DestinationFilename>%Skin%\StreamedMP\Media\Emulators2_favourite.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>OverwriteIfOlder</UpdateOption>
+              <LocalFileName>Release\Skin\StreamedMP\Media\Emulators2_goodmerge.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{bb2aa9bf-5340-4e1b-8195-be42f29b5323}-Emulators2_goodmerge.png</ZipFileName>
+              <DestinationFilename>%Skin%\StreamedMP\Media\Emulators2_goodmerge.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>OverwriteIfOlder</UpdateOption>
+              <LocalFileName>Release\Skin\StreamedMP\Media\Emulators2_Logo.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{7c8452d5-4d26-4f11-add6-0b23afc2da2a}-Emulators2_Logo.png</ZipFileName>
+              <DestinationFilename>%Skin%\StreamedMP\Media\Emulators2_Logo.png</DestinationFilename>
+            </FileItem>
+          </Items>
+        </Files>
+      </GroupItem>
+      <GroupItem Name="Skins">
+        <ParentGroup />
+        <DisplayName>Skins</DisplayName>
+        <DefaulChecked>true</DefaulChecked>
+        <Description>Skin support</Description>
+        <Files>
+          <Items>
+            <FileItem InstallType="GenericSkinFile" SystemFile="false" Modified="true">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>Release\Skin\Common\Emulators2.dummy.xml</LocalFileName>
+              <ZipFileName>Installer{GenericSkinFile}\{e70e16da-5293-408d-a457-1689453f1527}-myEmulators.dummy.xml</ZipFileName>
+              <DestinationFilename>%Skin%\[DEFAULT]\Emulators2.dummy.xml</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="GenericSkinFile" SystemFile="false" Modified="true">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>Release\Skin\Common\Emulators2_Fanart.jpg</LocalFileName>
+              <ZipFileName>Installer{GenericSkinFile}\{562f8951-7215-47a1-b18c-04c37c821e30}-Emulators2_Fanart.jpg</ZipFileName>
+              <DestinationFilename>%Skin%\[DEFAULT]\Media\Emulators2_Fanart.jpg</DestinationFilename>
+            </FileItem>
+          </Items>
+        </Files>
+      </GroupItem>
+      <GroupItem Name="Language">
+        <ParentGroup />
+        <DisplayName>Language</DisplayName>
+        <DefaulChecked>true</DefaulChecked>
+        <Description>Install additional translations</Description>
+        <Files>
+          <Items />
+        </Files>
+      </GroupItem>
+      <GroupItem Name="German">
+        <ParentGroup>Language</ParentGroup>
+        <DisplayName>German</DisplayName>
+        <DefaulChecked>true</DefaulChecked>
+        <Description>German translations</Description>
+        <Files>
+          <Items>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="true">
+              <Param1 />
+              <UpdateOption>OverwriteIfOlder</UpdateOption>
+              <LocalFileName>Release\Language\German.xml</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{b89cdd7d-0c2e-4b3d-9b79-30457693a64e}-German.xml</ZipFileName>
+              <DestinationFilename>%Language%\Emulators2\German.xml</DestinationFilename>
+            </FileItem>
+          </Items>
+        </Files>
+      </GroupItem>
+      <GroupItem Name="Dutch">
+        <ParentGroup>Language</ParentGroup>
+        <DisplayName>Dutch</DisplayName>
+        <DefaulChecked>true</DefaulChecked>
+        <Description>Dutch translations</Description>
+        <Files>
+          <Items>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="true">
+              <Param1 />
+              <UpdateOption>OverwriteIfOlder</UpdateOption>
+              <LocalFileName>Release\Language\Dutch.xml</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{ac5a9d4f-c860-438b-b0cf-795d9f2ceb29}-Dutch.xml</ZipFileName>
+              <DestinationFilename>%Language%\Emulators2\Dutch.xml</DestinationFilename>
+            </FileItem>
+          </Items>
+        </Files>
+      </GroupItem>
+      <GroupItem Name="Italiano">
+        <ParentGroup>Language</ParentGroup>
+        <DisplayName>Italiano</DisplayName>
+        <DefaulChecked>true</DefaulChecked>
+        <Description>Italian translations</Description>
+        <Files>
+          <Items>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="true">
+              <Param1 />
+              <UpdateOption>OverwriteIfOlder</UpdateOption>
+              <LocalFileName>Release\Language\Italiano.xml</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{fa5f34fa-06b9-4904-8526-fc678929e41f}-Italiano.xml</ZipFileName>
+              <DestinationFilename>%Language%\Emulators2\Italiano.xml</DestinationFilename>
+            </FileItem>
+          </Items>
+        </Files>
+      </GroupItem>
+      <GroupItem Name="Titan">
+        <ParentGroup>Skins</ParentGroup>
+        <DisplayName>Titan</DisplayName>
+        <DefaulChecked>true</DefaulChecked>
+        <Description>Titan skin files</Description>
+        <Files>
+          <Items>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>OverwriteIfOlder</UpdateOption>
+              <LocalFileName>Release\Skin\Titan\Emulators2.background.xml</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{65dbcc33-c7c2-4212-b759-ed3ac9dc5585}-Emulators2.background.xml</ZipFileName>
+              <DestinationFilename>%Skin%\Titan\Emulators2.background.xml</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>OverwriteIfOlder</UpdateOption>
+              <LocalFileName>Release\Skin\Titan\Emulators2.details.xml</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{dbf5f3de-13b3-4b76-8e90-476c65354b97}-Emulators2.details.xml</ZipFileName>
+              <DestinationFilename>%Skin%\Titan\Emulators2.details.xml</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>OverwriteIfOlder</UpdateOption>
+              <LocalFileName>Release\Skin\Titan\Emulators2.facade.xml</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{fddaf013-6e1b-4bb1-bf14-345b2a10de1d}-Emulators2.facade.xml</ZipFileName>
+              <DestinationFilename>%Skin%\Titan\Emulators2.facade.xml</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>OverwriteIfOlder</UpdateOption>
+              <LocalFileName>Release\Skin\Titan\Emulators2.hiddenmenu.xml</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{9545cb7c-1e58-4de9-9efc-7fc6fdd85bf4}-Emulators2.hiddenmenu.xml</ZipFileName>
+              <DestinationFilename>%Skin%\Titan\Emulators2.hiddenmenu.xml</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>OverwriteIfOlder</UpdateOption>
+              <LocalFileName>Release\Skin\Titan\Emulators2.views.xml</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{06fffbb8-a7c6-4ee0-abf1-95cf9e456906}-Emulators2.views.xml</ZipFileName>
+              <DestinationFilename>%Skin%\Titan\Emulators2.views.xml</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>OverwriteIfOlder</UpdateOption>
+              <LocalFileName>Release\Skin\Titan\Emulators2.xml</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{e1edd696-0315-4424-802e-1d3e01f08b9a}-Emulators2.xml</ZipFileName>
+              <DestinationFilename>%Skin%\Titan\Emulators2.xml</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>OverwriteIfOlder</UpdateOption>
+              <LocalFileName>Release\Skin\Titan\Media\icon_emulators.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{682563eb-5372-412b-a9a0-b0c384b46f59}-icon_emulators.png</ZipFileName>
+              <DestinationFilename>%Skin%\Titan\Media\icon_emulators.png</DestinationFilename>
+            </FileItem>
+          </Items>
+        </Files>
+      </GroupItem>
+    </Items>
+  </Groups>
+  <Sections>
+    <Items>
+      <SectionItem Guid="f5d48174-6571-40c2-9041-2e4be86841f6" Name="Welcome Screen" ConditionGroup="">
+        <Params>
+          <Items>
+            <SectionParam Name="Header text">
+              <Value>Welcome to the Extension Installer for [Name]</Value>
+              <ValueType>String</ValueType>
+              <Description />
+            </SectionParam>
+            <SectionParam Name="Description">
+              <Value>This will install [Name] version [Version] on your computer.
+It is recommended that you close all other applications before continuing.
+Click Next to continue or Cancel to exit Setup.</Value>
+              <ValueType>String</ValueType>
+              <Description />
+            </SectionParam>
+            <SectionParam Name="Left part image">
+              <Value />
+              <ValueType>File</ValueType>
+              <Description />
+            </SectionParam>
+            <SectionParam Name="Header image">
+              <Value />
+              <ValueType>File</ValueType>
+              <Description>Image in upper right part</Description>
+            </SectionParam>
+          </Items>
+        </Params>
+        <Actions>
+          <Items />
+        </Actions>
+        <IncludedGroups />
+        <PanelName>Welcome Screen</PanelName>
+        <WizardButtonsEnum>NextCancel</WizardButtonsEnum>
+      </SectionItem>
+      <SectionItem Guid="20fd5ade-0ede-44f8-8a5a-b6ea089a73a4" Name="Tree View Selector" ConditionGroup="">
+        <Params>
+          <Items>
+            <SectionParam Name="Header Title">
+              <Value />
+              <ValueType>String</ValueType>
+              <Description>Header title</Description>
+            </SectionParam>
+            <SectionParam Name="Header description">
+              <Value />
+              <ValueType>String</ValueType>
+              <Description>Description of section, shown in under section title</Description>
+            </SectionParam>
+            <SectionParam Name="Header image">
+              <Value />
+              <ValueType>File</ValueType>
+              <Description>Image in upper right part</Description>
+            </SectionParam>
+            <SectionParam Name="Description ">
+              <Value />
+              <ValueType>String</ValueType>
+              <Description>Description of this operation</Description>
+            </SectionParam>
+          </Items>
+        </Params>
+        <Actions>
+          <Items />
+        </Actions>
+        <IncludedGroups>
+          <string>Plugin</string>
+          <string>Skins</string>
+          <string>Language</string>
+          <string>Default</string>
+          <string>DefaultWide</string>
+          <string>StreamedMP</string>
+          <string>German</string>
+          <string>Dutch</string>
+          <string>Italiano</string>
+          <string>Titan</string>
+        </IncludedGroups>
+        <PanelName>Tree View Selector</PanelName>
+        <WizardButtonsEnum>BackNextCancel</WizardButtonsEnum>
+      </SectionItem>
+      <SectionItem Guid="87930de7-14bd-46cf-8352-e7cbff2346c3" Name="Install Section" ConditionGroup="">
+        <Params>
+          <Items>
+            <SectionParam Name="Header Title">
+              <Value>MyEmulators2</Value>
+              <ValueType>String</ValueType>
+              <Description>Header title</Description>
+            </SectionParam>
+            <SectionParam Name="Header description">
+              <Value>My Emulators 2 is now installing. In a little while you'll be enjoying your games.</Value>
+              <ValueType>String</ValueType>
+              <Description>Description of section, shown in under section title</Description>
+            </SectionParam>
+            <SectionParam Name="Header image">
+              <Value />
+              <ValueType>File</ValueType>
+              <Description>Image in upper right part</Description>
+            </SectionParam>
+          </Items>
+        </Params>
+        <Actions>
+          <Items>
+            <ActionItem Name="InstallFiles" ActionType="InstallFiles" ConditionGroup="">
+              <Params>
+                <Items />
+              </Params>
+              <ExecuteLocation>AfterPanelShow</ExecuteLocation>
+            </ActionItem>
+          </Items>
+        </Actions>
+        <IncludedGroups />
+        <PanelName>Install Section</PanelName>
+        <WizardButtonsEnum>Next</WizardButtonsEnum>
+      </SectionItem>
+      <SectionItem Guid="2b76985d-7c3d-419e-b26c-e68e12d6ae39" Name="Setup Complete" ConditionGroup="">
+        <Params>
+          <Items>
+            <SectionParam Name="Header text">
+              <Value>The Extension Installer Wizard has successfully installed [Name].</Value>
+              <ValueType>String</ValueType>
+              <Description />
+            </SectionParam>
+            <SectionParam Name="Left part image">
+              <Value />
+              <ValueType>File</ValueType>
+              <Description />
+            </SectionParam>
+            <SectionParam Name="Show radio buttons">
+              <Value>NO</Value>
+              <ValueType>Bool</ValueType>
+              <Description>Use radiobutton in place of combobox</Description>
+            </SectionParam>
+            <SectionParam Name="Header image">
+              <Value />
+              <ValueType>File</ValueType>
+              <Description>Image in upper right part</Description>
+            </SectionParam>
+          </Items>
+        </Params>
+        <Actions>
+          <Items />
+        </Actions>
+        <IncludedGroups />
+        <PanelName>Setup Complete</PanelName>
+        <WizardButtonsEnum>Finish</WizardButtonsEnum>
+      </SectionItem>
+    </Items>
+  </Sections>
+  <Dependencies>
+    <Items>
+      <DependencyItem>
+        <Type>MediaPortal</Type>
+        <Id />
+        <MinVersion>
+          <Major>1</Major>
+          <Minor>1</Minor>
+          <Build>6</Build>
+          <Revision>27644</Revision>
+        </MinVersion>
+        <MaxVersion>
+          <Major>1</Major>
+          <Minor>1</Minor>
+          <Build>6</Build>
+          <Revision>27644</Revision>
+        </MaxVersion>
+        <WarnOnly>true</WarnOnly>
+        <Message>This version of My Emulators 2 requires MediaPortal 1.2.0 Beta or higher!</Message>
+        <Name>MediaPortal</Name>
+      </DependencyItem>
+    </Items>
+  </Dependencies>
+  <PluginDependencies>
+    <Items>
+      <PluginDependencyItem AssemblyName="MyEmulators2.dll">
+        <CompatibleVersion>
+          <Items>
+            <CompatibleVersionItem>
+              <MinRequiredVersion>1.1.6.27644</MinRequiredVersion>
+              <DesignedForVersion>1.3.100.0</DesignedForVersion>
+            </CompatibleVersionItem>
+          </Items>
+        </CompatibleVersion>
+        <SubSystemsUsed>
+          <Items>
+            <SubSystemItem Name="MP.SkinEngine" />
+          </Items>
+        </SubSystemsUsed>
+      </PluginDependencyItem>
+    </Items>
+  </PluginDependencies>
+  <GeneralInfo>
+    <Name>My Emulators 2</Name>
+    <Id>c9ff2c7b-1ceb-4c60-9293-f1240bd8e050</Id>
+    <Author>Brownard, Craige1</Author>
+    <HomePage>http://forum.team-mediaportal.com/my-emulators-247/</HomePage>
+    <ForumPage>http://forum.team-mediaportal.com/my-emulators-247/</ForumPage>
+    <UpdateUrl>http://myemulators2.googlecode.com/svn/trunk/InstallerUpdate.xml</UpdateUrl>
+    <Version>
+      <Major>0</Major>
+      <Minor>3</Minor>
+      <Build>0</Build>
+      <Revision>98</Revision>
+    </Version>
+    <ExtensionDescription>My Emulators 2 is a plugin for MediaPortal that allows you to browse and play your PC and emulated games. 
+
+The plugin includes support for online scraping of game details and artwork, mulitple emulator configurations, goodmerge archives and much more.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+My Emulators 2 also supports a number of extra features. It will show you all kinds of information for the system and games you have. It has images like the box art for the front and back, ingame screen shots, title screen, and fanart. Ratings can be set as well. This is not the only things it can do; so hurry up and check it out.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+My Emulators 2 is a heavily modified version of the My Emulators code. Thanks go to BadMrFrosty and Chreekar for their previous work on My Emulators.</ExtensionDescription>
+    <VersionDescription />
+    <DevelopmentStatus>Stable</DevelopmentStatus>
+    <OnlineLocation>http://myemulators2.googlecode.com/files/Emulators2_0.3.0.98.mpe1</OnlineLocation>
+    <ReleaseDate>2013-06-12T21:08:40</ReleaseDate>
+    <Tags>games,emulator,roms</Tags>
+    <Location>c:\Emulators2_[Version].mpe1</Location>
+    <Params>
+      <Items>
+        <SectionParam Name="Icon">
+          <Value />
+          <ValueType>File</ValueType>
+          <Description>The icon file of the package (jpg,png,bmp)</Description>
+        </SectionParam>
+        <SectionParam Name="Online Icon">
+          <Value />
+          <ValueType>String</ValueType>
+          <Description>The icon file of the package stored online (jpg,png,bmp)</Description>
+        </SectionParam>
+        <SectionParam Name="Configuration file">
+          <Value />
+          <ValueType>Template</ValueType>
+          <Description>The file used to configure the extension.
+ If have .exe extension the will be executed
+ If have .dll extension used like MP plugin configuration</Description>
+        </SectionParam>
+        <SectionParam Name="Online Screenshots">
+          <Value />
+          <ValueType>String</ValueType>
+          <Description>Online stored screenshot urls separated by ; </Description>
+        </SectionParam>
+        <SectionParam Name="Force to uninstall on update">
+          <Value>YES</Value>
+          <ValueType>Bool</ValueType>
+          <Description>Show dialog and force to uninstall previous version when updating an extension. Should only be disabled if you are using an NSIS/MSI installer.</Description>
+        </SectionParam>
+      </Items>
+    </Params>
+  </GeneralInfo>
+  <UniqueFileList>
+    <Items>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="true">
+        <Param1 />
+        <UpdateOption>AlwaysOverwrite</UpdateOption>
+        <LocalFileName>Release\MyEmulators2.dll</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{d4e8eaf8-3f5e-48b3-8c2f-dca8144eecae}-myEmulators.dll</ZipFileName>
+        <DestinationFilename>%Plugins%\Windows\MyEmulators2.dll</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="true">
+        <Param1 />
+        <UpdateOption>AlwaysOverwrite</UpdateOption>
+        <LocalFileName>Release\Language\English.xml</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{55392011-21fc-46f0-b6a1-3087d7baf037}-English.xml</ZipFileName>
+        <DestinationFilename>%Language%\Emulators2\English.xml</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="true">
+        <Param1 />
+        <UpdateOption>AlwaysOverwrite</UpdateOption>
+        <LocalFileName>Release\SharpCompress.3.5.dll</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{42d1c24a-7041-40a9-a548-200108673f0c}-SharpCompress.3.5.dll</ZipFileName>
+        <DestinationFilename>%Plugins%\Windows\SharpCompress.3.5.dll</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>OverwriteIfOlder</UpdateOption>
+        <LocalFileName>Release\Skin\Default\Emulators2.detailsview.xml</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{cfdebb5f-066f-41d9-9a68-f771ff334f22}-Emulators2.detailsview.xml</ZipFileName>
+        <DestinationFilename>%Skin%\Default\Emulators2.detailsview.xml</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>OverwriteIfOlder</UpdateOption>
+        <LocalFileName>Release\Skin\Default\Emulators2.facade.xml</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{fb7e1e0e-36c1-4244-a89a-a93dcb7dda4d}-Emulators2.facade.xml</ZipFileName>
+        <DestinationFilename>%Skin%\Default\Emulators2.facade.xml</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>OverwriteIfOlder</UpdateOption>
+        <LocalFileName>Release\Skin\Default\Emulators2.listview.xml</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{aa4ff7bb-c5de-48ca-8f4d-af6d39612651}-Emulators2.listview.xml</ZipFileName>
+        <DestinationFilename>%Skin%\Default\Emulators2.listview.xml</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>OverwriteIfOlder</UpdateOption>
+        <LocalFileName>Release\Skin\Default\Emulators2.xml</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{221a1760-ca1c-4f37-bc74-67c405542f51}-Emulators2.xml</ZipFileName>
+        <DestinationFilename>%Skin%\Default\Emulators2.xml</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>OverwriteIfOlder</UpdateOption>
+        <LocalFileName>Release\Skin\Default\Media\Emulators2_favourite.png</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{e809fd5c-cd18-4b10-af53-6eaa541068f1}-Emulators2_favourite.png</ZipFileName>
+        <DestinationFilename>%Skin%\Default\Media\Emulators2_favourite.png</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>OverwriteIfOlder</UpdateOption>
+        <LocalFileName>Release\Skin\Default\Media\Emulators2_goodmerge.png</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{6053fd55-f340-4237-8199-69c548730c96}-Emulators2_goodmerge.png</ZipFileName>
+        <DestinationFilename>%Skin%\Default\Media\Emulators2_goodmerge.png</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>OverwriteIfOlder</UpdateOption>
+        <LocalFileName>Release\Skin\Default\Media\Emulators2_Logo.png</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{f41dea70-0371-4400-8779-177260fdfd82}-Emulators2_Logo.png</ZipFileName>
+        <DestinationFilename>%Skin%\Default\Media\Emulators2_Logo.png</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>OverwriteIfOlder</UpdateOption>
+        <LocalFileName>Release\Skin\Default\Media\hover_Emulators2.png</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{3831090f-18ed-40ea-9aa8-8391f50d310b}-hover_Emulators2.png</ZipFileName>
+        <DestinationFilename>%Skin%\Default\Media\hover_Emulators2.png</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>OverwriteIfOlder</UpdateOption>
+        <LocalFileName>Release\Skin\DefaultWide\Emulators2.detailsview.xml</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{5608b96c-be18-4e84-b691-77a7de7c1b29}-Emulators2.detailsview.xml</ZipFileName>
+        <DestinationFilename>%Skin%\DefaultWide\Emulators2.detailsview.xml</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>OverwriteIfOlder</UpdateOption>
+        <LocalFileName>Release\Skin\DefaultWide\Emulators2.facade.xml</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{d768c008-3b83-4458-8d3d-757a35bf6147}-Emulators2.facade.xml</ZipFileName>
+        <DestinationFilename>%Skin%\DefaultWide\Emulators2.facade.xml</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>OverwriteIfOlder</UpdateOption>
+        <LocalFileName>Release\Skin\DefaultWide\Emulators2.listview.xml</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{41634992-9660-4195-a7c0-bfe316c136ca}-Emulators2.listview.xml</ZipFileName>
+        <DestinationFilename>%Skin%\DefaultWide\Emulators2.listview.xml</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>OverwriteIfOlder</UpdateOption>
+        <LocalFileName>Release\Skin\DefaultWide\Emulators2.xml</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{97f04d95-bfe9-49fe-b82e-39d4d8618414}-Emulators2.xml</ZipFileName>
+        <DestinationFilename>%Skin%\DefaultWide\Emulators2.xml</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>OverwriteIfOlder</UpdateOption>
+        <LocalFileName>Release\Skin\DefaultWide\Media\Emulators2_favourite.png</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{b29d287d-eeca-4eac-8c89-5faf404c4295}-Emulators2_favourite.png</ZipFileName>
+        <DestinationFilename>%Skin%\DefaultWide\Media\Emulators2_favourite.png</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>OverwriteIfOlder</UpdateOption>
+        <LocalFileName>Release\Skin\DefaultWide\Media\Emulators2_goodmerge.png</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{e95bdb43-b872-45ed-b91e-921e44e7f4cc}-Emulators2_goodmerge.png</ZipFileName>
+        <DestinationFilename>%Skin%\DefaultWide\Media\Emulators2_goodmerge.png</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>OverwriteIfOlder</UpdateOption>
+        <LocalFileName>Release\Skin\DefaultWide\Media\Emulators2_Logo.png</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{4e348017-8e19-4496-80be-5ffe6bd440dc}-Emulators2_Logo.png</ZipFileName>
+        <DestinationFilename>%Skin%\DefaultWide\Media\Emulators2_Logo.png</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>OverwriteIfOlder</UpdateOption>
+        <LocalFileName>Release\Skin\DefaultWide\Media\hover_Emulators2.png</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{1759e1ac-114a-4789-9732-e38ca3b871c8}-hover_Emulators2.png</ZipFileName>
+        <DestinationFilename>%Skin%\DefaultWide\Media\hover_Emulators2.png</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>OverwriteIfOlder</UpdateOption>
+        <LocalFileName>Release\Skin\StreamedMP\Emulators2.coverflowview.xml</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{961fa8f2-e892-4388-a593-11506c2a5e61}-Emulators2.coverflowview.xml</ZipFileName>
+        <DestinationFilename>%Skin%\StreamedMP\Emulators2.coverflowview.xml</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>OverwriteIfOlder</UpdateOption>
+        <LocalFileName>Release\Skin\StreamedMP\Emulators2.detailsview.xml</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{557b99a6-351d-4371-8d61-d3ad42d6932f}-Emulators2.detailsview.xml</ZipFileName>
+        <DestinationFilename>%Skin%\StreamedMP\Emulators2.detailsview.xml</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>OverwriteIfOlder</UpdateOption>
+        <LocalFileName>Release\Skin\StreamedMP\Emulators2.facade.xml</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{8d8d63cf-bebc-4385-a6ad-5ac5e9fe89ac}-Emulators2.facade.xml</ZipFileName>
+        <DestinationFilename>%Skin%\StreamedMP\Emulators2.facade.xml</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>OverwriteIfOlder</UpdateOption>
+        <LocalFileName>Release\Skin\StreamedMP\Emulators2.filmstripview.xml</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{096d79c4-820f-45d8-8176-acd8bb634738}-Emulators2.filmstripview.xml</ZipFileName>
+        <DestinationFilename>%Skin%\StreamedMP\Emulators2.filmstripview.xml</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>OverwriteIfOlder</UpdateOption>
+        <LocalFileName>Release\Skin\StreamedMP\Emulators2.listview.xml</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{767d86ea-d7b8-4cda-8025-b62e7ead40ea}-Emulators2.listview.xml</ZipFileName>
+        <DestinationFilename>%Skin%\StreamedMP\Emulators2.listview.xml</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>OverwriteIfOlder</UpdateOption>
+        <LocalFileName>Release\Skin\StreamedMP\Emulators2.overlays.xml</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{777f7143-f316-4ff5-a4d2-b743eb3bc9e0}-Emulators2.overlays.xml</ZipFileName>
+        <DestinationFilename>%Skin%\StreamedMP\Emulators2.overlays.xml</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>OverwriteIfOlder</UpdateOption>
+        <LocalFileName>Release\Skin\StreamedMP\Emulators2.thumbsview.xml</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{a208c176-a405-445d-b90d-43e5ec76edc3}-Emulators2.thumbsview.xml</ZipFileName>
+        <DestinationFilename>%Skin%\StreamedMP\Emulators2.thumbsview.xml</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>OverwriteIfOlder</UpdateOption>
+        <LocalFileName>Release\Skin\StreamedMP\Emulators2.xml</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{bf8c75fe-1ab6-4be9-9be0-2fdcd4e1ed8d}-Emulators2.xml</ZipFileName>
+        <DestinationFilename>%Skin%\StreamedMP\Emulators2.xml</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>OverwriteIfOlder</UpdateOption>
+        <LocalFileName>Release\Skin\StreamedMP\Media\Emulators2_favourite.png</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{940b9718-5277-4fe3-9a2a-41fdce9a8512}-Emulators2_favourite.png</ZipFileName>
+        <DestinationFilename>%Skin%\StreamedMP\Media\Emulators2_favourite.png</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>OverwriteIfOlder</UpdateOption>
+        <LocalFileName>Release\Skin\StreamedMP\Media\Emulators2_goodmerge.png</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{bb2aa9bf-5340-4e1b-8195-be42f29b5323}-Emulators2_goodmerge.png</ZipFileName>
+        <DestinationFilename>%Skin%\StreamedMP\Media\Emulators2_goodmerge.png</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>OverwriteIfOlder</UpdateOption>
+        <LocalFileName>Release\Skin\StreamedMP\Media\Emulators2_Logo.png</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{7c8452d5-4d26-4f11-add6-0b23afc2da2a}-Emulators2_Logo.png</ZipFileName>
+        <DestinationFilename>%Skin%\StreamedMP\Media\Emulators2_Logo.png</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="GenericSkinFile" SystemFile="false" Modified="true">
+        <Param1 />
+        <UpdateOption>AlwaysOverwrite</UpdateOption>
+        <LocalFileName>Release\Skin\Common\Emulators2.dummy.xml</LocalFileName>
+        <ZipFileName>Installer{GenericSkinFile}\{e70e16da-5293-408d-a457-1689453f1527}-myEmulators.dummy.xml</ZipFileName>
+        <DestinationFilename>%Skin%\[DEFAULT]\Emulators2.dummy.xml</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="GenericSkinFile" SystemFile="false" Modified="true">
+        <Param1 />
+        <UpdateOption>AlwaysOverwrite</UpdateOption>
+        <LocalFileName>Release\Skin\Common\Emulators2_Fanart.jpg</LocalFileName>
+        <ZipFileName>Installer{GenericSkinFile}\{562f8951-7215-47a1-b18c-04c37c821e30}-Emulators2_Fanart.jpg</ZipFileName>
+        <DestinationFilename>%Skin%\[DEFAULT]\Media\Emulators2_Fanart.jpg</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="true">
+        <Param1 />
+        <UpdateOption>OverwriteIfOlder</UpdateOption>
+        <LocalFileName>Release\Language\German.xml</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{b89cdd7d-0c2e-4b3d-9b79-30457693a64e}-German.xml</ZipFileName>
+        <DestinationFilename>%Language%\Emulators2\German.xml</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="true">
+        <Param1 />
+        <UpdateOption>OverwriteIfOlder</UpdateOption>
+        <LocalFileName>Release\Language\Dutch.xml</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{ac5a9d4f-c860-438b-b0cf-795d9f2ceb29}-Dutch.xml</ZipFileName>
+        <DestinationFilename>%Language%\Emulators2\Dutch.xml</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="true">
+        <Param1 />
+        <UpdateOption>OverwriteIfOlder</UpdateOption>
+        <LocalFileName>Release\Language\Italiano.xml</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{fa5f34fa-06b9-4904-8526-fc678929e41f}-Italiano.xml</ZipFileName>
+        <DestinationFilename>%Language%\Emulators2\Italiano.xml</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>OverwriteIfOlder</UpdateOption>
+        <LocalFileName>Release\Skin\Titan\Emulators2.background.xml</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{65dbcc33-c7c2-4212-b759-ed3ac9dc5585}-Emulators2.background.xml</ZipFileName>
+        <DestinationFilename>%Skin%\Titan\Emulators2.background.xml</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>OverwriteIfOlder</UpdateOption>
+        <LocalFileName>Release\Skin\Titan\Emulators2.details.xml</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{dbf5f3de-13b3-4b76-8e90-476c65354b97}-Emulators2.details.xml</ZipFileName>
+        <DestinationFilename>%Skin%\Titan\Emulators2.details.xml</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>OverwriteIfOlder</UpdateOption>
+        <LocalFileName>Release\Skin\Titan\Emulators2.facade.xml</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{fddaf013-6e1b-4bb1-bf14-345b2a10de1d}-Emulators2.facade.xml</ZipFileName>
+        <DestinationFilename>%Skin%\Titan\Emulators2.facade.xml</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>OverwriteIfOlder</UpdateOption>
+        <LocalFileName>Release\Skin\Titan\Emulators2.hiddenmenu.xml</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{9545cb7c-1e58-4de9-9efc-7fc6fdd85bf4}-Emulators2.hiddenmenu.xml</ZipFileName>
+        <DestinationFilename>%Skin%\Titan\Emulators2.hiddenmenu.xml</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>OverwriteIfOlder</UpdateOption>
+        <LocalFileName>Release\Skin\Titan\Emulators2.views.xml</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{06fffbb8-a7c6-4ee0-abf1-95cf9e456906}-Emulators2.views.xml</ZipFileName>
+        <DestinationFilename>%Skin%\Titan\Emulators2.views.xml</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>OverwriteIfOlder</UpdateOption>
+        <LocalFileName>Release\Skin\Titan\Emulators2.xml</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{e1edd696-0315-4424-802e-1d3e01f08b9a}-Emulators2.xml</ZipFileName>
+        <DestinationFilename>%Skin%\Titan\Emulators2.xml</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>OverwriteIfOlder</UpdateOption>
+        <LocalFileName>Release\Skin\Titan\Media\icon_emulators.png</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{682563eb-5372-412b-a9a0-b0c384b46f59}-icon_emulators.png</ZipFileName>
+        <DestinationFilename>%Skin%\Titan\Media\icon_emulators.png</DestinationFilename>
+      </FileItem>
+    </Items>
+  </UniqueFileList>
+  <ProjectSettings>
+    <FolderGroups>
+      <FolderGroup InstallType="CopyFile" SystemFile="false" Modified="true">
+        <Param1 />
+        <UpdateOption>OverwriteIfOlder</UpdateOption>
+        <LocalFileName />
+        <ZipFileName>Installer{CopyFile}\{2881bdcb-d934-46d0-bb7c-6b79420f9a78}-</ZipFileName>
+        <DestinationFilename>%Skin%\Default</DestinationFilename>
+        <Folder>Release\Skin\Default</Folder>
+        <Group>Default</Group>
+        <Recursive>true</Recursive>
+      </FolderGroup>
+      <FolderGroup InstallType="CopyFile" SystemFile="false" Modified="true">
+        <Param1 />
+        <UpdateOption>OverwriteIfOlder</UpdateOption>
+        <LocalFileName />
+        <ZipFileName>Installer{CopyFile}\{6fa2a440-2c69-4ac1-ab26-d62717c8ea0a}-</ZipFileName>
+        <DestinationFilename>%Skin%\DefaultWide</DestinationFilename>
+        <Folder>Release\Skin\DefaultWide</Folder>
+        <Group>DefaultWide</Group>
+        <Recursive>true</Recursive>
+      </FolderGroup>
+      <FolderGroup InstallType="CopyFile" SystemFile="false" Modified="true">
+        <Param1 />
+        <UpdateOption>OverwriteIfOlder</UpdateOption>
+        <LocalFileName />
+        <ZipFileName>Installer{CopyFile}\{3df64e8a-0444-4833-96ce-6607b0bcd131}-</ZipFileName>
+        <DestinationFilename>%Skin%\StreamedMP</DestinationFilename>
+        <Folder>Release\Skin\StreamedMP</Folder>
+        <Group>StreamedMP</Group>
+        <Recursive>true</Recursive>
+      </FolderGroup>
+      <FolderGroup InstallType="CopyFile" SystemFile="false" Modified="true">
+        <Param1 />
+        <UpdateOption>OverwriteIfOlder</UpdateOption>
+        <LocalFileName />
+        <ZipFileName>Installer{CopyFile}\{6eada46b-1c69-4b34-ac0a-f7415336e249}-</ZipFileName>
+        <DestinationFilename>%Skin%\Titan</DestinationFilename>
+        <Folder>Release\Skin\Titan</Folder>
+        <Group>Titan</Group>
+        <Recursive>true</Recursive>
+      </FolderGroup>
+    </FolderGroups>
+    <ProjectFilename>Emulators2.xmp2</ProjectFilename>
+    <UpdatePath1>C:\Users\Brownard\Desktop\GoogleSVN\myEmulators2\myemulators2\InstallerUpdate.xml</UpdatePath1>
+    <UpdatePath2 />
+    <UpdatePath3 />
+  </ProjectSettings>
+  <IsSkin>false</IsSkin>
+</PackageClass>

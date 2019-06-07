@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<!-- Add and edit the aspect ratios used to resize boxart -->
+<items>
+  <item name="Nintendo 64">1.45</item>
+  <item name="Nes">1.45</item>
+  <item name="Snes">1.45</item>
+
+  <item name="Gameboy"></item>
+  <item name="Gameboy Advance"></item>
+
+  <item name="Gamecube"></item>
+  <item name="Wii">0.71</item>
+  <item name="Playstation">1.14</item> <!-- CD -->
+  <item name="PC Games">0.71</item> <!-- DVD -->
+</items>

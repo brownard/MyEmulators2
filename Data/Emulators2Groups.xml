@@ -1,0 +1,26 @@
+﻿<Groups>
+  <Group title="Favourites" favourite="true" sort="DEFAULT" desc="False" layout="-1">
+    <item type="SQL"><![CDATA[WHERE favourite='True' ORDER BY title]]></item>
+  </Group>
+  <Group title="Emulators" sort="DEFAULT" desc="False" layout="-1">
+    <item type="Emulator">-2</item>
+  </Group>
+  <Group title="All Games" sort="DEFAULT" desc="False" layout="-1">
+    <item type="SQL"><![CDATA[ORDER BY title]]></item>
+  </Group>
+  <Group title="Top Rated" sort="GRADE" desc="True" layout="-1">
+    <item type="SQL"><![CDATA[ORDER BY grade DESC, title LIMIT 10]]></item>
+  </Group>
+  <Group title="Recently Played" sort="LASTPLAYED" desc="True" layout="-1">
+    <item type="SQL"><![CDATA[WHERE playcount > 0 ORDER BY latestplay DESC LIMIT 10]]></item>
+  </Group>
+  <Group title="Developer" sort="DEFAULT" desc="False" layout="-1">
+    <item type="Dynamic" column="company" />
+  </Group>
+  <Group title="Year" sort="DEFAULT" desc="False" layout="-1">
+    <item type="Dynamic" column="yearmade" order="DESC" />
+  </Group>
+  <Group title="Genre" sort="DEFAULT" desc="False" layout="-1">
+    <item type="Dynamic" column="genre" />
+  </Group>
+</Groups>

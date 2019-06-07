@@ -1,0 +1,167 @@
+﻿<ScriptableScraper>
+  <details>
+    <name>thegamesdb.net</name>
+    <author>Brownard</author>
+    <description>Grabs game data from thegamesdb.net</description>
+    <id>99999996</id>
+    <version major="1" minor="0" point="0"/>
+    <published month="2" day="9" year="2012"/>
+    <type>MovieDetailsFetcher|MovieCoverFetcher</type>
+    <language>en</language>
+  </details>
+
+  <action name="search">
+
+    <set name="rx_yearmade">
+      <![CDATA[(\d\d\d\d)]]>
+    </set>
+
+
+    <set name="platformLookup">
+      <![CDATA[
+      |3DO,3DO|
+      |Amiga,Amiga|
+      |Arcade,Arcade|
+      |Atari 2600,Atari 2600|
+      |Atari 5200,Atari 5200|
+      |Atari 7800,Atari 7800|
+      |Atari Jaguar,Atari Jaguar|
+      |Atari Jaguar CD,Atari Jaguar CD|
+      |Atari XE,Atari XE|
+      |Colecovision,Colecovision|
+      |Commodore 64,Commodore 64|
+      |Intellivision,Intellivision|
+      |Mac OS,Macintosh|
+      |Microsoft Xbox,Xbox|
+      |Microsoft Xbox 360,Xbox 360|
+      |NeoGeo,NeoGeo|
+      |Nintendo 64,Nintendo 64|
+      |Nintendo DS,Nintendo DS|
+      |Nintendo Entertainment System (NES),NES|
+      |Nintendo Game Boy,Game Boy|
+      |Nintendo Game Boy Advance,Game Boy Advance|
+      |Nintendo Game Boy Color,Game Boy Color|
+      |Nintendo GameCube,GameCube|
+      |Nintendo Wii,Wii|
+      |Nintendo Wii U,Wii U|
+      |PC,Windows|
+      |Sega 32X,SEGA 32X|
+      |Sega CD,SEGA CD|
+      |Sega Dreamcast,Dreamcast|
+      |Sega Game Gear,Game Gear|
+      |Sega Genesis,Genesis|
+      |Sega Master System,SEGA Master System|
+      |Sega Mega Drive,SEGA Mega Drive|
+      |Sega Saturn,SEGA Saturn|
+      |Sony Playstation,Playstation|
+      |Sony Playstation 2,Playstation 2|
+      |Sony Playstation 3,Playstation 3|
+      |Sony Playstation Vita,Playstation Vita|
+      |Sony PSP,PSP|
+      |Super Nintendo (SNES),SNES|
+      |TurboGrafx 16,TurboGrafx-16|
+      ]]>
+    </set>
+
+    <set name="rxSearchPlatform"><![CDATA[[|]([^,\n]*),${search.platform}[|]]]></set>
+    <parse name="newSearchPlatform" input="${platformLookup}" regex="${rxSearchPlatform}" />
+    
+    <!-- Retrieve results using Title ${search.system:safe} -->
+    <retrieve name="search_page" url="http://thegamesdb.net/api/GetGamesList.php?name=${search.title:safe}&amp;platform=${newSearchPlatform[0][0]}" encoding="UTF-8"/>
+
+    <!-- Search result page is used. -->
+    <parse name="game_details" input="${search_page}" xpath="//Game" />
+    <loop name="curr_details" on="game_details">
+      <set name="game[${count}].site_id" value="${game_details[${count}].id}"/>
+      <set name="game[${count}].title" value="${game_details[${count}].GameTitle:htmldecode}"/>
+
+      <parse name="yearmade" input="${game_details[${count}].ReleaseDate}" regex="${rx_yearmade}"/>
+      <set name="game[${count}].yearmade" value="${yearmade[0][0]}"/>
+      
+      <set name="game[${count}].system" value="${game_details[${count}].Platform}"/>
+
+      <set name="rxPlatformLookup"><![CDATA[[|]${game_details[${count}].Platform},([^|]*)[|]]]></set>
+      <parse name="newPlatform" input="${platformLookup}" regex="${rxPlatformLookup}" />
+      <if test="${newPlatform[0][0]}!=">
+        <set name="game[${count}].system" value="${newPlatform[0][0]}"/>
+      </if>
+      
+      <set name="game[${count}].details_url" value="http://thegamesdb.net/api/GetGame.php?id=${game_details[${count}].id}"/>
+    </loop>
+  </action>
+
+  <action name="get_details">
+
+    
+    <retrieve name="details_page" url="http://thegamesdb.net/api/GetGame.php?id=${game.site_id}" encoding="UTF-8"/>
+
+    <parse name="title" input="${details_page}" xpath="//GameTitle"/>
+    <set name="game.title" value="${title[0]}"/>
+
+    <parse name="company" input="${details_page}" xpath="//Developer"/>
+    <set name="game.company" value="${company[0]:htmldecode}"/>
+
+    <parse name="releasedate" input="${details_page}" xpath="//ReleaseDate"/>
+    <set name="rx_yearmade">
+      <![CDATA[(\d\d\d\d)]]>
+    </set>
+    <parse name="yearmade" input="${releasedate[0]}" regex="${rx_yearmade}"/>
+    
+    <set name="game.yearmade" value="${yearmade[0][0]}"/>
+
+    <parse name="description" input="${details_page}" xpath="//Overview"/>
+    <set name="game.description" value="${description[0]:htmldecode}"/>
+
+    <parse name="grade" input="${details_page}" xpath="//Rating"/>
+    <set name="game.grade" value="${grade[0]}"/>
+
+    <parse name="genre_block" input="${details_page}" xpath="//genre"/>
+    <set name="game.genre" value=""/>
+    <loop name="currGenre" on="genre_block">
+      <set name="game.genre" value="${game.genre}|${currGenre:htmldecode}"/>
+    </loop>
+  </action>
+
+  <action name="get_cover_art">
+    <if test="${game.site_id}!=">
+      <retrieve name="details_page" url="http://thegamesdb.net/api/GetGame.php?id=${game.site_id}" encoding="UTF-8"/>
+      <parse name="game.baseurl" input="${details_page}" xpath="//baseImgUrl"/>
+      <set name="game.baseurl" value="${game.baseurl[0]:htmldecode}"/>
+      <parse name="covers" input="${details_page}" xpath="//boxart"/>
+      <set name="game.images" value=""/>
+      <loop name="cover" on="covers">
+        <set name="game.images" value="${game.images}|${cover:htmldecode}"/>
+      </loop>
+    </if>
+  </action>
+
+  <action name="get_screenshots">
+    <if test="${game.site_id}!=">
+      <retrieve name="details_page" url="http://thegamesdb.net/api/GetGame.php?id=${game.site_id}" encoding="UTF-8"/>
+      <parse name="game.baseurl" input="${details_page}" xpath="//baseImgUrl"/>
+      <set name="game.baseurl" value="${game.baseurl[0]:htmldecode}"/>
+      
+      <set name="game.images" value=""/>
+      <parse name="screens" input="${details_page}" xpath="//screenshot/original"/>
+      <loop name="screen" on="screens">
+        <set name="game.images" value="${game.images}|${screen:htmldecode}"/>
+      </loop>
+    </if>
+  </action>
+
+  <action name="get_fanart">
+    <if test="${game.site_id}!=">
+      <retrieve name="details_page" url="http://thegamesdb.net/api/GetGame.php?id=${game.site_id}" encoding="UTF-8"/>
+      <parse name="game.baseurl" input="${details_page}" xpath="//baseImgUrl"/>
+      <set name="game.baseurl" value="${game.baseurl[0]:htmldecode}"/>
+      
+      <parse name="fanarts" input="${details_page}" xpath="//fanart/original"/>
+      <set name="game.images" value="" />
+      <loop name="fanart" on="fanarts">
+        <set name="game.images" value="${game.images}|${fanart:htmldecode}"/>
+      </loop>
+    </if>
+  </action>
+</ScriptableScraper>
+
+

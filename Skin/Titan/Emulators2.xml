@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+
+<!-- myEmulators skin for StreamdMP fanart oriented by hulkhaugen -->
+
+<window>
+  <id>7942</id>
+  <defaultcontrol>50</defaultcontrol>
+  <allowoverlay>yes</allowoverlay>
+  <define>#header.label:</define>
+  <controls>
+    <import>Emulators2.dummy.xml</import>
+    <!--::::::::::::::::::::::::
+    :: FANART AND BACKGROUNDS ::
+    :::::::::::::::::::::::::-->
+
+    <control>
+      <description>DEFAULT BACKGROUND</description>
+      <type>image</type>
+      <id>0</id>
+      <posX>0</posX>
+      <posY>0</posY>
+      <width>1920</width>
+      <height>1080</height>
+      <texture>background.png</texture>
+      <shouldCache>true</shouldCache>
+    </control>
+
+    <control>
+      <description>FanArt Background</description>
+      <type>image</type>
+      <id>0</id>
+      <posX>0</posX>
+      <posY>0</posY>
+      <width>1920</width>
+      <height>1080</height>
+      <texture>#Emulators2.CurrentItem.fanartpath</texture>
+      <animation effect="fade" start="100" end="0" time="250" reversible="false" delay="450">Hidden</animation>
+      <animation effect="fade" start="0" end="100" time="250" reversible="false" delay="250">Visible</animation>
+      <animation effect="fade" time="350" delay="250">WindowOpen</animation>
+      <animation effect="fade" time="250">WindowClose</animation>
+      <visible>control.isvisible(1230)</visible>
+      <shouldCache>true</shouldCache>
+    </control>
+    <control>
+      <description>FanArt Background 2</description>
+      <type>image</type>
+      <id>0</id>
+      <posX>0</posX>
+      <posY>0</posY>
+      <width>1920</width>
+      <height>1080</height>
+      <texture>#Emulators2.CurrentItem.fanartpath2</texture>
+      <animation effect="fade" start="100" end="0" time="250" reversible="false" delay="450">Hidden</animation>
+      <animation effect="fade" start="0" end="100" time="250" reversible="false" delay="250">Visible</animation>
+      <animation effect="fade" time="350" delay="250">WindowOpen</animation>
+      <animation effect="fade" time="250">WindowClose</animation>
+      <visible>control.isvisible(1231)</visible>
+      <shouldCache>true</shouldCache>
+    </control>
+
+    <import>Emulators2.background.xml</import>
+    <control>
+      <id>0</id>
+      <type>label</type>
+      <posX>144</posX>
+      <posY>38</posY>
+      <width>855</width>
+      <font>TitanLight22</font>
+      <textcolor>ffffff</textcolor>
+      <label>#Emulators2.plugintitle</label>
+      <align>left</align>
+      <visible>control.isvisible(50)</visible>
+      <animation effect="fade" time="250">WindowOpen</animation>
+      <animation effect="fade" time="250">WindowClose</animation>
+    </control>
+    <control>
+      <id>0</id>
+      <type>image</type>
+      <posX>60</posX>
+      <posY>34</posY>
+      <width>68</width>
+      <height>60</height>
+      <texture>icon_emulators.png</texture>
+      <visible>control.isvisible(50)</visible>
+      <animation effect="fade" time="250">WindowOpen</animation>
+      <animation effect="fade" time="250">WindowClose</animation>
+    </control>
+    <!--:::::::::::::::::::::::::::::
+    :: TOP BAR :: TIME :: LOCATION ::
+    ::::::::::::::::::::::::::::::-->
+    <import>common.time.xml</import>
+    <import>Emulators2.views.xml</import>
+    <import>Emulators2.hiddenmenu.xml</import>
+    <import>Emulators2.facade.xml</import>
+    <import>Emulators2.details.xml</import>
+    <!--::::::::::::::
+    :: SIDE BUTTONS :: (Not visible)
+    ::::::::::::::::::-->
+  </controls>
+</window>

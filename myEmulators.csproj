@@ -1,0 +1,627 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{F976622B-E8A2-41AC-9DAD-F341D17883B3}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MyEmulators2</RootNamespace>
+    <AssemblyName>MyEmulators2</AssemblyName>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;MP12</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Common.Utils">
+      <HintPath>..\..\..\..\..\Program Files (x86)\Team MediaPortal\MediaPortal\Common.Utils.dll</HintPath>
+    </Reference>
+    <Reference Include="Core">
+      <HintPath>..\..\..\..\..\Program Files (x86)\Team MediaPortal\MediaPortal\Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Databases">
+      <HintPath>..\..\..\..\..\Program Files (x86)\Team MediaPortal\MediaPortal\Databases.dll</HintPath>
+    </Reference>
+    <Reference Include="Dialogs, Version=1.3.0.15, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\Program Files (x86)\Team MediaPortal\MediaPortal\plugins\Windows\Dialogs.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.DirectX.DirectInput, Version=1.0.2902.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\Windows\Microsoft.NET\DirectX for Managed Code\1.0.2902.0\Microsoft.DirectX.DirectInput.dll</HintPath>
+    </Reference>
+    <Reference Include="RemotePlugins">
+      <HintPath>..\..\..\..\..\Program Files (x86)\Team MediaPortal\MediaPortal\RemotePlugins.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpCompress.3.5, Version=0.8.2.0, Culture=neutral, PublicKeyToken=beaf6f427e128133, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>External\SharpCompress.3.5.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Utils">
+      <HintPath>..\..\..\..\..\Program Files (x86)\Team MediaPortal\MediaPortal\Utils.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Base\GroupItemInfo.cs" />
+    <Compile Include="Importer\IDoWork.cs" />
+    <Compile Include="Importer\ScraperResultsCache.cs" />
+    <Compile Include="Importer\ScraperSearchParams.cs" />
+    <Compile Include="Utils\CornerstoneLogger.cs" />
+    <Compile Include="Utils\Cornerstone\Collections\CachedDictionary.cs" />
+    <Compile Include="Utils\Cornerstone\Collections\DiskCachedDictionary.cs" />
+    <Compile Include="Utils\Cornerstone\Database\CustomTypes\DynamicList.cs" />
+    <Compile Include="Utils\Cornerstone\Database\CustomTypes\IDynamic.cs" />
+    <Compile Include="Utils\Cornerstone\Database\CustomTypes\IStringSourcedObject.cs" />
+    <Compile Include="Utils\Cornerstone\Database\CustomTypes\StringList.cs" />
+    <Compile Include="Utils\Cornerstone\Extensions\Collections\IListExtensions.cs" />
+    <Compile Include="Utils\Cornerstone\ScraperEngine\Nodes\ActionNode.cs" />
+    <Compile Include="Utils\Cornerstone\ScraperEngine\Nodes\DistanceNode.cs" />
+    <Compile Include="Utils\Cornerstone\ScraperEngine\Nodes\IfNode.cs" />
+    <Compile Include="Utils\Cornerstone\ScraperEngine\Nodes\LogNode.cs" />
+    <Compile Include="Utils\Cornerstone\ScraperEngine\Nodes\LoopNode.cs" />
+    <Compile Include="Utils\Cornerstone\ScraperEngine\Nodes\MathNodes.cs" />
+    <Compile Include="Utils\Cornerstone\ScraperEngine\Nodes\ParseNode.cs" />
+    <Compile Include="Utils\Cornerstone\ScraperEngine\Nodes\ReplaceNode.cs" />
+    <Compile Include="Utils\Cornerstone\ScraperEngine\Nodes\RetrieveNode.cs" />
+    <Compile Include="Utils\Cornerstone\ScraperEngine\Nodes\SetNode.cs" />
+    <Compile Include="Utils\Cornerstone\ScraperEngine\Nodes\SleepNode.cs" />
+    <Compile Include="Utils\Cornerstone\ScraperEngine\Nodes\SortNode.cs" />
+    <Compile Include="Utils\Cornerstone\ScraperEngine\ScraperNode.cs" />
+    <Compile Include="Utils\Cornerstone\ScraperEngine\ScriptableScraper.cs" />
+    <Compile Include="Utils\Cornerstone\Tools\AdvancedStringComparer.cs" />
+    <Compile Include="Utils\Cornerstone\Tools\WebGrabber.cs" />
+    <Compile Include="Utils\BackgroundTaskHandler.cs" />
+    <Compile Include="Base\EmulatorProfile.cs" />
+    <Compile Include="Base\GameDisc.cs" />
+    <Compile Include="Base\GameProperty.cs" />
+    <Compile Include="Base\RomGroup.cs" />
+    <Compile Include="Base\ScraperGame.cs" />
+    <Compile Include="Base\ScraperResult.cs" />
+    <Compile Include="Base\ColumnInfo.cs" />
+    <Compile Include="Base\StartupState.cs" />
+    <Compile Include="CommunityServer\client.cs" />
+    <Compile Include="Config\Conf_DBBrowser.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Config\Conf_DBBrowser.Designer.cs">
+      <DependentUpon>Conf_DBBrowser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Config\Conf_EmuBrowser.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Config\Conf_EmuBrowser.Designer.cs">
+      <DependentUpon>Conf_EmuBrowser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Config\Conf_Main.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Config\Conf_Main.Designer.cs">
+      <DependentUpon>Conf_Main.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Config\Conf_ManualSearch.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Config\Conf_ManualSearch.Designer.cs">
+      <DependentUpon>Conf_ManualSearch.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Config\Conf_NewProfile.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Config\Conf_NewProfile.Designer.cs">
+      <DependentUpon>Conf_NewProfile.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Config\Conf_DBImporter.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Config\Conf_DBImporter.Designer.cs">
+      <DependentUpon>Conf_DBImporter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Config\Conf_DBBackup.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Config\Conf_DBBackup.Designer.cs">
+      <DependentUpon>Conf_DBBackup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Config\Conf_Groups.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Config\Conf_Groups.Designer.cs">
+      <DependentUpon>Conf_Groups.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Config\Conf_EmuThumbRetriever.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Config\Conf_EmuThumbRetriever.Designer.cs">
+      <DependentUpon>Conf_EmuThumbRetriever.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Config\Wizard\New Emu\Wzd_NewEmu_Main.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Config\Wizard\New Emu\Wzd_NewEmu_Main.Designer.cs">
+      <DependentUpon>Wzd_NewEmu_Main.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Config\Wizard\New Emu\Wzd_NewEmu_Start.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Config\Wizard\New Emu\Wzd_NewEmu_Start.Designer.cs">
+      <DependentUpon>Wzd_NewEmu_Start.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Config\Wizard\New Rom\Wzd_NewRom_Info.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Config\Wizard\New Rom\Wzd_NewRom_Info.Designer.cs">
+      <DependentUpon>Wzd_NewRom_Info.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Config\Wizard\New Rom\Wzd_NewRom_Main.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Config\Wizard\New Rom\Wzd_NewRom_Main.Designer.cs">
+      <DependentUpon>Wzd_NewRom_Main.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Config\Wizard\New Rom\Wzd_NewRom_Start.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Config\Wizard\New Rom\Wzd_NewRom_Start.Designer.cs">
+      <DependentUpon>Wzd_NewRom_Start.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Config\Wizard\WzdPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Config\Wizard\WzdPanel.Designer.cs">
+      <DependentUpon>WzdPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Config\Wizard\New Emu\Wzd_NewEmu_Config2.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Config\Wizard\New Emu\Wzd_NewEmu_Config2.Designer.cs">
+      <DependentUpon>Wzd_NewEmu_Config2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Config\Wizard\New Emu\Wzd_NewEmu_Info.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Config\Wizard\New Emu\Wzd_NewEmu_Info.Designer.cs">
+      <DependentUpon>Wzd_NewEmu_Info.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Config\Wizard\New Emu\Wzd_NewEmu_Config.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Config\Wizard\New Emu\Wzd_NewEmu_Config.Designer.cs">
+      <DependentUpon>Wzd_NewEmu_Config.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Config\Wizard\New Emu\Wzd_NewEmu_Roms.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Config\Wizard\New Emu\Wzd_NewEmu_Roms.Designer.cs">
+      <DependentUpon>Wzd_NewEmu_Roms.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Config\Wizard\WzdMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Config\Wizard\WzdMain.Designer.cs">
+      <DependentUpon>WzdMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Config\Conf_EmuLookupDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Config\Conf_EmuLookupDialog.Designer.cs">
+      <DependentUpon>Conf_EmuLookupDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Emulators2Settings.cs" />
+    <Compile Include="Config\Conf_Options.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Config\Conf_Options.Designer.cs">
+      <DependentUpon>Conf_Options.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Config\Conf_ProgressDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Config\Conf_ProgressDialog.Designer.cs">
+      <DependentUpon>Conf_ProgressDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Config\Conf_IgnoredFiles.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Config\Conf_IgnoredFiles.Designer.cs">
+      <DependentUpon>Conf_IgnoredFiles.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Config\Conf_RestoreDlg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Config\Conf_RestoreDlg.Designer.cs">
+      <DependentUpon>Conf_RestoreDlg.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Utils\Cornerstone\Cornerstone.MP\AsyncImageResource.cs" />
+    <Compile Include="Utils\Cornerstone\Cornerstone.MP\ImageSwapper.cs" />
+    <Compile Include="Data\ComboBoxItem.cs" />
+    <Compile Include="Base\DBInterface.cs" />
+    <Compile Include="DB\DB.cs" />
+    <Compile Include="Base\EmulatorsException.cs" />
+    <Compile Include="Launcher\ExecutorItem.cs" />
+    <Compile Include="MediaPortal GUI\GUIProgressDialogHandler.cs" />
+    <Compile Include="Launcher\LaunchCommand.cs" />
+    <Compile Include="Launcher\LaunchHandler.cs" />
+    <Compile Include="Importer\EmulatorScraper.cs" />
+    <Compile Include="Utils\ControllerHandler.cs" />
+    <Compile Include="DB\DBBackup.cs" />
+    <Compile Include="DB\DB_Updater.cs" />
+    <Compile Include="Config\Conf_ThumbRetriever.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Config\Conf_ThumbRetriever.Designer.cs">
+      <DependentUpon>Conf_ThumbRetriever.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Hasher\Crc32.cs" />
+    <Compile Include="Hasher\Hasher.cs" />
+    <Compile Include="Hasher\MD4.cs" />
+    <Compile Include="Hasher\MD4Managed.cs" />
+    <Compile Include="Importer\EmulatorScraperHandler.cs" />
+    <Compile Include="Utils\ExtensionMethods.cs" />
+    <Compile Include="Utils\GroupHandler.cs" />
+    <Compile Include="Importer\Scraper.cs" />
+    <Compile Include="Config\Controls\thumbContext.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Config\Controls\thumbContext.Designer.cs">
+      <DependentUpon>thumbContext.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Config\Controls\ThumbPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Config\Controls\ThumbPanel.Designer.cs">
+      <DependentUpon>ThumbPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Config\ContentPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Base\DBItem.cs" />
+    <Compile Include="Data\Dropdowns.cs" />
+    <Compile Include="Base\Emulator.cs" />
+    <Compile Include="Launcher\Executor.cs" />
+    <Compile Include="Base\ExtendedGUIListItem.cs" />
+    <Compile Include="Base\Game.cs" />
+    <Compile Include="Data\EmuSettingsAutoFill.cs" />
+    <Compile Include="Launcher\Extractor.cs" />
+    <Compile Include="Image Handlers\ImageHandler.cs" />
+    <Compile Include="Importer\Importer.cs" />
+    <Compile Include="Utils\ITaskProgress.cs" />
+    <Compile Include="Utils\KeyboardHook.cs" />
+    <Compile Include="Utils\ListItemComparer.cs" />
+    <Compile Include="Utils\Logger.cs" />
+    <Compile Include="MediaPortal GUI\MenuPresenter.cs" />
+    <Compile Include="Utils\Options.cs" />
+    <Compile Include="MediaPortal GUI\Plugin.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Base\RomMatch.cs" />
+    <Compile Include="Base\Thumb.cs" />
+    <Compile Include="Importer\ScraperProvider.cs" />
+    <Compile Include="Utils\FuzzyStringComparer.cs" />
+    <Compile Include="Image Handlers\ThumbGroup.cs" />
+    <Compile Include="Image Handlers\ThumbRetriever.cs" />
+    <Compile Include="Base\ThumbType.cs" />
+    <Compile Include="Utils\Translator.cs" />
+    <Compile Include="MediaPortal GUI\GUIPresenter.cs" />
+    <Compile Include="MediaPortal GUI\GUIImporter.cs">
+      <DependentUpon>GUIPresenter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Base\ViewState.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Config\Conf_DBBackup.resx">
+      <DependentUpon>Conf_DBBackup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Config\Conf_DBBrowser.resx">
+      <DependentUpon>Conf_DBBrowser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Config\Conf_DBImporter.resx">
+      <DependentUpon>Conf_DBImporter.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Config\Conf_EmuBrowser.resx">
+      <DependentUpon>Conf_EmuBrowser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Config\Conf_Main.resx">
+      <DependentUpon>Conf_Main.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Config\Conf_ManualSearch.resx">
+      <DependentUpon>Conf_ManualSearch.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Config\Conf_NewProfile.resx">
+      <DependentUpon>Conf_NewProfile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Config\Controls\thumbContext.resx">
+      <DependentUpon>thumbContext.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Config\Conf_Options.resx">
+      <DependentUpon>Conf_Options.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Config\Conf_ProgressDialog.resx">
+      <DependentUpon>Conf_ProgressDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Config\Conf_IgnoredFiles.resx">
+      <DependentUpon>Conf_IgnoredFiles.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Config\Conf_ThumbRetriever.resx">
+      <DependentUpon>Conf_ThumbRetriever.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Config\Conf_RestoreDlg.resx">
+      <DependentUpon>Conf_RestoreDlg.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Config\Conf_Groups.resx">
+      <DependentUpon>Conf_Groups.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Config\Conf_EmuThumbRetriever.resx">
+      <DependentUpon>Conf_EmuThumbRetriever.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Config\Wizard\New Emu\Wzd_NewEmu_Main.resx">
+      <DependentUpon>Wzd_NewEmu_Main.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Config\Wizard\New Emu\Wzd_NewEmu_Start.resx">
+      <DependentUpon>Wzd_NewEmu_Start.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Config\Wizard\New Rom\Wzd_NewRom_Info.resx">
+      <DependentUpon>Wzd_NewRom_Info.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Config\Wizard\New Rom\Wzd_NewRom_Start.resx">
+      <DependentUpon>Wzd_NewRom_Start.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Config\Wizard\WzdPanel.resx">
+      <DependentUpon>WzdPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Config\Wizard\New Emu\Wzd_NewEmu_Config2.resx">
+      <DependentUpon>Wzd_NewEmu_Config2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Config\Wizard\New Emu\Wzd_NewEmu_Info.resx">
+      <DependentUpon>Wzd_NewEmu_Info.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Config\Wizard\New Emu\Wzd_NewEmu_Config.resx">
+      <DependentUpon>Wzd_NewEmu_Config.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Config\Wizard\New Emu\Wzd_NewEmu_Roms.resx">
+      <DependentUpon>Wzd_NewEmu_Roms.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Config\Wizard\WzdMain.resx">
+      <DependentUpon>WzdMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Config\Conf_EmuLookupDialog.resx">
+      <DependentUpon>Conf_EmuLookupDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Docs\Readme.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Config\ContentPanel.resx">
+      <DependentUpon>ContentPanel.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Docs\FAQ.txt" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <SubType>Designer</SubType>
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Importer\Scripts\Mobygames.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Importer\Scripts\MameDB.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Content Include="Skin\Titan\Emulators2.background.xml" />
+    <Content Include="Skin\Titan\Emulators2.details.xml" />
+    <Content Include="Skin\Titan\Emulators2.facade.xml" />
+    <Content Include="Skin\Titan\Emulators2.hiddenmenu.xml" />
+    <Content Include="Skin\Titan\Emulators2.views.xml" />
+    <Content Include="Skin\Titan\Emulators2.xml" />
+    <Content Include="Skin\Titan\Media\icon_emulators.png" />
+    <EmbeddedResource Include="Data\EmuSettings.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <None Include="Resources\arrow_join.png" />
+    <None Include="Resources\arrow_divide.png" />
+    <Content Include="External\SharpCompress.3.5.dll" />
+    <Content Include="language\Dutch.xml" />
+    <Content Include="language\German.xml" />
+    <Content Include="language\Italiano.xml" />
+    <Content Include="Resources\Emulators2_Square_Large.png" />
+    <Content Include="Resources\Emulators2_Square_Med.png" />
+    <Content Include="Resources\Emulators2_Square_Small.png" />
+    <Content Include="Skin\Avalon\Media\Emulators2_overlay.png" />
+    <Content Include="Skin\Avalon\Media\Emulators2_transparency_mask.png" />
+    <Content Include="Skin\Common\Emulators2_Fanart.jpg" />
+    <Content Include="Skin\StreamedMP\Media\Emulators2_favourite.png" />
+    <Content Include="Skin\StreamedMP\Media\Emulators2_goodmerge.png" />
+    <Content Include="Skin\StreamedMP\Media\Emulators2_Logo.png" />
+    <EmbeddedResource Include="Importer\Scripts\TheGamesDB.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Importer\Scripts\GameFAQs.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Emulators2Icon.png" />
+    <EmbeddedResource Include="Resources\Emulators2Icon_faded.png" />
+    <Content Include="Skin\Avalon\Emulators2.details.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Skin\Avalon\Media\Emulators2_favourite.png" />
+    <Content Include="Skin\Avalon\Media\Emulators2_goodmerge.png" />
+    <Content Include="Skin\Avalon\Media\Emulators2_Logo.png" />
+    <Content Include="Skin\DefaultWide\Media\Emulators2_favourite.png" />
+    <Content Include="Skin\DefaultWide\Media\Emulators2_goodmerge.png" />
+    <Content Include="Skin\DefaultWide\Media\Emulators2_Logo.png" />
+    <Content Include="Skin\DefaultWide\Media\hover_Emulators2.png" />
+    <Content Include="Skin\DefaultWide\Emulators2.detailsview.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Skin\DefaultWide\Emulators2.facade.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Skin\DefaultWide\Emulators2.listview.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Skin\DefaultWide\Emulators2.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Skin\Default\Media\Emulators2_favourite.png" />
+    <Content Include="Skin\Default\Media\Emulators2_goodmerge.png" />
+    <Content Include="Skin\Default\Media\Emulators2_Logo.png" />
+    <Content Include="Skin\Default\Media\hover_Emulators2.png" />
+    <Content Include="Skin\Default\Emulators2.detailsview.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Skin\Default\Emulators2.facade.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Skin\Default\Emulators2.listview.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Skin\Default\Emulators2.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Skin\StreamedMP\Emulators2.detailsview.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <EmbeddedResource Include="Data\Emulators2Groups.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Content Include="Data\myEmulatorsAspectRatios.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Docs\ChangeLog.txt" />
+    <Content Include="External\hasher.dll" />
+    <Content Include="language\English.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <None Include="Properties\DataSources\RomMatch.datasource" />
+    <None Include="Resources\dlThumbIco.png" />
+    <None Include="Resources\view.png" />
+    <None Include="Resources\view1.png" />
+    <None Include="Resources\cross.png" />
+    <None Include="Resources\find.png" />
+    <None Include="Resources\resultset_next.png" />
+    <None Include="Resources\accept.png" />
+    <None Include="Resources\approved.png" />
+    <None Include="Resources\exclamation.png" />
+    <None Include="Resources\ignored.png" />
+    <None Include="Resources\information.png" />
+    <None Include="Resources\tick.png" />
+    <None Include="Resources\Add.png" />
+    <None Include="Resources\page_white_edit.png" />
+    <None Include="Resources\arrow_cross.png" />
+    <None Include="Resources\Save.png" />
+    <None Include="Resources\Up.png" />
+    <None Include="Resources\Down.png" />
+    <None Include="Resources\timeout.png" />
+    <None Include="Resources\arrow_undo.png" />
+    <EmbeddedResource Include="Importer\Scripts\Maws.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <None Include="Resources\view_refresh.png" />
+    <Content Include="Skin\Avalon\Emulators2.overlays.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Skin\Avalon\Emulators2.hiddenmenu.xml" />
+    <Content Include="Skin\Avalon\Emulators2.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Skin\Common\Emulators2.dummy.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Skin\StreamedMP\Emulators2.coverflowview.xml" />
+    <Content Include="Skin\StreamedMP\Emulators2.filmstripview.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Skin\StreamedMP\Emulators2.thumbsview.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Skin\StreamedMP\Emulators2.listview.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Skin\StreamedMP\Emulators2.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Skin\StreamedMP\Emulators2.facade.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Skin\StreamedMP\Emulators2.overlays.xml" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <COMReference Include="IWshRuntimeLibrary">
+      <Guid>{F935DC20-1CF0-11D0-ADB9-00C04FD58A0B}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PostBuildEvent>xcopy "$(TargetPath)" "$(SolutionDir)Release" /Y /E /I
+xcopy "$(TargetPath)" "%25programfiles(x86)%25\Team MediaPortal\MediaPortal\plugins\Windows" /Y /E /I
+xcopy "$(SolutionDir)External" "$(SolutionDir)Release" /Y /E /I 
+xcopy "$(SolutionDir)Skin" "$(SolutionDir)Release\Skin" /Y /E /I 
+xcopy "$(SolutionDir)Language" "$(SolutionDir)Release\Language" /Y /E /I</PostBuildEvent>
+  </PropertyGroup>
+</Project>

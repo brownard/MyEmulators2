@@ -1,0 +1,236 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+This file should contain the list view
+-->
+<window>
+  <controls>
+    <control>
+      <type>image</type>
+      <id>0</id>
+      <posX>0</posX>
+      <posY>675</posY>
+      <width>1280</width>
+      <height>47</height>
+      <texture>imagestreamtitle.png</texture>
+      <animation effect="fade" time="250" delay="0">WindowClose</animation>
+      <visible>facadeview.list+control.isvisible(50)</visible>
+    </control>
+    <control>
+      <description>Cover Art</description>
+      <type>image</type>
+      <id>60</id>
+      <posX>31</posX>
+      <posY>254</posY>
+      <width>257</width>
+      <height>380</height>
+      <keepaspectratio>yes</keepaspectratio>
+      <align>center</align>
+      <valign>middle</valign>
+      <texture flipY="true" diffuse="diffusemirrorwide.png">#Emulators2.CurrentItem.coverpath</texture>
+      <visible>facadeview.list+control.isvisible(50)</visible>
+      <animation effect="fade" time="250" delay="0">WindowClose</animation>
+    </control>
+    <control>
+      <description>Game Title</description>
+      <type>label</type>
+      <id>0</id>
+      <posX>308</posX>
+      <posY>251</posY>
+      <width>900</width>
+      <font>mediastream16tc</font>
+      <label>#Emulators2.CurrentItem.title</label>
+      <textcolor>ffFFFFFF</textcolor>
+      <shadowAngle>45</shadowAngle>
+      <shadowDistance>4</shadowDistance>
+      <shadowColor>#shadow.light</shadowColor>
+      <visible>facadeview.list+control.isvisible(50)</visible>
+      <animation effect="fade" time="250" delay="0">WindowClose</animation>
+    </control>
+    <control>
+      <description>Company</description>
+      <type>label</type>
+      <label>#Emulators2.CurrentItem.company</label>
+      <id>0</id>
+      <posX>309</posX>
+      <posY>282</posY>
+      <width>900</width>
+      <font>mediastream11tc</font>
+      <textcolor>ff909090</textcolor>
+      <shadowAngle>45</shadowAngle>
+      <shadowDistance>3</shadowDistance>
+      <shadowColor>#shadow.dark</shadowColor>
+      <visible>facadeview.list+control.isvisible(50)</visible>
+      <animation effect="fade" time="250" delay="0">WindowClose</animation>
+    </control>
+    
+    <control>
+      <description>Goodmerge Image</description>
+      <type>image</type>
+      <id>0</id>
+      <width>48</width>
+      <height>48</height>
+      <posX>1220</posX>
+      <posY>251</posY>
+      <align>right</align>
+      <texture>Emulators2_goodmerge.png</texture>
+      <visible>facadeview.list+control.isvisible(50)+string.contains(#Emulators2.CurrentItem.goodmerge,yes)+!string.contains(#Emulators2.CurrentItem.favourite,yes)</visible>
+      <animation effect="fade" time="250" delay="0">WindowClose</animation>
+      <animation effect="fade" time="250" reversible="false">visible</animation>
+    </control>
+    <control>
+      <description>Goodmerge/Favourite Image</description>
+      <type>image</type>
+      <id>0</id>
+      <width>48</width>
+      <height>48</height>
+      <posX>1160</posX>
+      <posY>251</posY>
+      <align>right</align>
+      <texture>Emulators2_goodmerge.png</texture>
+      <visible>facadeview.list+control.isvisible(50)+string.contains(#Emulators2.CurrentItem.goodmerge,yes)+string.contains(#Emulators2.CurrentItem.favourite,yes)</visible>
+      <animation effect="fade" time="250" delay="0">WindowClose</animation>
+      <animation effect="fade" time="250" reversible="false">visible</animation>
+    </control>
+    <control>
+      <description>Favourite Image</description>
+      <type>image</type>
+      <id>0</id>
+      <width>48</width>
+      <height>48</height>
+      <posX>1220</posX>
+      <posY>251</posY>
+      <align>right</align>
+      <texture>Emulators2_favourite.png</texture>
+      <visible>facadeview.list+control.isvisible(50)+string.contains(#Emulators2.CurrentItem.favourite,yes)</visible>
+      <animation effect="fade" time="250" delay="0">WindowClose</animation>
+      <animation effect="fade" time="250" reversible="false">visible</animation>
+    </control>
+    
+    <control>
+      <id>0</id>
+      <type>label</type>
+      <label>#Emulators2.CurrentItem.grade / 10</label>
+      <posX>430</posX>
+      <posY>305</posY>
+      <width>200</width>
+      <align>left</align>
+      <font>mediastream11c</font>
+      <shadowAngle>45</shadowAngle>
+      <shadowDistance>2</shadowDistance>
+      <shadowColor>#shadow.light</shadowColor>
+      <visible>facadeview.list+control.isvisible(50)+[string.contains(#Emulators2.CurrentItem.isemulator,yes)|string.contains(#Emulators2.CurrentItem.isgame,yes)]</visible>
+      <animation effect="fade" time="250" delay="0">WindowClose</animation>
+    </control>
+    <control>
+      <type>image</type>
+      <id>101</id>
+      <width>115</width>
+      <height>22</height>
+      <posX>309</posX>
+      <posY>305</posY>
+      <align>right</align>
+      <texture>star#Emulators2.CurrentItem.grade.png</texture>
+      <visible>facadeview.list+control.isvisible(50)+[string.contains(#Emulators2.CurrentItem.isemulator,yes)|string.contains(#Emulators2.CurrentItem.isgame,yes)]</visible>
+      <animation effect="fade" time="250" delay="0">WindowClose</animation>
+    </control>
+    <control>
+      <description>Summary</description>
+      <type>textboxscrollup</type>
+      <id>0</id>
+      <posX>308</posX>
+      <posY>338</posY>
+      <width>475</width>
+      <height>223</height>
+      <textcolor>ffFFFFFF</textcolor>
+      <seperator>-----------------------------------------------------------------------------------</seperator>
+      <font>mediastream11</font>
+      <label>#Emulators2.CurrentItem.description</label>
+      <visible>facadeview.list+control.isvisible(50)</visible>
+      <animation effect="fade" time="250" delay="0">WindowClose</animation>
+    </control>
+    <control Style="smallTitleB">
+      <description>Year Label</description>
+      <id>0</id>
+      <type>label</type>
+      <label>#Emulators2.Label.year</label>
+      <posX>310</posX>
+      <posY>572</posY>
+      <width>140</width>
+      <visible>facadeview.list+control.isvisible(50)+[string.contains(#Emulators2.CurrentItem.isgame,yes)|string.contains(#Emulators2.CurrentItem.isemulator,yes]</visible>
+      <animation effect="fade" time="250" delay="0">WindowClose</animation>
+    </control>
+    <control Style="smallTitle">
+      <description>Year</description>
+      <id>1001</id>
+      <type>label</type>
+      <label>#Emulators2.CurrentItem.year</label>
+      <posX>470</posX>
+      <posY>573</posY>
+      <width>200</width>
+      <visible>facadeview.list+control.isvisible(50)</visible>
+      <animation effect="fade" time="250" delay="0">WindowClose</animation>
+    </control>
+    <control Style="smallTitleB">
+      <description>Genre Label</description>
+      <id>0</id>
+      <type>label</type>
+      <label>#Emulators2.Label.genre</label>
+      <posX>310</posX>
+      <posY>594</posY>
+      <width>140</width>
+      <visible>facadeview.list+control.isvisible(50)+string.contains(#Emulators2.CurrentItem.isgame,yes)</visible>
+      <animation effect="fade" time="250" delay="0">WindowClose</animation>
+    </control>
+    <control Style="smallTitle">
+      <description>Genre</description>
+      <id>1002</id>
+      <type>label</type>
+      <label>#Emulators2.CurrentItem.genre</label>
+      <posX>470</posX>
+      <posY>595</posY>
+      <width>200</width>
+      <visible>facadeview.list+control.isvisible(50)+string.contains(#Emulators2.CurrentItem.isgame,yes)</visible>
+      <animation effect="fade" time="250" delay="0">WindowClose</animation>
+    </control>
+    <control Style="smallTitleB">
+      <description>Last Played Label</description>
+      <type>label</type>
+      <label>#Emulators2.Label.lastplayed</label>
+      <posX>310</posX>
+      <posY>616</posY>
+      <width>140</width>
+      <visible>facadeview.list+control.isvisible(50)+string.contains(#Emulators2.CurrentItem.isgame,yes)</visible>
+      <animation effect="fade" time="250" delay="0">WindowClose</animation>
+    </control>
+    <control Style="smallTitle">
+      <description>Last Played</description>
+      <id>1003</id>
+      <type>label</type>
+      <label>#Emulators2.CurrentItem.latestplaydate</label>
+      <posX>470</posX>
+      <posY>617</posY>
+      <visible>facadeview.list+control.isvisible(50)+string.contains(#Emulators2.CurrentItem.isgame,yes)</visible>
+      <animation effect="fade" time="250" delay="0">WindowClose</animation>
+    </control>
+    <control Style="smallTitleB">
+      <description>Disc Label</description>
+      <type>label</type>
+      <label>#Emulators2.Label.disc</label>
+      <posX>310</posX>
+      <posY>638</posY>
+      <width>140</width>
+      <visible>facadeview.list+control.isvisible(50)+!string.equals(#Emulators2.CurrentItem.totaldiscs,0)+!string.equals(#Emulators2.CurrentItem.totaldiscs,1)</visible>
+      <animation effect="fade" time="250" delay="0">WindowClose</animation>
+    </control>
+    <control Style="smallTitle">
+      <description>Disc</description>
+      <id>1003</id>
+      <type>label</type>
+      <label>#Emulators2.CurrentItem.currentdisc / #Emulators2.CurrentItem.totaldiscs</label>
+      <posX>470</posX>
+      <posY>639</posY>
+      <visible>facadeview.list+control.isvisible(50)+!string.equals(#Emulators2.CurrentItem.totaldiscs,0)+!string.equals(#Emulators2.CurrentItem.totaldiscs,1)</visible>
+      <animation effect="fade" time="250" delay="0">WindowClose</animation>
+    </control>
+  </controls>
+</window>

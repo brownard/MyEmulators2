@@ -1,0 +1,199 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{1A47BF36-BFA5-4506-8FC1-28742DC995F5}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CommunityServerWindowsService</RootNamespace>
+    <AssemblyName>CommunityServerWindowsService</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>CommunityServerWindowsService.Service</StartupObject>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="FluentNHibernate">
+      <HintPath>Dependencies\FluentNHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net">
+      <HintPath>Dependencies\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data">
+      <HintPath>..\..\MediaPortalSVN\Common-MP-TVE3\External\Gentle.NET\Source\Gentle.Provider.MySQL\lib\MySql.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="NHibernate">
+      <HintPath>Dependencies\NHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="NHibernate.ByteCode.Castle">
+      <HintPath>Dependencies\NHibernate.ByteCode.Castle.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Configuration.Install" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.ServiceProcess" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CommunityServerWFCService.cs" />
+    <Compile Include="Engine.cs" />
+    <Compile Include="Entities\Description.cs" />
+    <Compile Include="Entities\DescriptionMatch.cs" />
+    <Compile Include="Entities\Filename.cs" />
+    <Compile Include="Entities\FilenameMatch.cs" />
+    <Compile Include="Entities\Game.cs" />
+    <Compile Include="Entities\Genre.cs" />
+    <Compile Include="Entities\GenreMatch.cs" />
+    <Compile Include="Entities\Grade.cs" />
+    <Compile Include="Entities\GradeMatch.cs" />
+    <Compile Include="Entities\Hash.cs" />
+    <Compile Include="Entities\HashMatch.cs" />
+    <Compile Include="Entities\ImageBack.cs" />
+    <Compile Include="Entities\ImageBackMatch.cs" />
+    <Compile Include="Entities\ImageFanart.cs" />
+    <Compile Include="Entities\ImageFanartMatch.cs" />
+    <Compile Include="Entities\ImageFront.cs" />
+    <Compile Include="Entities\ImageFrontMatch.cs" />
+    <Compile Include="Entities\ImageIngame.cs" />
+    <Compile Include="Entities\ImageIngameMatch.cs" />
+    <Compile Include="Entities\ImageTitle.cs" />
+    <Compile Include="Entities\ImageTitleMatch.cs" />
+    <Compile Include="Entities\ManualMatch.cs" />
+    <Compile Include="Entities\Manual.cs" />
+    <Compile Include="Entities\Title.cs" />
+    <Compile Include="Entities\TitleMatch.cs" />
+    <Compile Include="Entities\Year.cs" />
+    <Compile Include="Entities\YearMatch.cs" />
+    <Compile Include="GameDetails.cs" />
+    <Compile Include="ICommunityServerWFCService.cs" />
+    <Compile Include="Mappings\DescriptionMap.cs" />
+    <Compile Include="Mappings\DescriptionMatchMap.cs" />
+    <Compile Include="Mappings\FilenameMap.cs" />
+    <Compile Include="Mappings\FilenameMatchMap.cs" />
+    <Compile Include="Mappings\GameMap.cs" />
+    <Compile Include="Mappings\GenreMap.cs" />
+    <Compile Include="Mappings\GenreMatchMap.cs" />
+    <Compile Include="Mappings\GradeMap.cs" />
+    <Compile Include="Mappings\GradeMatchMap.cs" />
+    <Compile Include="Mappings\HashMap.cs" />
+    <Compile Include="Mappings\HashMatchMap.cs" />
+    <Compile Include="Mappings\ImageBackMap.cs" />
+    <Compile Include="Mappings\ImageBackMatchMap.cs" />
+    <Compile Include="Mappings\ImageFanartMap.cs" />
+    <Compile Include="Mappings\ImageFanartMatchMap.cs" />
+    <Compile Include="Mappings\ImageFrontMap.cs" />
+    <Compile Include="Mappings\ImageFrontMatchMap.cs" />
+    <Compile Include="Mappings\ImageIngameMap.cs" />
+    <Compile Include="Mappings\ImageIngameMatchMap.cs" />
+    <Compile Include="Mappings\ImageTitleMap.cs" />
+    <Compile Include="Mappings\ImageTitleMatchMap.cs" />
+    <Compile Include="Mappings\ManualMap.cs" />
+    <Compile Include="Mappings\ManualMatchMap.cs" />
+    <Compile Include="Mappings\TitleMap.cs" />
+    <Compile Include="Mappings\TitleMatchMap.cs" />
+    <Compile Include="Mappings\YearMap.cs" />
+    <Compile Include="Mappings\YearMatchMap.cs" />
+    <Compile Include="ProjectInstaller.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ProjectInstaller.Designer.cs">
+      <DependentUpon>ProjectInstaller.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Service.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Service.Designer.cs">
+      <DependentUpon>Service.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utils.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ProjectInstaller.resx">
+      <DependentUpon>ProjectInstaller.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Service.resx">
+      <DependentUpon>Service.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

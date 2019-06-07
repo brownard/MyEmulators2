@@ -1,0 +1,948 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file should contain the details view
+-->
+<window>
+  <defaultcontrol>6</defaultcontrol>
+  <controls>
+    <!-- Buttons -->
+
+    <control>
+      <description>PLAY Button</description>
+      <type>button</type>
+      <posX>706</posX>
+      <posY>888</posY>
+      <id>6</id>
+      <label>-</label>
+      <onup>6</onup>
+      <ondown>6</ondown>
+      <onleft>10003</onleft>
+      <onright>10001</onright>
+      <width>58</width>
+      <height>59</height>
+      <textureFocus>movie_details_play_focus.png</textureFocus>
+      <textureNoFocus>movie_details_play_nofocus.png</textureNoFocus>
+      <visible allowhiddenfocus="true">!control.isvisible(50)+!control.hasfocus(10001)+!control.hasfocus(10002)+!control.hasfocus(10003)+!control.hasfocus(51)</visible>
+      <animation effect="fade" time="400">Visible</animation>
+      <animation effect="fade" time="0">WindowClose</animation>
+    </control>
+    <control>
+      <description>Description</description>
+      <type>button</type>
+      <id>10001</id>
+      <posX>-2000</posX>
+      <posY>294</posY>
+      <width>10</width>
+      <height>10</height>
+      <onup>51</onup>
+      <ondown>51</ondown>
+      <onleft>6</onleft>
+      <onright>10002</onright>
+      <label>-</label>
+      <textureFocus>-</textureFocus>
+      <textureNoFocus>-</textureNoFocus>
+      <visible></visible>
+    </control>
+
+    <control>
+      <description>Images</description>
+      <type>button</type>
+      <id>10002</id>
+      <posX>-2000</posX>
+      <posY>294</posY>
+      <width>10</width>
+      <height>10</height>
+      <onup>10002</onup>
+      <ondown>10002</ondown>
+      <onleft>10001</onleft>
+      <onright>6</onright>
+      <label>-</label>
+      <textureFocus>-</textureFocus>
+      <textureNoFocus>-</textureNoFocus>
+      <visible></visible>
+    </control>
+
+    <control>
+      <description>Fanart</description>
+      <type>button</type>
+      <id>10003</id>
+      <posX>-2000</posX>
+      <posY>294</posY>
+      <width>10</width>
+      <height>10</height>
+      <onup>10003</onup>
+      <ondown>10003</ondown>
+      <onleft>10002</onleft>
+      <onright>6</onright>
+      <label>-</label>
+      <textureFocus>-</textureFocus>
+      <textureNoFocus>-</textureNoFocus>
+      <visible></visible>
+    </control>
+
+    <!-- Tabs -->
+
+    <control>
+      <description>arrow left</description>
+      <type>image</type>
+      <id>0</id>
+      <posX>88</posX>
+      <posY>998</posY>
+      <width>18</width>
+      <height>28</height>
+      <texture>details_arrow_left.png</texture>
+      <visible>!control.isvisible(50)+!control.hasfocus(10003)</visible>
+      <animation effect="fade" time="400">Visible</animation>
+      <animation effect="fade" time="0">WindowClose</animation>
+    </control>
+
+    <control>
+      <description>arrow right</description>
+      <type>image</type>
+      <id>0</id>
+      <posX>1816</posX>
+      <posY>998</posY>
+      <width>18</width>
+      <height>28</height>
+      <texture>details_arrow_right.png</texture>
+      <visible>!control.isvisible(50)+!control.hasfocus(10003)</visible>
+      <animation effect="fade" time="400">Visible</animation>
+      <animation effect="fade" time="0">WindowClose</animation>
+    </control>
+
+    <control>
+      <description>Summary label</description>
+      <type>label</type>
+      <id>0</id>
+      <posX>706</posX>
+      <posY>1016</posY>
+      <width>490</width>
+      <font>fontB11</font>
+      <align>center</align>
+      <textcolor>ff000000</textcolor>
+      <label>#Titan.Overview</label>
+      <visible>!control.isvisible(50)+!control.hasfocus(10001)+!control.hasfocus(10002)+!control.hasfocus(10003)+!control.hasfocus(51)</visible>
+      <animation effect="fade" time="400">Visible</animation>
+      <animation effect="fade" time="0">WindowClose</animation>
+    </control>
+
+    <control>
+      <description>Summary label left</description>
+      <type>label</type>
+      <id>0</id>
+      <posX>132</posX>
+      <posY>998</posY>
+      <width>490</width>
+      <font>TitanLight11</font>
+      <align>left</align>
+      <textcolor>ff000000</textcolor>
+      <label>#Titan.Overview</label>
+      <visible>!control.isvisible(50)+[control.hasfocus(10001)|control.hasfocus(51)]</visible>
+      <animation effect="fade" time="400">Visible</animation>
+      <animation effect="fade" time="0">WindowClose</animation>
+    </control>
+
+    <control>
+      <description>Summary label right</description>
+      <type>label</type>
+      <id>0</id>
+      <posX>1768</posX>
+      <posY>998</posY>
+      <width>490</width>
+      <font>TitanLight11</font>
+      <align>right</align>
+      <textcolor>ff000000</textcolor>
+      <label>#Titan.Overview</label>
+      <visible>!control.isvisible(50)+control.hasfocus(10002)</visible>
+      <animation effect="fade" time="400">Visible</animation>
+      <animation effect="fade" time="0">WindowClose</animation>
+    </control>
+
+    <control>
+      <description>Properties label</description>
+      <type>label</type>
+      <id>0</id>
+      <posX>706</posX>
+      <posY>1016</posY>
+      <width>490</width>
+      <font>fontB11</font>
+      <align>center</align>
+      <textcolor>ff000000</textcolor>
+      <label>#(L(940))#(iif(eq(#Emulators2.CurrentItem.goodmerge, 'yes'),' / #Emulators2.Label.goodmerge',''))</label>
+      <visible>!control.isvisible(50)+[control.hasfocus(10001)|control.hasfocus(51)]</visible>
+      <animation effect="fade" time="400">Visible</animation>
+      <animation effect="fade" time="0">WindowClose</animation>
+    </control>
+
+    <control>
+      <description>Properties label right</description>
+      <type>label</type>
+      <id>0</id>
+      <posX>1786</posX>
+      <posY>998</posY>
+      <width>490</width>
+      <font>TitanLight11</font>
+      <align>right</align>
+      <textcolor>ff000000</textcolor>
+      <label>#(L(940))#(iif(eq(#Emulators2.CurrentItem.goodmerge, 'yes'),' / #Emulators2.Label.goodmerge',''))</label>
+      <visible>!control.isvisible(50)+!control.hasfocus(10001)+!control.hasfocus(10002)+!control.hasfocus(10003)+!control.hasfocus(51)</visible>
+      <animation effect="fade" time="400">Visible</animation>
+      <animation effect="fade" time="0">WindowClose</animation>
+    </control>
+
+    <control>
+      <description>Properties label left</description>
+      <type>label</type>
+      <id>0</id>
+      <posX>132</posX>
+      <posY>998</posY>
+      <width>490</width>
+      <font>TitanLight11</font>
+      <align>left</align>
+      <textcolor>ff000000</textcolor>
+      <label>#(L(940))#(iif(eq(#Emulators2.CurrentItem.goodmerge, 'yes'),' / #Emulators2.Label.goodmerge',''))</label>
+      <visible>!control.isvisible(50)+control.hasfocus(10002)</visible>
+      <animation effect="fade" time="400">Visible</animation>
+      <animation effect="fade" time="0">WindowClose</animation>
+    </control>
+
+    <control>
+      <description>Image label</description>
+      <type>label</type>
+      <id>0</id>
+      <posX>706</posX>
+      <posY>1016</posY>
+      <width>490</width>
+      <font>fontB11</font>
+      <align>center</align>
+      <textcolor>ff000000</textcolor>
+      <label>750</label>
+      <visible>!control.isvisible(50)+control.hasfocus(10002)</visible>
+      <animation effect="fade" time="400">Visible</animation>
+      <animation effect="fade" time="0">WindowClose</animation>
+    </control>
+
+    <control>
+      <description>Image label right</description>
+      <type>label</type>
+      <id>0</id>
+      <posX>1786</posX>
+      <posY>998</posY>
+      <width>490</width>
+      <font>TitanLight11</font>
+      <align>right</align>
+      <textcolor>ff000000</textcolor>
+      <label>750</label>
+      <visible>!control.isvisible(50)+[control.hasfocus(10001)|control.hasfocus(51)]</visible>
+      <animation effect="fade" time="400">Visible</animation>
+      <animation effect="fade" time="0">WindowClose</animation>
+    </control>
+
+    <control>
+      <description>Fanart label left</description>
+      <type>label</type>
+      <id>0</id>
+      <posX>132</posX>
+      <posY>998</posY>
+      <width>490</width>
+      <font>TitanLight11</font>
+      <align>left</align>
+      <textcolor>ff000000</textcolor>
+      <label>Fanart</label>
+      <visible>!control.isvisible(50)+!control.hasfocus(10001)+!control.hasfocus(10002)+!control.hasfocus(10003)+!control.hasfocus(51)</visible>
+      <animation effect="fade" time="400">Visible</animation>
+      <animation effect="fade" time="0">WindowClose</animation>
+    </control>
+    <!--
+	<control>
+		<description>Fanart label right</description>
+		<type>label</type>
+	  <id>0</id>
+		<posX>1786</posX>
+		<posY>998</posY>
+		<width>490</width>
+		<font>TitanLight11</font>
+ 		<align>right</align>
+		<textcolor>ff000000</textcolor>	
+		<label>Fanart</label>
+		<visible>!Control.IsVisible(50) + Control.HasFocus(10002) + !Control.HasFocus(10003)</visible>
+		<animation effect="fade" time="400">Visible</animation>
+		<animation effect="fade" time="0">WindowClose</animation>
+	</control>
+	-->
+
+
+    <!-- Summary labels -->
+
+    <control>
+      <description>Cover Art</description>
+      <type>image</type>
+      <id>60</id>
+      <posX>123</posX>
+      <posY>360</posY>
+      <width>379</width>
+      <height>563</height>
+      <keepaspectratio>true</keepaspectratio>
+      <align>center</align>
+      <valign>middle</valign>
+      <texture>#Emulators2.CurrentItem.coverpath</texture>
+      <visible>!control.isvisible(50)+!control.hasfocus(10003)</visible>
+      <animation effect="fade" time="250">WindowOpen</animation>
+      <animation effect="fade" time="0">WindowClose</animation>
+      <animation effect="fade" time="250">visible</animation>
+    </control>
+
+    <control>
+      <description>Favorite Icon</description>
+      <type>image</type>
+      <id>0</id>
+      <posX>75</posX>
+      <posY>313</posY>
+      <width>100</width>
+      <height>100</height>
+      <texture>Star-Favorite_big.png</texture>
+      <visible>!control.isvisible(50)+!control.hasfocus(10003)+string.contains(#Emulators2.CurrentItem.favourite,yes)</visible>
+      <animation effect="fade" time="250">WindowOpen</animation>
+      <animation effect="fade" time="0">WindowClose</animation>
+      <animation effect="fade" time="250">visible</animation>
+    </control>
+
+    <control Style="detailsTitle">
+      <description>Game Title</description>
+      <type>fadelabel</type>
+      <id>0</id>
+      <posX>568</posX>
+      <posY>352</posY>
+      <label>#Emulators2.CurrentItem.title</label>
+      <visible>!control.isvisible(50)+!control.hasfocus(10003)</visible>
+      <animation effect="fade" time="400">Visible</animation>
+      <animation effect="fade" time="0">WindowClose</animation>
+    </control>
+
+    <control Style="InfoLabelDetails">
+      <description>Publisher Label</description>
+      <type>label</type>
+      <label>#Emulators2.Label.developer</label>
+      <id>0</id>
+      <posX>568</posX>
+      <posY>432</posY>
+      <visible>!control.isvisible(50)+!control.hasfocus(10001)+!control.hasfocus(10002)+!control.hasfocus(10003)+!control.hasfocus(51)</visible>
+      <animation effect="fade" time="400">Visible</animation>
+      <animation effect="fade" time="0">WindowClose</animation>
+    </control>
+
+    <control Style="InfoValueDetails">
+      <description>Publisher Value</description>
+      <type>label</type>
+      <label>#Emulators2.CurrentItem.company</label>
+      <id>0</id>
+      <posX>820</posX>
+      <posY>432</posY>
+      <visible>!control.isvisible(50)+!control.hasfocus(10001)+!control.hasfocus(10002)+!control.hasfocus(10003)+!control.hasfocus(51)</visible>
+      <animation effect="fade" time="400">Visible</animation>
+      <animation effect="fade" time="0">WindowClose</animation>
+    </control>
+
+    <control Style="InfoLabelDetails">
+      <description>Year Label</description>
+      <type>label</type>
+      <label>#Emulators2.Label.year</label>
+      <id>0</id>
+      <posX>568</posX>
+      <posY>478</posY>
+      <visible>!control.isvisible(50)+!control.hasfocus(10001)+!control.hasfocus(10002)+!control.hasfocus(10003)+!control.hasfocus(51)</visible>
+      <animation effect="fade" time="400">Visible</animation>
+      <animation effect="fade" time="0">WindowClose</animation>
+    </control>
+
+    <control Style="InfoValueDetails">
+      <description>Year Value</description>
+      <type>label</type>
+      <label>#Emulators2.CurrentItem.year</label>
+      <id>0</id>
+      <posX>820</posX>
+      <posY>478</posY>
+      <visible>!control.isvisible(50)+!control.hasfocus(10001)+!control.hasfocus(10002)+!control.hasfocus(10003)+!control.hasfocus(51)</visible>
+      <animation effect="fade" time="400">Visible</animation>
+      <animation effect="fade" time="0">WindowClose</animation>
+    </control>
+
+    <control Style="InfoLabelDetails">
+      <description>Genre Label</description>
+      <type>label</type>
+      <label>#Emulators2.Label.year</label>
+      <id>0</id>
+      <posX>568</posX>
+      <posY>524</posY>
+      <visible>!control.isvisible(50)+!control.hasfocus(10001)+!control.hasfocus(10002)+!control.hasfocus(10003)+!control.hasfocus(51)</visible>
+      <animation effect="fade" time="400">Visible</animation>
+      <animation effect="fade" time="0">WindowClose</animation>
+    </control>
+
+    <control Style="InfoValueDetails">
+      <description>Genre</description>
+      <type>fadelabel</type>
+      <label>#Emulators2.CurrentItem.genre</label>
+      <id>0</id>
+      <posX>820</posX>
+      <posY>524</posY>
+      <visible>!control.isvisible(50)+!control.hasfocus(10001)+!control.hasfocus(10002)+!control.hasfocus(10003)+!control.hasfocus(51)</visible>
+      <animation effect="fade" time="400">Visible</animation>
+      <animation effect="fade" time="0">WindowClose</animation>
+    </control>
+
+    <control Style="InfoLabelDetails">
+      <description>Last Played Label</description>
+      <type>label</type>
+      <label>#Emulators2.Label.lastplayed</label>
+      <id>0</id>
+      <posX>568</posX>
+      <posY>570</posY>
+      <visible>!control.isvisible(50)+!control.hasfocus(10001)+!control.hasfocus(10002)+!control.hasfocus(10003)+!control.hasfocus(51)</visible>
+      <animation effect="fade" time="400">Visible</animation>
+      <animation effect="fade" time="0">WindowClose</animation>
+    </control>
+
+    <control Style="InfoValueDetails">
+      <description>Last Played Value</description>
+      <type>fadelabel</type>
+      <label>#Emulators2.CurrentItem.latestplaydate#(iif(eq(#Emulators2.CurrentItem.latestplaytime,''),'',' - '))#Emulators2.CurrentItem.latestplaytime</label>
+      <id>0</id>
+      <posX>820</posX>
+      <posY>570</posY>
+      <visible>!control.isvisible(50)+!control.hasfocus(10001)+!control.hasfocus(10002)+!control.hasfocus(10003)+!control.hasfocus(51)</visible>
+      <animation effect="fade" time="400">Visible</animation>
+      <animation effect="fade" time="0">WindowClose</animation>
+    </control>
+
+    <control Style="InfoLabelDetails">
+      <description>Play count Label</description>
+      <type>label</type>
+      <label>#Emulators2.Label.playcount</label>
+      <id>0</id>
+      <posX>1120</posX>
+      <posY>570</posY>
+      <visible>!control.isvisible(50)+!control.hasfocus(10001)+!control.hasfocus(10002)+!control.hasfocus(10003)+!control.hasfocus(51)</visible>
+      <animation effect="fade" time="400">Visible</animation>
+      <animation effect="fade" time="0">WindowClose</animation>
+    </control>
+
+    <control Style="InfoValueDetails">
+      <description>Play count Value</description>
+      <type>fadelabel</type>
+      <label>#Emulators2.CurrentItem.playcount</label>
+      <id>0</id>
+      <posX>1372</posX>
+      <posY>570</posY>
+      <visible>!control.isvisible(50)+!control.hasfocus(10001)+!control.hasfocus(10002)+!control.hasfocus(10003)+!control.hasfocus(51)</visible>
+      <animation effect="fade" time="400">Visible</animation>
+      <animation effect="fade" time="0">WindowClose</animation>
+    </control>    
+    
+    <control Style="textBoxDetails">
+      <type>textboxscrollup</type>
+      <description>Summary (list)</description>
+      <id>1025</id>
+      <posX>568</posX>
+      <posY>625</posY>
+      <height>218</height>
+      <label>#Emulators2.CurrentItem.description</label>
+      <seperator>---------------------------------------------------------------------------------------------------------</seperator>
+      <onleft>1026</onleft>
+      <onright>1026</onright>
+      <onup>1026</onup>
+      <ondown>1026</ondown>
+      <visible>!control.isvisible(50)+!control.hasfocus(10001)+!control.hasfocus(10002)+!control.hasfocus(10003)+!control.hasfocus(51)</visible>
+      <animation effect="fade" time="400">Visible</animation>
+      <animation effect="fade" time="0">WindowClose</animation>
+    </control>
+
+    <control>
+      <description>frame</description>
+      <type>image</type>
+      <id>0</id>
+      <posX>795</posX>
+      <posY>881</posY>
+      <width>1041</width>
+      <height>73</height>
+      <texture>movie_detail_frame.png</texture>
+      <visible>!control.isvisible(50)+!control.hasfocus(10001)+!control.hasfocus(10002)+!control.hasfocus(10003)+!control.hasfocus(51)</visible>
+      <animation effect="fade" time="400">Visible</animation>
+      <animation effect="fade" time="0">WindowClose</animation>
+    </control>
+
+    <control>
+      <description>Goodmerge Image</description>
+      <type>image</type>
+      <id>101</id>
+      <width>60</width>
+      <height>60</height>
+      <posX>806</posX>
+      <posY>888</posY>
+      <align>right</align>
+      <texture>Emulators2_goodmerge.png</texture>
+      <visible>control.isvisible(6)+string.contains(#Emulators2.CurrentItem.goodmerge,yes)</visible>
+      <animation effect="fade" time="250" delay="0">WindowClose</animation>
+      <animation effect="fade" time="250" reversible="false">visible</animation>
+    </control>
+
+    <control>
+      <type>imagelist</type>
+      <id>0</id>
+      <posX>896</posX>
+      <posY>903</posY>
+      <width>315</width>
+      <height>29</height>
+      <textureWidth>32</textureWidth>
+      <textureHeight>27</textureHeight>
+      <subitems>
+        <subitem>starblack.png</subitem>
+        <subitem>starblue.png</subitem>
+      </subitems>
+      <orientation>horizontal</orientation>
+      <align>left</align>
+      <imagesToDraw>10</imagesToDraw>
+      <percentage>#Emulators2.CurrentItem.grade</percentage>
+      <visible>!control.isvisible(50)+!control.hasfocus(10001)+!control.hasfocus(10002)+!control.hasfocus(10003)+!control.hasfocus(51)</visible>
+      <animation effect="fade" time="400">Visible</animation>
+      <animation effect="fade" time="0">WindowClose</animation>
+    </control>
+
+    <control Style="InfoLabel">
+      <description>Score</description>
+      <type>label</type>
+      <label>#Emulators2.CurrentItem.grade</label>
+      <id>0</id>
+      <posX>1275</posX>
+      <posY>897</posY>
+      <width>185</width>
+      <align>right</align>
+      <font>fontB14</font>
+      <visible>!control.isvisible(50)+!control.hasfocus(10001)+!control.hasfocus(10002)+!control.hasfocus(10003)+!control.hasfocus(51)</visible>
+      <animation effect="fade" time="400">Visible</animation>
+      <animation effect="fade" time="0">WindowClose</animation>
+    </control>
+
+    <!-- Properties -->
+    <control Style="InfoLabelDetails">
+      <description>Disc Label</description>
+      <type>label</type>
+      <label>#Emulators2.Label.disc</label>
+      <id>0</id>
+      <posX>568</posX>
+      <posY>432</posY>
+      <visible>!control.isvisible(50)+[control.hasfocus(10001)|control.hasfocus(51)]</visible>
+      <animation effect="fade" time="400">Visible</animation>
+      <animation effect="fade" time="0">WindowClose</animation>
+    </control>
+
+    <control Style="InfoValueDetails">
+      <description>Disc</description>
+      <type>label</type>
+      <label>#Emulators2.CurrentItem.currentdisc / #Emulators2.CurrentItem.totaldiscs</label>
+      <id>0</id>
+      <posX>820</posX>
+      <posY>432</posY>
+      <visible>!control.isvisible(50)+[control.hasfocus(10001)|control.hasfocus(51)]</visible>
+      <animation effect="fade" time="400">Visible</animation>
+      <animation effect="fade" time="0">WindowClose</animation>
+    </control>
+
+    <control Style="InfoLabelDetails">
+      <description>Path Label</description>
+      <type>label</type>
+      <label>300058</label>
+      <id>0</id>
+      <posX>568</posX>
+      <posY>482</posY>
+      <visible>!control.isvisible(50)+[control.hasfocus(10001)|control.hasfocus(51)]</visible>
+      <animation effect="fade" time="400">Visible</animation>
+      <animation effect="fade" time="0">WindowClose</animation>
+    </control>
+
+    <control Style="InfoValueDetails">
+      <description>Path</description>
+      <type>fadelabel</type>
+      <label>#Emulators2.CurrentItem.path</label>
+      <id>0</id>
+      <posX>820</posX>
+      <posY>482</posY>      
+      <visible>!control.isvisible(50)+[control.hasfocus(10001)|control.hasfocus(51)]</visible>
+      <animation effect="fade" time="400">Visible</animation>
+      <animation effect="fade" time="0">WindowClose</animation>
+    </control>
+
+    <control Style="InfoLabelDetails">
+      <description>Profile Label</description>
+      <type>label</type>
+      <label>#Emulators2.Label.currentprofile</label>
+      <id>0</id>
+      <posX>568</posX>
+      <posY>532</posY>
+      <visible>!control.isvisible(50)+[control.hasfocus(10001)|control.hasfocus(51)]</visible>
+      <animation effect="fade" time="400">Visible</animation>
+      <animation effect="fade" time="0">WindowClose</animation>
+    </control>
+
+    <control Style="InfoValueDetails">
+      <description>Profile Value</description>
+      <type>fadelabel</type>
+      <label>#Emulators2.CurrentItem.Profile.title</label>
+      <id>0</id>
+      <posX>820</posX>
+      <posY>532</posY>
+      <visible>!control.isvisible(50)+[control.hasfocus(10001)|control.hasfocus(51)]</visible>
+      <animation effect="fade" time="400">Visible</animation>
+      <animation effect="fade" time="0">WindowClose</animation>
+    </control>
+
+    <control Style="InfoLabelDetails">
+      <description>Emu Path Label</description>
+      <type>label</type>
+      <label>#Emulators2.Label.emulatorpath</label>
+      <id>0</id>
+      <posX>568</posX>
+      <posY>582</posY>
+      <visible>!control.isvisible(50)+[control.hasfocus(10001)|control.hasfocus(51)]</visible>
+      <animation effect="fade" time="400">Visible</animation>
+      <animation effect="fade" time="0">WindowClose</animation>
+    </control>
+
+    <control Style="InfoValueDetails">
+      <description>Emu Path</description>
+      <type>fadelabel</type>
+      <label>#Emulators2.CurrentItem.Profile.emulatorpath</label>
+      <id>0</id>
+      <posX>820</posX>
+      <posY>582</posY>
+      <visible>!control.isvisible(50)+[control.hasfocus(10001)|control.hasfocus(51)]</visible>
+      <animation effect="fade" time="400">Visible</animation>
+      <animation effect="fade" time="0">WindowClose</animation>
+    </control>
+
+    <control Style="InfoLabelDetails">
+      <description>Arguments Label</description>
+      <type>label</type>
+      <label>#Emulators2.Label.arguments</label>
+      <id>0</id>
+      <posX>568</posX>
+      <posY>622</posY>
+      <visible>!control.isvisible(50)+[control.hasfocus(10001)|control.hasfocus(51)]</visible>
+      <animation effect="fade" time="400">Visible</animation>
+      <animation effect="fade" time="0">WindowClose</animation>
+    </control>
+
+    <control Style="InfoValueDetails">
+      <description>Arguments Value</description>
+      <type>fadelabel</type>
+      <label>#Emulators2.CurrentItem.Profile.arguments</label>
+      <id>0</id>
+      <posX>820</posX>
+      <posY>622</posY>
+      <visible>!control.isvisible(50)+[control.hasfocus(10001)|control.hasfocus(51)]</visible>
+      <animation effect="fade" time="400">Visible</animation>
+      <animation effect="fade" time="0">WindowClose</animation>
+    </control>
+
+    <control Style="InfoLabelDetails">
+      <description>Working Dir Label</description>
+      <type>label</type>
+      <label>#Emulators2.Label.workingdirectory</label>
+      <id>0</id>
+      <posX>568</posX>
+      <posY>662</posY>
+      <visible>!control.isvisible(50)+[control.hasfocus(10001)|control.hasfocus(51)]</visible>
+      <animation effect="fade" time="400">Visible</animation>
+      <animation effect="fade" time="0">WindowClose</animation>
+    </control>
+
+    <control Style="InfoValueDetails">
+      <description>Working Dir Value</description>
+      <type>fadelabel</type>
+      <label>#Emulators2.CurrentItem.Profile.workingdirectory</label>
+      <id>0</id>
+      <posX>820</posX>
+      <posY>662</posY>
+      <visible>!control.isvisible(50)+[control.hasfocus(10001)|control.hasfocus(51)]</visible>
+      <animation effect="fade" time="400">Visible</animation>
+      <animation effect="fade" time="0">WindowClose</animation>
+    </control>
+
+    <control Style="InfoLabelDetails">
+      <description>Use Quotes Label</description>
+      <type>label</type>
+      <label>#Emulators2.Label.usequotes</label>
+      <id>0</id>
+      <posX>568</posX>
+      <posY>712</posY>
+      <visible>!control.isvisible(50)+[control.hasfocus(10001)|control.hasfocus(51)]</visible>
+      <animation effect="fade" time="400">Visible</animation>
+      <animation effect="fade" time="0">WindowClose</animation>
+    </control>
+
+    <control Style="InfoValueDetails">
+      <description>Use Quotes Value</description>
+      <type>label</type>
+      <label>#Emulators2.CurrentItem.Profile.usequotes</label>
+      <id>0</id>
+      <posX>820</posX>
+      <posY>712</posY>
+      <visible>!control.isvisible(50)+[control.hasfocus(10001)|control.hasfocus(51)]</visible>
+      <animation effect="fade" time="400">Visible</animation>
+      <animation effect="fade" time="0">WindowClose</animation>
+    </control>
+
+    <control Style="InfoLabelDetails">
+      <description>Suspend MP Label</description>
+      <type>label</type>
+      <label>#Emulators2.Label.suspendmp</label>
+      <id>0</id>
+      <posX>978</posX>
+      <posY>712</posY>
+      <visible>!control.isvisible(50)+[control.hasfocus(10001)|control.hasfocus(51)]</visible>
+      <animation effect="fade" time="400">Visible</animation>
+      <animation effect="fade" time="0">WindowClose</animation>
+    </control>
+
+    <control Style="InfoValueDetails">
+      <description>Suspend MP Value</description>
+      <type>label</type>
+      <label>#Emulators2.CurrentItem.Profile.suspendmp</label>
+      <id>0</id>
+      <posX>1230</posX>
+      <posY>712</posY>
+      <visible>!control.isvisible(50)+[control.hasfocus(10001)|control.hasfocus(51)]</visible>
+      <animation effect="fade" time="400">Visible</animation>
+      <animation effect="fade" time="0">WindowClose</animation>
+    </control>
+    
+    <control Style="InfoLabelDetails">
+      <description>Esc to exit Label</description>
+      <type>label</type>
+      <label>#Emulators2.Label.escapetoexit</label>
+      <id>0</id>
+      <posX>568</posX>
+      <posY>752</posY>
+      <visible>!control.isvisible(50)+[control.hasfocus(10001)|control.hasfocus(51)]</visible>
+      <animation effect="fade" time="400">Visible</animation>
+      <animation effect="fade" time="0">WindowClose</animation>
+    </control>
+
+    <control Style="InfoValueDetails">
+      <description>Esc to exit Value</description>
+      <type>label</type>
+      <label>#Emulators2.CurrentItem.Profile.escapetoexit</label>
+      <id>0</id>
+      <posX>820</posX>
+      <posY>752</posY>
+      <visible>!control.isvisible(50)+[control.hasfocus(10001)|control.hasfocus(51)]</visible>
+      <animation effect="fade" time="400">Visible</animation>
+      <animation effect="fade" time="0">WindowClose</animation>
+    </control>
+
+    <control Style="InfoLabelDetails">
+      <description>Mount Images Label</description>
+      <type>label</type>
+      <label>#Emulators2.Label.mountimages</label>
+      <id>0</id>
+      <posX>978</posX>
+      <posY>752</posY>
+      <visible>!control.isvisible(50)+[control.hasfocus(10001)|control.hasfocus(51)]</visible>
+      <animation effect="fade" time="400">Visible</animation>
+      <animation effect="fade" time="0">WindowClose</animation>
+    </control>
+
+    <control Style="InfoValueDetails">
+      <description>Mount Images Value</description>
+      <type>label</type>
+      <label>#Emulators2.CurrentItem.Profile.mountimages</label>
+      <id>0</id>
+      <posX>1230</posX>
+      <posY>752</posY>
+      <visible>!control.isvisible(50)+[control.hasfocus(10001)|control.hasfocus(51)]</visible>
+      <animation effect="fade" time="400">Visible</animation>
+      <animation effect="fade" time="0">WindowClose</animation>
+    </control>
+    
+    <control Style="InfoLabelDetails">
+      <description>Check controller Label</description>
+      <type>label</type>
+      <label>#Emulators2.Label.checkcontroller</label>
+      <id>0</id>
+      <posX>568</posX>
+      <posY>792</posY>
+      <visible>!control.isvisible(50)+[control.hasfocus(10001)|control.hasfocus(51)]</visible>
+      <animation effect="fade" time="400">Visible</animation>
+      <animation effect="fade" time="0">WindowClose</animation>
+    </control>
+
+    <control Style="InfoValueDetails">
+      <description>Check controller Value</description>
+      <type>label</type>
+      <label>#Emulators2.CurrentItem.Profile.checkcontroller</label>
+      <id>0</id>
+      <posX>820</posX>
+      <posY>792</posY>
+      <visible>!control.isvisible(50)+[control.hasfocus(10001)|control.hasfocus(51)]</visible>
+      <animation effect="fade" time="400">Visible</animation>
+      <animation effect="fade" time="0">WindowClose</animation>
+    </control>
+    
+    <control>
+      <visible>!control.isvisible(50)+string.equals(#Emulators2.CurrentItem.goodmerge,yes)+[control.hasfocus(10001)|control.hasfocus(51)]</visible>
+      <description>Goodmerge List</description>
+      <type>listcontrol</type>
+      <id>51</id>
+      <width>450</width>
+      <posX>1400</posX>
+      <posY>419</posY>
+      <height>518</height>
+      <onup>10001</onup>
+      <ondown>10001</ondown>
+      <onleft>6</onleft>
+      <onright>10002</onright>
+      <textXOff>30</textXOff>
+      <textXOff2>0</textXOff2>
+      <textureHeight>54</textureHeight>
+      <textureFocus>listcontrol_item_selected.png</textureFocus>
+      <textureNoFocus>-</textureNoFocus>
+      <dimColor>ffffffff</dimColor>
+      <scrollOffset>1</scrollOffset>
+      <spinPosX>-2000</spinPosX>
+      <spinPosY>1000</spinPosY>
+      <animation effect="fade" time="250" delay="0">WindowClose</animation>
+      <animation effect="fade" time="250" reversible="false">visible</animation>
+    </control>
+    
+    <!-- Fanart -->
+
+    <control>
+      <description>Info Bar</description>
+      <type>image</type>
+      <id>0</id>
+      <width>1820</width>
+      <height>84</height>
+      <posX>52</posX>
+      <posY>958</posY>
+      <texture>info_bar.png</texture>
+      <visible>control.hasfocus(10003)</visible>
+      <animation effect="fade" time="400">Visible</animation>
+      <animation effect="fade" time="0">WindowClose</animation>
+    </control>
+
+    <control>
+      <type>label</type>
+      <description>Year and Category (Fanart View)</description>
+      <id>1</id>
+      <posX>122</posX>
+      <posY>996</posY>
+      <width>475</width>
+      <font>TitanLight12</font>
+      <textcolor>FF000000</textcolor>
+      <label>#Emulators2.CurrentItem.year#(iif(or(eq(#Emulators2.CurrentItem.genre,''),eq(#Emulators2.CurrentItem.year,'')),'',' - '))#Emulators2.CurrentItem.genre</label>
+      <visible>control.hasfocus(10003)</visible>
+      <animation effect="fade" time="400">Visible</animation>
+      <animation effect="fade" time="0">WindowClose</animation>
+    </control>
+
+    <control>
+      <type>imagelist</type>
+      <id>1</id>
+      <posX>1460</posX>
+      <posY>1001</posY>
+      <width>315</width>
+      <height>29</height>
+      <textureWidth>32</textureWidth>
+      <textureHeight>27</textureHeight>
+      <subitems>
+        <subitem>starblue2.png</subitem>
+        <subitem>starblack2.png</subitem>
+      </subitems>
+      <orientation>horizontal</orientation>
+      <align>left</align>
+      <imagesToDraw>10</imagesToDraw>
+      <percentage>#Emulators2.CurrentItem.grade</percentage>
+      <visible>control.hasfocus(10003)</visible>2
+      <animation effect="fade" time="400">Visible</animation>
+      <animation effect="fade" time="0">WindowClose</animation>
+    </control>
+
+    <control Style="smallTitle">
+      <type>fadelabel</type>
+      <description>Title (Fanart View)</description>
+      <id>1</id>
+      <posX>510</posX>
+      <posY>1017</posY>
+      <label>#Emulators2.CurrentItem.title</label>
+      <visible>control.hasfocus(10003)</visible>
+      <animation effect="fade" time="400">Visible</animation>
+      <animation effect="fade" time="0">WindowClose</animation>
+    </control>
+
+
+    <control>
+      <description>Rating Value</description>
+      <type>label</type>
+      <id>0</id>
+      <posX>1790</posX>
+      <posY>998</posY>
+      <label>#Emulators2.CurrentItem.grade</label>
+      <font>fontB12</font>
+      <textcolor>000000</textcolor>
+      <visible>control.hasfocus(10003)</visible>
+      <animation effect="fade" time="400">Visible</animation>
+      <animation effect="fade" time="0">WindowClose</animation>
+    </control>
+
+    <!--Images/ Goodmerge List-->
+
+    <control>
+      <description>Back Cover</description>
+      <type>image</type>
+      <id>602</id>
+      <posX>555</posX>
+      <posY>415</posY>
+      <width>379</width>
+      <height>508</height>
+      <keepaspectratio>true</keepaspectratio>
+      <align>center</align>
+      <valign>middle</valign>
+      <texture>#Emulators2.CurrentItem.backcoverpath</texture>
+      <visible>control.hasfocus(10002)</visible>
+      <animation effect="fade" time="250" delay="0">WindowClose</animation>
+      <animation effect="fade" time="250" reversible="false">visible</animation>
+    </control>
+    <control>
+      <description>Title Screen</description>
+      <type>image</type>
+      <id>603</id>
+      <posX>987</posX>
+      <posY>415</posY>
+      <width>379</width>
+      <height>508</height>
+      <keepaspectratio>true</keepaspectratio>
+      <align>center</align>
+      <valign>middle</valign>
+      <texture>#Emulators2.CurrentItem.titlescreenpath</texture>
+      <visible>control.hasfocus(10002)</visible>
+      <animation effect="fade" time="250" delay="0">WindowClose</animation>
+      <animation effect="fade" time="250" reversible="false">visible</animation>
+    </control>
+    <control>
+      <description>Ingame Screen</description>
+      <type>image</type>
+      <id>604</id>
+      <posX>1419</posX>
+      <posY>415</posY>
+      <width>379</width>
+      <height>508</height>
+      <keepaspectratio>true</keepaspectratio>
+      <align>center</align>
+      <valign>middle</valign>
+      <texture>#Emulators2.CurrentItem.ingamescreenpath</texture>
+      <visible>control.hasfocus(10002)</visible>
+      <animation effect="fade" time="250" delay="0">WindowClose</animation>
+      <animation effect="fade" time="250" reversible="false">visible</animation>
+    </control>
+  </controls>
+</window>

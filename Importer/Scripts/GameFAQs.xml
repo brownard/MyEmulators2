@@ -1,0 +1,291 @@
+﻿<ScriptableScraper>
+  <details>
+    <name>gamefaqs.com</name>
+    <author>Brownard</author>
+    <description>Grabs game data from gamefaqs.com</description>
+    <id>99999995</id>
+    <version major="1" minor="0" point="0"/>
+    <published month="2" day="9" year="2012"/>
+    <type>MovieDetailsFetcher|MovieCoverFetcher</type>
+    <language>en</language>
+  </details>
+
+  <action name="search">
+
+    <set name="searchPlatformLookup">
+      <![CDATA[
+      |Nintendo 3DS,1068|
+      |Nintendo DS,1026|
+      |iPhone,1049|
+      |Windows,5|
+      |Playstation 2,7|
+      |Playstation 3,1028|
+      |Playstation Vita,1069|
+      |Wii,1031|
+      |Wii U,1070|
+      |Xbox 360,1029|
+      |3DO,15|
+      |Amiga,24|
+      |Amiga CD32,1059|
+      |Amstrad CPC,1035|
+      |Apple II,25|
+      |Arcade,26|
+      |Atari 2600,28|
+      |Atari 5200,29|
+      |Atari 7800,30|
+      |Atari 8-bit,31|
+      |Atari ST,1034|
+      |CD-i,33|
+      |Channel F,34|
+      |ColecoVision,35|
+      |Commodore 64,36|
+      |Commodore PET/CBM,1038|
+      |Dreamcast,1|
+      |Game Boy,2|
+      |Game Boy Advance,12|
+      |Game Boy Color,9|
+      |Game.Com,38|
+      |GameCube,11|
+      |Game Gear,16|
+      |Genesis,10|
+      |Gizmondo,1030|
+      |Intellivision,39|
+      |Jaguar,17|
+      |Lynx,40|
+      |Macintosh,42|
+      |MSX,41|
+      |N-Gage,1006|
+      |Neo Geo CD,1007|
+      |Neo Geo,18|
+      |Neo Geo Pocket Color,3|
+      |NES,19|
+      |Nintendo 64,4|
+      |Odyssey,1011|
+      |Odyssey 2,44|
+      |Browser,1010|
+      |Palm OS,1015|
+      |PC-FX,45|
+      |Playstation,6|
+      |PSP,1024|
+      |SEGA Saturn,8|
+      |SEGA 32X,1003|
+      |SEGA CD,1002|
+      |SEGA Master System,20|
+      |SNES,21|
+      |TI-99/4A,1051|
+      |TurboGrafx CD,1005|
+      |TurboGrafx-16,22|
+      |Linux,47|
+      |Vectrex,49|
+      |VIC-20,48|
+      |Virtual Boy,50|
+      |Windows Mobile,1014|
+      |WonderSwan,1022|
+      |WonderSwan Color,23|
+      |Xbox,13|
+      |Zodiac,1027|
+      |ZX Spectrum,1050|
+      ]]>
+    </set>
+
+    <set name="platformLookup">
+      <![CDATA[
+      |3ds,Nintendo 3DS|
+      |ds,Nintendo DS|
+      |arcade,Arcade|
+      |dreamcast,Dreamcast|
+      |gameboy,Game Boy|
+      |gba,Game Boy Advance|
+      |gbc,Game Boy Color|
+      |gamecube,GameCube|
+      |genesis,Genesis|
+      |iphone,iPhone|
+      |neo,Neo Geo|
+      |nes,NES|
+      |n64,Nintendo 64|
+      |pc,Windows|
+      |ps,Playstation|
+      |ps2,Playstation 2|
+      |ps3,Playstation 3|
+      |vita,Playstation Vita|
+      |psp,PSP|
+      |saturn,SEGA Saturn|
+      |snes,SNES|
+      |wii,Wii|
+      |wii-u,Wii U|
+      |xbox,Xbox|
+      |xbox360,Xbox 360|
+      ]]>
+    </set>
+
+    <set name="offset" value="0" />
+    <!-- Regular Expressions -->
+    <set name="rx_search_results">
+      <![CDATA[<td>\s*<a href="(/([^/]*)/[^"]*)"\s+>([^<]*)</a></td>]]>
+    </set>
+
+    <set name="rx_searchPlatform">
+      <![CDATA[[|]${search.platform},(\d+)[|]]]>
+    </set>
+
+    <set name="rx_resultsPlatform">
+      <![CDATA[[|]${game_details[${count}][1]:htmldecode},([^|]*)[|]]]>
+    </set>
+
+    <set name="searchPlatform" value="0" />
+    <parse name="searchPlatform_Find" input="${searchPlatformLookup}" regex="${rx_searchPlatform}" />
+    <if test="${searchPlatform_Find[0][0]}!=">
+      <set name="searchPlatform" value="${searchPlatform_Find[0][0]}" />
+    </if>
+
+    <!-- Retrieve results using Title ${search.system:safe} -->
+    <retrieve name="search_page" url="http://www.gamefaqs.com/search/index.html?game=${search.title:safe}&amp;platform=${searchPlatform}" />
+
+    <!-- Search result page is used. -->
+    <parse name="game_details" input="${search_page}" regex="${rx_search_results}" />
+    <loop name="curr_details" on="game_details">
+      <set name="game[${count}].site_id" value="${curr_details[0]:htmldecode}"/>
+      <set name="game[${count}].title" value="${curr_details[2]:htmldecode}"/>
+      <set name="game[${count}].yearmade" value=""/>
+      <set name="game[${count}].system" value="${curr_details[1]:htmldecode}"/>
+
+      <set name="game[${count}].system" value="${game_details[${count}][1]:htmldecode}" />
+      <if test="${searchPlatform}!=0">
+        <set name="game[${count}].system" value="${search.platform}"/>
+      </if>
+      <if test="${searchPlatform}=0">
+        <parse name="newPlatform" input="${platformLookup}" regex="[|]${game_details[${count}][1]:htmldecode},([^|]*)[|]" />
+        <if test="${newPlatform[0][0]}!=">
+          <set name="game[${count}].system" value="${newPlatform[0][0]}"/>
+        </if>
+      </if>
+
+      <set name="game[${count}].details_url" value="http://www.gamefaqs.com${curr_details[0]}"/>
+    </loop>
+  </action>
+
+  <action name="get_details">
+    <set name="rx_title">
+      <![CDATA[</div><h1>([^<]*)</h1><ul class="content_nav">]]>
+    </set>
+    <set name="rx_company">
+      <![CDATA[<a href="/features/company/[^"]*">([^<]*)</a></li>]]>
+    </set>
+    <set name="rx_yearmade">
+      <![CDATA[Release: <a href="(.*?)">(.*?) &raquo;</a>]]>
+    </set>
+    <set name="rx_description">
+      <![CDATA[Description</h2></div><div class="body"><div class="details">(.*?)</div></div>]]>
+    </set>
+    <set name="rx_genre">
+      <![CDATA[</a> &raquo; <a href="(.*?)">(.*?)</a> &raquo; <a href="/]]>
+    </set>
+    <set name="rx_grade">
+      <![CDATA[</td><td><span class="score">([^<]*)]]>
+    </set>
+
+    <retrieve name="details_page" url="http://www.gamefaqs.com${game.site_id}"/>
+
+    <parse name="title" input="${details_page}" regex="${rx_title}"/>
+    <set name="game.title" value="${title[0][0]:htmldecode}"/>
+
+    <parse name="company" input="${details_page}" regex="${rx_company}"/>
+    <set name="game.company" value="${company[0][0]:htmldecode}"/>
+
+    <parse name="yearmade" input="${details_page}" regex="${rx_yearmade}"/>
+    <set name="rx_justyear">
+      <![CDATA[(\d\d\d\d)]]>
+    </set>
+    <parse name="justyear" input="${yearmade[1]}" regex="${rx_justyear}"/>
+    <set name="game.yearmade" value="${justyear[0][0]:htmldecode}"/>
+
+    <parse name="description" input="${details_page}" regex="${rx_description}"/>
+    <set name="game.description" value="${description[0][0]:htmldecode}"/>
+
+    <parse name="grade" input="${details_page}" regex="${rx_grade}"/>
+    <set name="game.grade" value="${grade[0][0]:htmldecode}"/>
+
+    <parse name="genre" input="${details_page}" regex="${rx_genre}"/>
+    <set name="game.genre" value="${genre[0][1]:htmldecode}"/>
+  </action>
+
+  <action name="get_cover_art">
+    <if test="${game.site_id}!=">
+      <retrieve name="details_page" url="http://www.gamefaqs.com${game.site_id}/images"/>
+      <set name="rx_cover_eu">
+        <![CDATA[<div class="img boxshot"><a href="([^"]*)"><img[^>]*></a><div class="region">EU]]>
+      </set>
+      <set name="rx_cover_us">
+        <![CDATA[<div class="img boxshot"><a href="([^"]*)"><img[^>]*></a><div class="region">US]]>
+      </set>
+      <set name="rx_cover">
+        <![CDATA[<div class="img boxshot"><a href="([^"]*)"><img[^>]*></a><div class="region">(?!(EU|US))]]>
+      </set>
+      <set name="rx_cover_image">
+        <![CDATA[<a href="([^"]*)"><img class="full_boxshot"]]>
+      </set>
+      <set name="game.images" value=""/>
+      
+      <parse name="cover_block_eu" input="${details_page}" regex="${rx_cover_eu}"/>
+      <loop name="currCover" on="cover_block_eu">
+        <retrieve name="image_page" url="http://www.gamefaqs.com${currCover[0]}"/>
+        <parse name="images_eu" input="${image_page}" regex="${rx_cover_image}"/>
+        <loop name="currImage" on="images_eu">
+          <if test="${currImage}!=">
+            <set name="game.images" value="${game.images}|${currImage[0]:htmldecode}"/>
+            <set name="images_eu[${count}]" value="" />
+          </if>
+        </loop>
+      </loop>
+      
+      <parse name="cover_block_us" input="${details_page}" regex="${rx_cover_us}"/>
+      <loop name="currCover" on="cover_block_us">
+        <retrieve name="image_page" url="http://www.gamefaqs.com${currCover[0]}"/>
+        <parse name="images_us" input="${image_page}" regex="${rx_cover_image}"/>
+        <loop name="currImage" on="images_us">
+          <if test="${currImage}!=">
+            <set name="game.images" value="${game.images}|${currImage[0]:htmldecode}"/>
+            <set name="images_us[${count}]" value="" />
+          </if>
+        </loop>
+      </loop>
+      
+      <parse name="cover_block" input="${details_page}" regex="${rx_cover}"/>
+      <loop name="currCover" on="cover_block">
+        <retrieve name="image_page" url="http://www.gamefaqs.com${currCover[0]}"/>
+        <parse name="images" input="${image_page}" regex="${rx_cover_image}"/>
+        <loop name="currImage" on="images">
+          <if test="${currImage}!=">
+            <set name="game.images" value="${game.images}|${currImage[0]:htmldecode}"/>
+            <set name="images[${count}]" value="" />
+          </if>
+        </loop>
+      </loop>
+    </if>
+  </action>
+
+  <action name="get_screenshots">
+    <if test="${game.site_id}!=">
+      <retrieve name="details_page" url="http://www.gamefaqs.com${game.site_id}/images"/>
+      <set name="rx_screenshotblock">
+        <![CDATA[class="thumb"><a href="([^"]*)"]]>
+      </set>
+      <set name="rx_screenshot">
+        <![CDATA[<a href="([^"]*)"><img class="full_boxshot"]]>
+      </set>
+
+      <parse name="screenshot_block" input="${details_page}" regex="${rx_screenshotblock}"/>
+      <set name="game.baseurl" value="http://www.gamefaqs.com"/>
+      <set name="game.images" value=""/>
+      <loop name="currShot" on="screenshot_block" limit="20">
+        <retrieve name="image_page" url="http://www.gamefaqs.com${currShot[0]}"/>
+        <parse name="image" input="${image_page}" regex="${rx_screenshot}"/>
+        <if test="${image.count}!=0">
+          <set name="game.images" value="${game.images}|${image[0][0]:htmldecode}"/>
+        </if>
+      </loop>
+    </if>
+  </action>
+</ScriptableScraper>
+
+
