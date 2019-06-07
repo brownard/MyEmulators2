@@ -1,98 +1,25 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.572
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "myEmulators", "myEmulators.csproj", "{F976622B-E8A2-41AC-9DAD-F341D17883B3}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommunityServerWindowsService", "CommunityServerWindowsService\CommunityServerWindowsService.csproj", "{1A47BF36-BFA5-4506-8FC1-28742DC995F5}"
-EndProject
-Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Community Server Setup", "..\Community Server Setup\Community Server Setup.vdproj", "{8AB1D0D3-9E44-417B-AAC7-93BCCEB4DA42}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug|Any CPU = Debug|Any CPU
-		Debug|Mixed Platforms = Debug|Mixed Platforms
 		Debug|x86 = Debug|x86
-		Release (Standalone)|Any CPU = Release (Standalone)|Any CPU
-		Release (Standalone)|Mixed Platforms = Release (Standalone)|Mixed Platforms
-		Release (Standalone)|x86 = Release (Standalone)|x86
-		Release|Any CPU = Release|Any CPU
-		Release|Mixed Platforms = Release|Mixed Platforms
 		Release|x86 = Release|x86
-		UseCaptureCardDefinitions|Any CPU = UseCaptureCardDefinitions|Any CPU
-		UseCaptureCardDefinitions|Mixed Platforms = UseCaptureCardDefinitions|Mixed Platforms
-		UseCaptureCardDefinitions|x86 = UseCaptureCardDefinitions|x86
-		UseCaptureDefintionsRelease|Any CPU = UseCaptureDefintionsRelease|Any CPU
-		UseCaptureDefintionsRelease|Mixed Platforms = UseCaptureDefintionsRelease|Mixed Platforms
-		UseCaptureDefintionsRelease|x86 = UseCaptureDefintionsRelease|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{F976622B-E8A2-41AC-9DAD-F341D17883B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F976622B-E8A2-41AC-9DAD-F341D17883B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F976622B-E8A2-41AC-9DAD-F341D17883B3}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{F976622B-E8A2-41AC-9DAD-F341D17883B3}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{F976622B-E8A2-41AC-9DAD-F341D17883B3}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{F976622B-E8A2-41AC-9DAD-F341D17883B3}.Release (Standalone)|Any CPU.ActiveCfg = Release|Any CPU
-		{F976622B-E8A2-41AC-9DAD-F341D17883B3}.Release (Standalone)|Any CPU.Build.0 = Release|Any CPU
-		{F976622B-E8A2-41AC-9DAD-F341D17883B3}.Release (Standalone)|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{F976622B-E8A2-41AC-9DAD-F341D17883B3}.Release (Standalone)|Mixed Platforms.Build.0 = Release|Any CPU
-		{F976622B-E8A2-41AC-9DAD-F341D17883B3}.Release (Standalone)|x86.ActiveCfg = Release|Any CPU
-		{F976622B-E8A2-41AC-9DAD-F341D17883B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F976622B-E8A2-41AC-9DAD-F341D17883B3}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F976622B-E8A2-41AC-9DAD-F341D17883B3}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{F976622B-E8A2-41AC-9DAD-F341D17883B3}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{F976622B-E8A2-41AC-9DAD-F341D17883B3}.Release|x86.ActiveCfg = Release|Any CPU
-		{F976622B-E8A2-41AC-9DAD-F341D17883B3}.UseCaptureCardDefinitions|Any CPU.ActiveCfg = Release|Any CPU
-		{F976622B-E8A2-41AC-9DAD-F341D17883B3}.UseCaptureCardDefinitions|Any CPU.Build.0 = Release|Any CPU
-		{F976622B-E8A2-41AC-9DAD-F341D17883B3}.UseCaptureCardDefinitions|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{F976622B-E8A2-41AC-9DAD-F341D17883B3}.UseCaptureCardDefinitions|Mixed Platforms.Build.0 = Release|Any CPU
-		{F976622B-E8A2-41AC-9DAD-F341D17883B3}.UseCaptureCardDefinitions|x86.ActiveCfg = Release|Any CPU
-		{F976622B-E8A2-41AC-9DAD-F341D17883B3}.UseCaptureDefintionsRelease|Any CPU.ActiveCfg = Release|Any CPU
-		{F976622B-E8A2-41AC-9DAD-F341D17883B3}.UseCaptureDefintionsRelease|Any CPU.Build.0 = Release|Any CPU
-		{F976622B-E8A2-41AC-9DAD-F341D17883B3}.UseCaptureDefintionsRelease|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{F976622B-E8A2-41AC-9DAD-F341D17883B3}.UseCaptureDefintionsRelease|Mixed Platforms.Build.0 = Release|Any CPU
-		{F976622B-E8A2-41AC-9DAD-F341D17883B3}.UseCaptureDefintionsRelease|x86.ActiveCfg = Release|Any CPU
-		{1A47BF36-BFA5-4506-8FC1-28742DC995F5}.Debug|Any CPU.ActiveCfg = Debug|x86
-		{1A47BF36-BFA5-4506-8FC1-28742DC995F5}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
-		{1A47BF36-BFA5-4506-8FC1-28742DC995F5}.Debug|Mixed Platforms.Build.0 = Debug|x86
-		{1A47BF36-BFA5-4506-8FC1-28742DC995F5}.Debug|x86.ActiveCfg = Debug|x86
-		{1A47BF36-BFA5-4506-8FC1-28742DC995F5}.Debug|x86.Build.0 = Debug|x86
-		{1A47BF36-BFA5-4506-8FC1-28742DC995F5}.Release (Standalone)|Any CPU.ActiveCfg = Release|x86
-		{1A47BF36-BFA5-4506-8FC1-28742DC995F5}.Release (Standalone)|Mixed Platforms.ActiveCfg = Release|x86
-		{1A47BF36-BFA5-4506-8FC1-28742DC995F5}.Release (Standalone)|Mixed Platforms.Build.0 = Release|x86
-		{1A47BF36-BFA5-4506-8FC1-28742DC995F5}.Release (Standalone)|x86.ActiveCfg = Release|x86
-		{1A47BF36-BFA5-4506-8FC1-28742DC995F5}.Release (Standalone)|x86.Build.0 = Release|x86
-		{1A47BF36-BFA5-4506-8FC1-28742DC995F5}.Release|Any CPU.ActiveCfg = Release|x86
-		{1A47BF36-BFA5-4506-8FC1-28742DC995F5}.Release|Mixed Platforms.ActiveCfg = Release|x86
-		{1A47BF36-BFA5-4506-8FC1-28742DC995F5}.Release|Mixed Platforms.Build.0 = Release|x86
-		{1A47BF36-BFA5-4506-8FC1-28742DC995F5}.Release|x86.ActiveCfg = Release|x86
-		{1A47BF36-BFA5-4506-8FC1-28742DC995F5}.Release|x86.Build.0 = Release|x86
-		{1A47BF36-BFA5-4506-8FC1-28742DC995F5}.UseCaptureCardDefinitions|Any CPU.ActiveCfg = Release|x86
-		{1A47BF36-BFA5-4506-8FC1-28742DC995F5}.UseCaptureCardDefinitions|Mixed Platforms.ActiveCfg = Release|x86
-		{1A47BF36-BFA5-4506-8FC1-28742DC995F5}.UseCaptureCardDefinitions|Mixed Platforms.Build.0 = Release|x86
-		{1A47BF36-BFA5-4506-8FC1-28742DC995F5}.UseCaptureCardDefinitions|x86.ActiveCfg = Release|x86
-		{1A47BF36-BFA5-4506-8FC1-28742DC995F5}.UseCaptureCardDefinitions|x86.Build.0 = Release|x86
-		{1A47BF36-BFA5-4506-8FC1-28742DC995F5}.UseCaptureDefintionsRelease|Any CPU.ActiveCfg = Release|x86
-		{1A47BF36-BFA5-4506-8FC1-28742DC995F5}.UseCaptureDefintionsRelease|Mixed Platforms.ActiveCfg = Release|x86
-		{1A47BF36-BFA5-4506-8FC1-28742DC995F5}.UseCaptureDefintionsRelease|Mixed Platforms.Build.0 = Release|x86
-		{1A47BF36-BFA5-4506-8FC1-28742DC995F5}.UseCaptureDefintionsRelease|x86.ActiveCfg = Release|x86
-		{1A47BF36-BFA5-4506-8FC1-28742DC995F5}.UseCaptureDefintionsRelease|x86.Build.0 = Release|x86
-		{8AB1D0D3-9E44-417B-AAC7-93BCCEB4DA42}.Debug|Any CPU.ActiveCfg = Debug
-		{8AB1D0D3-9E44-417B-AAC7-93BCCEB4DA42}.Debug|Mixed Platforms.ActiveCfg = Debug
-		{8AB1D0D3-9E44-417B-AAC7-93BCCEB4DA42}.Debug|x86.ActiveCfg = Debug
-		{8AB1D0D3-9E44-417B-AAC7-93BCCEB4DA42}.Release (Standalone)|Any CPU.ActiveCfg = Release
-		{8AB1D0D3-9E44-417B-AAC7-93BCCEB4DA42}.Release (Standalone)|Mixed Platforms.ActiveCfg = Release
-		{8AB1D0D3-9E44-417B-AAC7-93BCCEB4DA42}.Release (Standalone)|x86.ActiveCfg = Release
-		{8AB1D0D3-9E44-417B-AAC7-93BCCEB4DA42}.Release|Any CPU.ActiveCfg = Release
-		{8AB1D0D3-9E44-417B-AAC7-93BCCEB4DA42}.Release|Mixed Platforms.ActiveCfg = Release
-		{8AB1D0D3-9E44-417B-AAC7-93BCCEB4DA42}.Release|x86.ActiveCfg = Release
-		{8AB1D0D3-9E44-417B-AAC7-93BCCEB4DA42}.UseCaptureCardDefinitions|Any CPU.ActiveCfg = Release
-		{8AB1D0D3-9E44-417B-AAC7-93BCCEB4DA42}.UseCaptureCardDefinitions|Mixed Platforms.ActiveCfg = Release
-		{8AB1D0D3-9E44-417B-AAC7-93BCCEB4DA42}.UseCaptureCardDefinitions|x86.ActiveCfg = Release
-		{8AB1D0D3-9E44-417B-AAC7-93BCCEB4DA42}.UseCaptureDefintionsRelease|Any CPU.ActiveCfg = Release
-		{8AB1D0D3-9E44-417B-AAC7-93BCCEB4DA42}.UseCaptureDefintionsRelease|Mixed Platforms.ActiveCfg = Release
-		{8AB1D0D3-9E44-417B-AAC7-93BCCEB4DA42}.UseCaptureDefintionsRelease|x86.ActiveCfg = Release
+		{F976622B-E8A2-41AC-9DAD-F341D17883B3}.Debug|x86.ActiveCfg = Debug|x86
+		{F976622B-E8A2-41AC-9DAD-F341D17883B3}.Debug|x86.Build.0 = Debug|x86
+		{F976622B-E8A2-41AC-9DAD-F341D17883B3}.Release|x86.ActiveCfg = Release|x86
+		{F976622B-E8A2-41AC-9DAD-F341D17883B3}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6090D981-4062-44C3-A96E-0615248FDCD2}
 	EndGlobalSection
 EndGlobal
