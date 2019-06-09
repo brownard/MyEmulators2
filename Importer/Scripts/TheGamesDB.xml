@@ -12,6 +12,10 @@
 
   <action name="search">
 
+    <set name="api_key">
+      <![CDATA[f45deae02380f9171ceb6b93db79bb6241109906da7e3dab29b91b6827fea3ee]]>
+    </set>
+      
     <set name="rx_yearmade">
       <![CDATA[(\d\d\d\d)]]>
     </set>
@@ -19,47 +23,47 @@
 
     <set name="platformLookup">
       <![CDATA[
-      |3DO,3DO|
-      |Amiga,Amiga|
-      |Arcade,Arcade|
-      |Atari 2600,Atari 2600|
-      |Atari 5200,Atari 5200|
-      |Atari 7800,Atari 7800|
-      |Atari Jaguar,Atari Jaguar|
-      |Atari Jaguar CD,Atari Jaguar CD|
-      |Atari XE,Atari XE|
-      |Colecovision,Colecovision|
-      |Commodore 64,Commodore 64|
-      |Intellivision,Intellivision|
-      |Mac OS,Macintosh|
-      |Microsoft Xbox,Xbox|
-      |Microsoft Xbox 360,Xbox 360|
-      |NeoGeo,NeoGeo|
-      |Nintendo 64,Nintendo 64|
-      |Nintendo DS,Nintendo DS|
-      |Nintendo Entertainment System (NES),NES|
-      |Nintendo Game Boy,Game Boy|
-      |Nintendo Game Boy Advance,Game Boy Advance|
-      |Nintendo Game Boy Color,Game Boy Color|
-      |Nintendo GameCube,GameCube|
-      |Nintendo Wii,Wii|
-      |Nintendo Wii U,Wii U|
-      |PC,Windows|
-      |Sega 32X,SEGA 32X|
-      |Sega CD,SEGA CD|
-      |Sega Dreamcast,Dreamcast|
-      |Sega Game Gear,Game Gear|
-      |Sega Genesis,Genesis|
-      |Sega Master System,SEGA Master System|
-      |Sega Mega Drive,SEGA Mega Drive|
-      |Sega Saturn,SEGA Saturn|
-      |Sony Playstation,Playstation|
-      |Sony Playstation 2,Playstation 2|
-      |Sony Playstation 3,Playstation 3|
-      |Sony Playstation Vita,Playstation Vita|
-      |Sony PSP,PSP|
-      |Super Nintendo (SNES),SNES|
-      |TurboGrafx 16,TurboGrafx-16|
+      |25,3DO|
+      |4911,Amiga|
+      |23,Arcade|
+      |22,Atari 2600|
+      |26,Atari 5200|
+      |27,Atari 7800|
+      |28,Atari Jaguar|
+      |29,Atari Jaguar CD|
+      |30,Atari XE|
+      |31,Colecovision|
+      |40,Commodore 64|
+      |32,Intellivision|
+      |37,Macintosh|
+      |14,Xbox|
+      |15,Xbox 360|
+      |24,NeoGeo|
+      |3,Nintendo 64|
+      |8,Nintendo DS|
+      |7,NES|
+      |4,Game Boy|
+      |5,Game Boy Advance|
+      |41,Game Boy Color|
+      |2,GameCube|
+      |9,Wii|
+      |38,Wii U|
+      |1,Windows|
+      |33,SEGA 32X|
+      |21,SEGA CD|
+      |16,Dreamcast|
+      |20,Game Gear|
+      |18,Genesis|
+      |35,SEGA Master System|
+      |36,SEGA Mega Drive|
+      |17,SEGA Saturn|
+      |10,Playstation|
+      |11,Playstation 2|
+      |12,Playstation 3|
+      |39,Playstation Vita|
+      |13,PSP|
+      |6,SNES|
+      |34,TurboGrafx-16|
       ]]>
     </set>
 
@@ -67,98 +71,123 @@
     <parse name="newSearchPlatform" input="${platformLookup}" regex="${rxSearchPlatform}" />
     
     <!-- Retrieve results using Title ${search.system:safe} -->
-    <retrieve name="search_page" url="http://thegamesdb.net/api/GetGamesList.php?name=${search.title:safe}&amp;platform=${newSearchPlatform[0][0]}" encoding="UTF-8"/>
+    <retrieve name="search_page" url="https://api.thegamesdb.net/Games/ByGameName?apikey=${api_key}&amp;name=${search.title:safe}&amp;filter%5Bplatform%5D=${newSearchPlatform[0][0]}" encoding="UTF-8"/>
 
     <!-- Search result page is used. -->
-    <parse name="game_details" input="${search_page}" xpath="//Game" />
+    <parse name="game_details" input="${search_page}" json="//games" />
     <loop name="curr_details" on="game_details">
       <set name="game[${count}].site_id" value="${game_details[${count}].id}"/>
-      <set name="game[${count}].title" value="${game_details[${count}].GameTitle:htmldecode}"/>
+      <set name="game[${count}].title" value="${game_details[${count}].game_title:htmldecode}"/>
 
-      <parse name="yearmade" input="${game_details[${count}].ReleaseDate}" regex="${rx_yearmade}"/>
+      <parse name="yearmade" input="${game_details[${count}].release_date}" regex="${rx_yearmade}"/>
       <set name="game[${count}].yearmade" value="${yearmade[0][0]}"/>
-      
-      <set name="game[${count}].system" value="${game_details[${count}].Platform}"/>
+            
+      <set name="game[${count}].system" value="${game_details[${count}].platform}"/>
 
-      <set name="rxPlatformLookup"><![CDATA[[|]${game_details[${count}].Platform},([^|]*)[|]]]></set>
+      <set name="rxPlatformLookup"><![CDATA[[|]${game_details[${count}].platform},([^|]*)[|]]]></set>
       <parse name="newPlatform" input="${platformLookup}" regex="${rxPlatformLookup}" />
       <if test="${newPlatform[0][0]}!=">
         <set name="game[${count}].system" value="${newPlatform[0][0]}"/>
       </if>
       
-      <set name="game[${count}].details_url" value="http://thegamesdb.net/api/GetGame.php?id=${game_details[${count}].id}"/>
+      <set name="game[${count}].details_url" value="https://api.thegamesdb.net/Games/ByGameID?apikey=${api_key}&amp;id=${game_details[${count}].id}"/>
     </loop>
   </action>
 
   <action name="get_details">
 
-    
-    <retrieve name="details_page" url="http://thegamesdb.net/api/GetGame.php?id=${game.site_id}" encoding="UTF-8"/>
-
-    <parse name="title" input="${details_page}" xpath="//GameTitle"/>
-    <set name="game.title" value="${title[0]}"/>
-
-    <parse name="company" input="${details_page}" xpath="//Developer"/>
-    <set name="game.company" value="${company[0]:htmldecode}"/>
-
-    <parse name="releasedate" input="${details_page}" xpath="//ReleaseDate"/>
+    <set name="api_key">
+      <![CDATA[f45deae02380f9171ceb6b93db79bb6241109906da7e3dab29b91b6827fea3ee]]>
+    </set>
+      
     <set name="rx_yearmade">
       <![CDATA[(\d\d\d\d)]]>
     </set>
-    <parse name="yearmade" input="${releasedate[0]}" regex="${rx_yearmade}"/>
+    
+    <retrieve name="details_page" url="https://api.thegamesdb.net/Games/ByGameID?apikey=${api_key}&amp;id=${game.site_id}&amp;fields=genres%2Coverview" encoding="UTF-8"/>
+
+    <parse name="game_details" input="${details_page}" json="//games" />
+    
+    <set name="game.title" value="${game_details[0].game_title}"/>
+
+    <!--<set name="game.company" value="${company[0]:htmldecode}"/>-->
+
+    <parse name="yearmade" input="${game_details[0].release_date}" regex="${rx_yearmade}"/>
     
     <set name="game.yearmade" value="${yearmade[0][0]}"/>
 
-    <parse name="description" input="${details_page}" xpath="//Overview"/>
-    <set name="game.description" value="${description[0]:htmldecode}"/>
+    <set name="game.description" value="${game_details[0].overview:htmldecode}"/>
 
-    <parse name="grade" input="${details_page}" xpath="//Rating"/>
-    <set name="game.grade" value="${grade[0]}"/>
+    <!--<parse name="grade" input="${details_page}" xpath="//Rating"/>
+    <set name="game.grade" value="${grade[0]}"/>-->
 
-    <parse name="genre_block" input="${details_page}" xpath="//genre"/>
+    <!--<parse name="genre_block" input="${details_page}" xpath="//genre"/>
     <set name="game.genre" value=""/>
     <loop name="currGenre" on="genre_block">
       <set name="game.genre" value="${game.genre}|${currGenre:htmldecode}"/>
-    </loop>
+    </loop>-->
   </action>
 
   <action name="get_cover_art">
+    
+    <set name="api_key">
+      <![CDATA[f45deae02380f9171ceb6b93db79bb6241109906da7e3dab29b91b6827fea3ee]]>
+    </set>
+    
     <if test="${game.site_id}!=">
-      <retrieve name="details_page" url="http://thegamesdb.net/api/GetGame.php?id=${game.site_id}" encoding="UTF-8"/>
-      <parse name="game.baseurl" input="${details_page}" xpath="//baseImgUrl"/>
+      <retrieve name="details_page" url="https://api.thegamesdb.net/Games/Images?apikey=${api_key}&amp;games_id=${game.site_id}" encoding="UTF-8"/>
+      <parse name="game.baseurl" input="${details_page}" json="//base_url/medium"/>
       <set name="game.baseurl" value="${game.baseurl[0]:htmldecode}"/>
-      <parse name="covers" input="${details_page}" xpath="//boxart"/>
+      
+      <parse name="images" input="${details_page}" json="//images/child::*"/>
       <set name="game.images" value=""/>
-      <loop name="cover" on="covers">
-        <set name="game.images" value="${game.images}|${cover:htmldecode}"/>
+      <loop name="image" on="images" limit="100">
+        <if test="${images[${count}].side}=front">
+          <set name="game.images" value="${game.images}|${images[${count}].filename:htmldecode}"/>
+        </if>
+        <if test="${images[${count}].side}=back">
+          <set name="game.images" value="${game.images}|${images[${count}].filename:htmldecode}"/>
+        </if>
       </loop>
     </if>
   </action>
 
   <action name="get_screenshots">
+    <set name="api_key">
+      <![CDATA[f45deae02380f9171ceb6b93db79bb6241109906da7e3dab29b91b6827fea3ee]]>
+    </set>
+    
     <if test="${game.site_id}!=">
-      <retrieve name="details_page" url="http://thegamesdb.net/api/GetGame.php?id=${game.site_id}" encoding="UTF-8"/>
-      <parse name="game.baseurl" input="${details_page}" xpath="//baseImgUrl"/>
+      <retrieve name="details_page" url="https://api.thegamesdb.net/Games/Images?apikey=${api_key}&amp;games_id=${game.site_id}" encoding="UTF-8"/>
+      <parse name="game.baseurl" input="${details_page}" json="//base_url/medium"/>
       <set name="game.baseurl" value="${game.baseurl[0]:htmldecode}"/>
       
+      <parse name="images" input="${details_page}" json="//images/child::*"/>
       <set name="game.images" value=""/>
-      <parse name="screens" input="${details_page}" xpath="//screenshot/original"/>
-      <loop name="screen" on="screens">
-        <set name="game.images" value="${game.images}|${screen:htmldecode}"/>
+      <loop name="image" on="images" limit="100">
+        <if test="${images[${count}].type}=screenshot">
+          <set name="game.images" value="${game.images}|${images[${count}].filename:htmldecode}"/>
+        </if>
       </loop>
     </if>
   </action>
 
   <action name="get_fanart">
+    <set name="api_key">
+      <![CDATA[f45deae02380f9171ceb6b93db79bb6241109906da7e3dab29b91b6827fea3ee]]>
+    </set>
+    
     <if test="${game.site_id}!=">
-      <retrieve name="details_page" url="http://thegamesdb.net/api/GetGame.php?id=${game.site_id}" encoding="UTF-8"/>
-      <parse name="game.baseurl" input="${details_page}" xpath="//baseImgUrl"/>
+      <retrieve name="details_page" url="https://api.thegamesdb.net/Games/Images?apikey=${api_key}&amp;games_id=${game.site_id}" encoding="UTF-8"/>
+      <parse name="game.baseurl" input="${details_page}" json="//base_url/medium"/>
       <set name="game.baseurl" value="${game.baseurl[0]:htmldecode}"/>
       
-      <parse name="fanarts" input="${details_page}" xpath="//fanart/original"/>
-      <set name="game.images" value="" />
-      <loop name="fanart" on="fanarts">
-        <set name="game.images" value="${game.images}|${fanart:htmldecode}"/>
+      <parse name="images" input="${details_page}" json="//images/child::*"/>
+      <set name="game.images" value=""/>
+      <loop name="image" on="images" limit="100">
+        <if test="${images[${count}].type}=fanart">
+          <set name="game.images" value="${game.images}|${images[${count}].filename:htmldecode}"/>
+        </if>
       </loop>
     </if>
   </action>

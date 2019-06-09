@@ -6,6 +6,7 @@ using System.Xml;
 using System.Xml.XPath;
 using System.Text.RegularExpressions;
 using System.Threading;
+using Newtonsoft.Json;
 
 namespace Cornerstone.ScraperEngine.Nodes {
     [ScraperNode("parse")]
@@ -19,6 +20,11 @@ namespace Cornerstone.ScraperEngine.Nodes {
         public string Pattern {
             get { return pattern; }
         } protected String pattern;
+
+        public string Json {
+            get { return json; }
+        }
+        protected String json;
 
         public string Xpath {
             get { return xpath; }
@@ -40,6 +46,9 @@ namespace Cornerstone.ScraperEngine.Nodes {
                     case "regex":
                         pattern = attr.Value;
                         break;
+                    case "json":
+                        json = attr.Value;
+                        break;
                     case "xpath":
                         xpath = attr.Value;
                         break;
@@ -54,7 +63,7 @@ namespace Cornerstone.ScraperEngine.Nodes {
             }
 
             // Validate REGEX/XPATH attribute
-            if (pattern == null && xpath == null) {
+            if (pattern == null && json == null && xpath == null) {
                 logger.Error("Missing REGEX or XPATH attribute on: " + xmlNode.OuterXml);
                 loadSuccess = false;
                 return;
@@ -71,6 +80,8 @@ namespace Cornerstone.ScraperEngine.Nodes {
             // do requested parsing
             if (pattern != null)
                 processPattern(variables, parsedInput, parsedName);
+            else if (json != null)
+                processJson(variables, parsedInput, parsedName);
             else
                 processXpath(variables, parsedInput, parsedName);
         }
@@ -116,6 +127,35 @@ namespace Cornerstone.ScraperEngine.Nodes {
                     setVariable(variables, matchName + "[" + (i - 1) + "]", currMatch.Groups[i].Value);
 
                 matchNum++;
+            }
+        }
+
+        // Parse input using an json token
+        private void processJson(Dictionary<string, string> variables, string parsedInput, string parsedName)
+        {
+            string query = parseString(variables, json);
+
+            try
+            {
+                XmlDocument document = JsonConvert.DeserializeXmlNode(parsedInput, "Parsed");
+                XPathNavigator navigator = document.CreateNavigator();
+                XPathNodeIterator nodes = navigator.Select(query);
+
+                setVariable(variables, parsedName + ".count", nodes.Count.ToString());
+
+                while (nodes.MoveNext())
+                {
+                    XPathNavigator node = nodes.Current;
+                    string varName = parsedName + "[" + (nodes.CurrentPosition - 1).ToString() + "]";
+                    parseNode(variables, varName, node, true);
+                }
+            }
+            catch (Exception e)
+            {
+                if (e is ThreadAbortException)
+                    throw e;
+
+                logger.Error("Scraper Script JSON parsing failed: {0}", e.Message);
             }
         }
 

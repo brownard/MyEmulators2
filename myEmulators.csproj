@@ -76,6 +76,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\..\Windows\Microsoft.NET\DirectX for Managed Code\1.0.2902.0\Microsoft.DirectX.DirectInput.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>packages\Newtonsoft.Json.12.0.2\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="RemotePlugins">
       <HintPath>..\mediaportal\MediaPortal-1\mediaportal\MediaPortal.Application\bin\Debug\RemotePlugins.dll</HintPath>
     </Reference>
@@ -484,6 +487,7 @@
     <EmbeddedResource Include="Data\EmuSettings.xml">
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Resources\arrow_join.png" />
     <None Include="Resources\arrow_divide.png" />
     <Content Include="External\SharpCompress.3.5.dll" />
