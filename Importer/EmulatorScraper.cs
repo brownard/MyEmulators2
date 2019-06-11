@@ -1,127 +1,130 @@
-﻿using System;
+﻿using MyEmulators2.Import.TheGamesDb;
+using Newtonsoft.Json;
+using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+using System.Net;
 using System.Xml;
-using System.Web;
 
 namespace MyEmulators2
 {
     class EmulatorScraper
     {
-        public Dictionary<string, string> GetEmulators(string platform, out string selectedKey)
-        {
-            selectedKey = null;
-            Dictionary<string, string> items = new Dictionary<string, string>();
+        const string API_KEY = "f45deae02380f9171ceb6b93db79bb6241109906da7e3dab29b91b6827fea3ee";
+        const string PLATFORM_FIELDS = @"icon%2Cconsole%2Ccontroller%2Cdeveloper%2Cmanufacturer%2Cmedia%2Ccpu%2Cmemory%2Cgraphics%2Csound%2Cmaxcontrollers%2Cdisplay%2Coverview%2Cyoutube";
 
-            XmlDocument doc = new XmlDocument();
+        static readonly object syncObj = new object();
+        static List<Platform> _platforms = null;
+
+        static ConcurrentDictionary<string, ImageResult> _platformImages = new ConcurrentDictionary<string, ImageResult>();
+
+        bool TryLoadPlatforms()
+        {
+            lock (syncObj)
+            {
+                if (_platforms != null && _platforms.Count > 0)
+                    return true;
+
+                PlatformResult platformResult;
+                try
+                {
+                    string json;
+                    using (WebClient client = new WebClient())
+                        json = client.DownloadString($"https://api.thegamesdb.net/Platforms?apikey={API_KEY}&fields={PLATFORM_FIELDS}");
+                    platformResult = JsonConvert.DeserializeObject<PlatformResult>(json);
+                }
+                catch (Exception ex)
+                {
+                    Logger.LogError("Error retrieving online platform info - {0}", ex.Message);
+                    platformResult = null;
+                }
+
+                if (platformResult == null)
+                {
+                    Logger.LogError("Failed to retrieve online platform info");
+                    return false;
+                }
+
+                _platforms = platformResult?.Data?.Platforms?.Values.OrderBy(p => p.Name).ToList();
+                return _platforms != null && _platforms.Count > 0;
+            }
+        }
+
+        bool TryGetPlatformImages(string platformId, out ImageResult result)
+        {
+            if (_platformImages.TryGetValue(platformId, out result))
+                return true;
+            
             try
             {
-                doc.Load("http://thegamesdb.net/api/GetPlatformsList.php");
+                string json;
+                using (WebClient client = new WebClient())
+                    json = client.DownloadString($"https://api.thegamesdb.net/Platforms/Images?apikey={API_KEY}&platforms_id={platformId}");
+                result = JsonConvert.DeserializeObject<ImageResult>(json);
             }
             catch (Exception ex)
             {
-                Logger.LogError("Error retrieving online platform info - {0}", ex.Message);
-                return items;
+                Logger.LogError("Error retrieving online platform images - {0}", ex.Message);
+                result = null;
             }
 
-            foreach (XmlNode xmlPlatform in doc.GetElementsByTagName("Platform"))
+            if (result == null)
             {
-                XmlNode a = xmlPlatform.SelectSingleNode("./id");
-                if (a != null)
-                {
-                    string id = a.InnerXml;
-                    a = xmlPlatform.SelectSingleNode("./name");
-                    if (a != null)
-                        items.Add(a.InnerXml, id);
-                }
+                Logger.LogError("Failed to retrieve online platform images");
+                return false;
             }
 
-            System.Text.RegularExpressions.Match m = System.Text.RegularExpressions.Regex.Match(platformConvert, string.Format("[|]([^\n,]*),{0}[|]", platform));
-            if (m.Success)
-                platform = m.Groups[1].Value;
+            _platformImages.TryAdd(platformId, result);
+            return true;
+        }
 
-            if (items.ContainsKey(platform))
-                selectedKey = platform;
+        public Dictionary<string, string> GetEmulators(string searchPlatform, out string matchPlatform)
+        {
+            matchPlatform = null;
+            if (!TryLoadPlatforms())
+                return null;
 
-            return items;
+            System.Text.RegularExpressions.Match m = System.Text.RegularExpressions.Regex.Match(platformConvert, string.Format("[|]([^\n,]*),{0}[|]", searchPlatform));
+            int matchId;
+            if (!m.Success || !int.TryParse(m.Groups[1].Value, out matchId))
+                matchId = -1;
+
+            Dictionary<string, string> platforms = new Dictionary<string, string>(_platforms.Count);
+            foreach (Platform platform in _platforms)
+            {
+                platforms[platform.Name] = platform.Id.ToString();
+                if (matchId > -1 && platform.Id == matchId)
+                    matchPlatform = platform.Name;
+            }
+            return platforms;
+                
         }
 
         public EmulatorInfo GetInfo(string platformId)
         {
-            XmlDocument doc = new XmlDocument();
-            try
-            {
-                doc.Load("http://thegamesdb.net/api/GetPlatform.php?id=" + platformId);
-            }
-            catch (Exception ex)
-            {
-                Logger.LogError("Error retrieving online platform info - {0}", ex.Message);
+            if (!TryLoadPlatforms())
                 return null;
-            }
 
-            XmlNode platform = doc.SelectSingleNode("Data/Platform");
+            Platform platform = _platforms.FirstOrDefault(p => p.Id.ToString() == platformId);
             if (platform == null)
                 return null;
 
             EmulatorInfo emuInfo = new EmulatorInfo();
-
-            XmlNode a = platform.SelectSingleNode("./Platform");
-            if (a != null)
-                emuInfo.Title = HttpUtility.HtmlDecode(a.InnerText);
-
-            a = platform.SelectSingleNode("./developer");
-            if (a != null)
-                emuInfo.Developer = HttpUtility.HtmlDecode(a.InnerText);
-
-            a = platform.SelectSingleNode("./Rating");
-            if (a != null)
-                emuInfo.Grade = HttpUtility.HtmlDecode(a.InnerText);
-
-            a = platform.SelectSingleNode("./overview");
-            if (a != null)
-                emuInfo.Overview = HttpUtility.HtmlDecode(a.InnerText);
-
-            a = platform.SelectSingleNode("./cpu");
-            if (a != null)
-                emuInfo.CPU = HttpUtility.HtmlDecode(a.InnerText);
-
-            a = platform.SelectSingleNode("./memory");
-            if (a != null)
-                emuInfo.Memory = HttpUtility.HtmlDecode(a.InnerText);
-
-            a = platform.SelectSingleNode("./graphics");
-            if (a != null)
-                emuInfo.Graphics = HttpUtility.HtmlDecode(a.InnerText);
-
-            a = platform.SelectSingleNode("./sound");
-            if (a != null)
-                emuInfo.Sound = HttpUtility.HtmlDecode(a.InnerText);
-
-            a = platform.SelectSingleNode("./display");
-            if (a != null)
-                emuInfo.Display = HttpUtility.HtmlDecode(a.InnerText);
-
-            a = platform.SelectSingleNode("./media");
-            if (a != null)
-                emuInfo.Media = HttpUtility.HtmlDecode(a.InnerText);
-
-            a = platform.SelectSingleNode("./maxcontrollers");
-            if (a != null)
-                emuInfo.MaxControllers = HttpUtility.HtmlDecode(a.InnerText);
-
-            string baseImageUrl = "";
-            a = doc.SelectSingleNode("Data/baseImgUrl");
-            if (a != null)
-                baseImageUrl = a.InnerXml;
-
-            a = platform.SelectSingleNode("./Images/fanart/original");
-            if (a != null)
-                emuInfo.FanartUrl = baseImageUrl + a.InnerXml;
-
-            a = platform.SelectSingleNode("./Images/boxart");
-            if (a != null)
-                emuInfo.LogoUrl = baseImageUrl + a.InnerXml;
+            emuInfo.Title = platform.Name;
+            emuInfo.Developer = platform.Developer;
+            //emuInfo.Grade = HttpUtility.HtmlDecode(a.InnerText);
+            emuInfo.Overview = platform.Overview;
+            emuInfo.CPU = platform.Cpu;
+            emuInfo.Memory = platform.Memory;
+            emuInfo.Graphics = platform.Graphics;
+            emuInfo.Sound = platform.Sound;
+            emuInfo.Display = platform.Display;
+            emuInfo.Media = platform.Media;
+            emuInfo.MaxControllers = platform.MaxControllers;
+            //baseImageUrl = a.InnerXml;
+            //emuInfo.FanartUrl = baseImageUrl + a.InnerXml;
+            //emuInfo.LogoUrl = baseImageUrl + a.InnerXml;
 
             return emuInfo;
         }
@@ -131,85 +134,59 @@ namespace MyEmulators2
             covers = null;
             fanart = null;
 
-            XmlDocument doc = new XmlDocument();
-            try
-            {
-                doc.Load("http://thegamesdb.net/api/GetPlatform.php?id=" + platformId);
-            }
-            catch (Exception ex)
-            {
-                Logger.LogError("Error retrieving online platform info - {0}", ex.Message);
-                return;
-            }
-
-            string baseImageUrl = "";
-            XmlNode a = doc.SelectSingleNode("Data/baseImgUrl");
-            if (a != null)
-                baseImageUrl = a.InnerXml;
-
-            XmlNode images = doc.SelectSingleNode("Data/Platform/Images");
-            if (images == null)
+            ImageResult imageResult;
+            if (!TryGetPlatformImages(platformId, out imageResult))
                 return;
 
-            List<string> lCovers = new List<string>();
-            List<string> lFanart = new List<string>();
-            addImages(images.SelectNodes("./boxart"), lCovers, baseImageUrl);
-            addImages(images.SelectNodes("./banner"), lCovers, baseImageUrl);
-            addImages(images.SelectNodes("./consoleart"), lCovers, baseImageUrl);
-            addImages(images.SelectNodes("./controllerart"), lCovers, baseImageUrl);
-            addImages(images.SelectNodes("./fanart/original"), lFanart, baseImageUrl);
-            covers = lCovers;
-            fanart = lFanart;
-        }
+            string baseImageUrl = imageResult.Data?.BaseUrl?.Original ?? string.Empty;
+            List<Image> images = imageResult.Data?.Images?.Values.SelectMany(i => i).ToList() ?? new List<Image>();
 
-        void addImages(XmlNodeList imageNodes, List<string> results, string baseImageUrl)
-        {
-            for (int x = 0; x < imageNodes.Count; x++)
-                results.Add(baseImageUrl + imageNodes[x].InnerXml);
+            covers = images.Where(i => i.Type == "boxart" || i.Type == "icon" || i.Type == "banner").Select(i => baseImageUrl + i.Filename).ToList();
+            fanart = images.Where(i => i.Type == "fanart").Select(i => baseImageUrl + i.Filename).ToList();
         }
 
         string platformConvert = @"
-            |3DO,3DO|
-            |Amiga,Amiga|
-            |Arcade,Arcade|
-            |Atari 2600,Atari 2600|
-            |Atari 5200,Atari 5200|
-            |Atari 7800,Atari 7800|
-            |Atari Jaguar,Atari Jaguar|
-            |Atari Jaguar CD,Atari Jaguar CD|
-            |Atari XE,Atari XE|
-            |Colecovision,Colecovision|
-            |Commodore 64,Commodore 64|
-            |Intellivision,Intellivision|
-            |Mac OS,Macintosh|
-            |Microsoft Xbox,Xbox|
-            |Microsoft Xbox 360,Xbox 360|
-            |NeoGeo,NeoGeo|
-            |Nintendo 64,Nintendo 64|
-            |Nintendo DS,Nintendo DS|
-            |Nintendo Entertainment System (NES),NES|
-            |Nintendo Game Boy,Game Boy|
-            |Nintendo Game Boy Advance,Game Boy Advance|
-            |Nintendo Game Boy Color,Game Boy Color|
-            |Nintendo GameCube,GameCube|
-            |Nintendo Wii,Wii|
-            |Nintendo Wii U,Wii U|
-            |PC,Windows|
-            |Sega 32X,SEGA 32X|
-            |Sega CD,SEGA CD|
-            |Sega Dreamcast,Dreamcast|
-            |Sega Game Gear,Game Gear|
-            |Sega Genesis,Genesis|
-            |Sega Master System,SEGA Master System|
-            |Sega Mega Drive,SEGA Mega Drive|
-            |Sega Saturn,SEGA Saturn|
-            |Sony Playstation,Playstation|
-            |Sony Playstation 2,Playstation 2|
-            |Sony Playstation 3,Playstation 3|
-            |Sony Playstation Vita,Playstation Vita|
-            |Sony PSP,PSP|
-            |Super Nintendo (SNES),SNES|
-            |TurboGrafx 16,TurboGrafx-16|";
+            |25,3DO|
+            |4911,Amiga|
+            |23,Arcade|
+            |22,Atari 2600|
+            |26,Atari 5200|
+            |27,Atari 7800|
+            |28,Atari Jaguar|
+            |29,Atari Jaguar CD|
+            |30,Atari XE|
+            |31,Colecovision|
+            |40,Commodore 64|
+            |32,Intellivision|
+            |37,Macintosh|
+            |14,Xbox|
+            |15,Xbox 360|
+            |24,NeoGeo|
+            |3,Nintendo 64|
+            |8,Nintendo DS|
+            |7,NES|
+            |4,Game Boy|
+            |5,Game Boy Advance|
+            |41,Game Boy Color|
+            |2,GameCube|
+            |9,Wii|
+            |38,Wii U|
+            |1,Windows|
+            |33,SEGA 32X|
+            |21,SEGA CD|
+            |16,Dreamcast|
+            |20,Game Gear|
+            |18,Genesis|
+            |35,SEGA Master System|
+            |36,SEGA Mega Drive|
+            |17,SEGA Saturn|
+            |10,Playstation|
+            |11,Playstation 2|
+            |12,Playstation 3|
+            |39,Playstation Vita|
+            |13,PSP|
+            |6,SNES|
+            |34,TurboGrafx-16|";
     }
 
     class EmulatorInfo

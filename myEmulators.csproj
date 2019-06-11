@@ -104,6 +104,9 @@
     <Compile Include="Importer\IDoWork.cs" />
     <Compile Include="Importer\ScraperResultsCache.cs" />
     <Compile Include="Importer\ScraperSearchParams.cs" />
+    <Compile Include="Importer\TheGamesDb\ApiResult.cs" />
+    <Compile Include="Importer\TheGamesDb\ImageResult.cs" />
+    <Compile Include="Importer\TheGamesDb\PlatformResult.cs" />
     <Compile Include="Utils\CornerstoneLogger.cs" />
     <Compile Include="Utils\Cornerstone\Collections\CachedDictionary.cs" />
     <Compile Include="Utils\Cornerstone\Collections\DiskCachedDictionary.cs" />
@@ -643,6 +646,7 @@
   <PropertyGroup>
     <PostBuildEvent>xcopy "$(TargetPath)" "$(SolutionDir)Release" /Y /E /I
 xcopy "$(TargetPath)" "%25programfiles(x86)%25\Team MediaPortal\MediaPortal\plugins\Windows" /Y /E /I
+xcopy "$(TargetDir)Newtonsoft.Json.dll" "$(SolutionDir)Release" /Y /E /I
 xcopy "$(SolutionDir)External" "$(SolutionDir)Release" /Y /E /I 
 xcopy "$(SolutionDir)Skin" "$(SolutionDir)Release\Skin" /Y /E /I 
 xcopy "$(SolutionDir)Language" "$(SolutionDir)Release\Language" /Y /E /I</PostBuildEvent>
