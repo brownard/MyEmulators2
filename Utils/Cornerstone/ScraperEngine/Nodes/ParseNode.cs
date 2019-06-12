@@ -1,4 +1,6 @@
-﻿using System;
+﻿extern alias nsoft;
+
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
@@ -6,7 +8,9 @@ using System.Xml;
 using System.Xml.XPath;
 using System.Text.RegularExpressions;
 using System.Threading;
-using Newtonsoft.Json;
+using nsoft::Newtonsoft.Json;
+using nsoft::Newtonsoft.Json.Linq;
+using System.Linq;
 
 namespace Cornerstone.ScraperEngine.Nodes {
     [ScraperNode("parse")]
@@ -137,17 +141,17 @@ namespace Cornerstone.ScraperEngine.Nodes {
 
             try
             {
-                XmlDocument document = JsonConvert.DeserializeXmlNode(parsedInput, "Parsed");
-                XPathNavigator navigator = document.CreateNavigator();
-                XPathNodeIterator nodes = navigator.Select(query);
+                JObject json = JObject.Parse(parsedInput);
+                List<JToken> tokens = json.SelectTokens(query, false).ToList();
 
-                setVariable(variables, parsedName + ".count", nodes.Count.ToString());
+                setVariable(variables, parsedName + ".count", tokens.Count.ToString());
 
-                while (nodes.MoveNext())
+                int current = 0;
+                foreach (JToken token in tokens)
                 {
-                    XPathNavigator node = nodes.Current;
-                    string varName = parsedName + "[" + (nodes.CurrentPosition - 1).ToString() + "]";
-                    parseNode(variables, varName, node, true);
+                    string varName = parsedName + "[" + current.ToString() + "]";
+                    parseToken(variables, varName, token, true);
+                    current++;
                 }
             }
             catch (Exception e)
@@ -156,6 +160,30 @@ namespace Cornerstone.ScraperEngine.Nodes {
                     throw e;
 
                 logger.Error("Scraper Script JSON parsing failed: {0}", e.Message);
+            }
+        }
+
+        private void parseToken(Dictionary<string, string> variables, string name, JToken token, bool recursive)
+        {
+            JObject jObject = token as JObject;
+            if (jObject != null)
+            {
+                if (jObject.Count > 0)
+                {
+                    setVariable(variables, name, jObject.ToString());
+                    if (recursive)
+                    {
+                        foreach (var child in jObject)
+                        {
+                            string varName = name + "." + child.Key;
+                            parseToken(variables, varName, child.Value, false);
+                        }
+                    }
+                }
+            }
+            else
+            {
+                setVariable(variables, name, token.ToString());
             }
         }
 

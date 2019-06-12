@@ -1,5 +1,7 @@
-﻿using MyEmulators2.Import.TheGamesDb;
-using Newtonsoft.Json;
+﻿extern alias nsoft;
+
+using MyEmulators2.Import.TheGamesDb;
+using nsoft::Newtonsoft.Json;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;

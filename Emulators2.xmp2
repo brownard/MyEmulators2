@@ -36,7 +36,7 @@
               <UpdateOption>AlwaysOverwrite</UpdateOption>
               <LocalFileName>Release\Newtonsoft.Json.dll</LocalFileName>
               <ZipFileName>Installer{CopyFile}\{3845cd7c-aa02-4333-a6ac-3591da370d2f}-Newtonsoft.Json.dll</ZipFileName>
-              <DestinationFilename>%Plugins%\Windows\Newtonsoft.Json.dll</DestinationFilename>
+              <DestinationFilename>%Base%\Newtonsoft.Json.dll</DestinationFilename>
             </FileItem>
           </Items>
         </Files>
@@ -604,7 +604,7 @@ Click Next to continue or Cancel to exit Setup.</Value>
     <Version>
       <Major>0</Major>
       <Minor>3</Minor>
-      <Build>1</Build>
+      <Build>2</Build>
       <Revision>0</Revision>
     </Version>
     <ExtensionDescription>My Emulators 2 is a plugin for MediaPortal that allows you to browse and play your PC and emulated games. 
@@ -711,7 +711,7 @@ My Emulators 2 is a heavily modified version of the My Emulators code. Thanks go
     <VersionDescription />
     <DevelopmentStatus>Stable</DevelopmentStatus>
     <OnlineLocation>https://www.team-mediaportal.com/index.php?option=com_mtree&amp;task=att_download&amp;link_id=227&amp;cf_id=24</OnlineLocation>
-    <ReleaseDate>2019-06-11T21:08:40</ReleaseDate>
+    <ReleaseDate>2019-06-12T21:08:40</ReleaseDate>
     <Tags>games,emulator,roms</Tags>
     <Location>F:\SVN\MyEmulators2\Release\Emulators2_[Version].mpe1</Location>
     <Params>
@@ -774,7 +774,7 @@ My Emulators 2 is a heavily modified version of the My Emulators code. Thanks go
         <UpdateOption>AlwaysOverwrite</UpdateOption>
         <LocalFileName>Release\Newtonsoft.Json.dll</LocalFileName>
         <ZipFileName>Installer{CopyFile}\{3845cd7c-aa02-4333-a6ac-3591da370d2f}-Newtonsoft.Json.dll</ZipFileName>
-        <DestinationFilename>%Plugins%\Windows\Newtonsoft.Json.dll</DestinationFilename>
+        <DestinationFilename>%Base%\Newtonsoft.Json.dll</DestinationFilename>
       </FileItem>
       <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
         <Param1 />

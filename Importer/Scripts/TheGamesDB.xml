@@ -74,7 +74,7 @@
     <retrieve name="search_page" url="https://api.thegamesdb.net/Games/ByGameName?apikey=${api_key}&amp;name=${search.title:safe}&amp;filter%5Bplatform%5D=${newSearchPlatform[0][0]}" encoding="UTF-8"/>
 
     <!-- Search result page is used. -->
-    <parse name="game_details" input="${search_page}" json="//games" />
+    <parse name="game_details" input="${search_page}" json="$..games[*]" />
     <loop name="curr_details" on="game_details">
       <set name="game[${count}].site_id" value="${game_details[${count}].id}"/>
       <set name="game[${count}].title" value="${game_details[${count}].game_title:htmldecode}"/>
@@ -106,7 +106,7 @@
     
     <retrieve name="details_page" url="https://api.thegamesdb.net/Games/ByGameID?apikey=${api_key}&amp;id=${game.site_id}&amp;fields=genres%2Coverview" encoding="UTF-8"/>
 
-    <parse name="game_details" input="${details_page}" json="//games" />
+    <parse name="game_details" input="${details_page}" json="$..games[*]" />
     
     <set name="game.title" value="${game_details[0].game_title}"/>
 
@@ -136,10 +136,10 @@
     
     <if test="${game.site_id}!=">
       <retrieve name="details_page" url="https://api.thegamesdb.net/Games/Images?apikey=${api_key}&amp;games_id=${game.site_id}" encoding="UTF-8"/>
-      <parse name="game.baseurl" input="${details_page}" json="//base_url/medium"/>
+      <parse name="game.baseurl" input="${details_page}" json="$..base_url.medium"/>
       <set name="game.baseurl" value="${game.baseurl[0]:htmldecode}"/>
       
-      <parse name="images" input="${details_page}" json="//images/child::*"/>
+      <parse name="images" input="${details_page}" json="$..images.${game.site_id}[*]"/>
       <set name="game.images" value=""/>
       <loop name="image" on="images" limit="100">
         <if test="${images[${count}].side}=front">
@@ -159,10 +159,10 @@
     
     <if test="${game.site_id}!=">
       <retrieve name="details_page" url="https://api.thegamesdb.net/Games/Images?apikey=${api_key}&amp;games_id=${game.site_id}" encoding="UTF-8"/>
-      <parse name="game.baseurl" input="${details_page}" json="//base_url/medium"/>
+      <parse name="game.baseurl" input="${details_page}" json="$..base_url.medium"/>
       <set name="game.baseurl" value="${game.baseurl[0]:htmldecode}"/>
       
-      <parse name="images" input="${details_page}" json="//images/child::*"/>
+      <parse name="images" input="${details_page}" json="$..images.${game.site_id}[*]"/>
       <set name="game.images" value=""/>
       <loop name="image" on="images" limit="100">
         <if test="${images[${count}].type}=screenshot">
@@ -179,10 +179,10 @@
     
     <if test="${game.site_id}!=">
       <retrieve name="details_page" url="https://api.thegamesdb.net/Games/Images?apikey=${api_key}&amp;games_id=${game.site_id}" encoding="UTF-8"/>
-      <parse name="game.baseurl" input="${details_page}" json="//base_url/medium"/>
+      <parse name="game.baseurl" input="${details_page}" json="$..base_url.medium"/>
       <set name="game.baseurl" value="${game.baseurl[0]:htmldecode}"/>
       
-      <parse name="images" input="${details_page}" json="//images/child::*"/>
+      <parse name="images" input="${details_page}" json="$..images.${game.site_id}[*]"/>
       <set name="game.images" value=""/>
       <loop name="image" on="images" limit="100">
         <if test="${images[${count}].type}=fanart">
