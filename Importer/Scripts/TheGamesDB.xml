@@ -4,142 +4,153 @@
     <author>Brownard</author>
     <description>Grabs game data from thegamesdb.net</description>
     <id>99999996</id>
-    <version major="1" minor="0" point="0"/>
-    <published month="2" day="9" year="2012"/>
-    <type>MovieDetailsFetcher|MovieCoverFetcher</type>
+    <version major="1" minor="1" point="0"/>
+    <published month="4" day="9" year="2021"/>
+    <type>GameDetailsFetcher|GameCoverFetcher</type>
     <language>en</language>
   </details>
 
+  <!-- Searches for matching games, available parameters are
+       ${search.title} - The title of the game
+       ${search.platform} - The name of the platform -->
   <action name="search">
 
+    <!-- TheGamesDb API key-->
     <set name="api_key">
       <![CDATA[f45deae02380f9171ceb6b93db79bb6241109906da7e3dab29b91b6827fea3ee]]>
     </set>
-      
+
+    <!-- Regex to parse the year from the release date -->
     <set name="rx_yearmade">
       <![CDATA[(\d\d\d\d)]]>
     </set>
 
+    <!-- Retrieve all platforms, used for converting between name and platform id, web requests are cached so these are only retrieved once, not per search -->
+    <retrieve name="platforms" url="https://api.thegamesdb.net/v1/Platforms?apikey=${api_key}" encoding="UTF-8"/>
 
-    <set name="platformLookup">
-      <![CDATA[
-      |25,3DO|
-      |4911,Amiga|
-      |23,Arcade|
-      |22,Atari 2600|
-      |26,Atari 5200|
-      |27,Atari 7800|
-      |28,Atari Jaguar|
-      |29,Atari Jaguar CD|
-      |30,Atari XE|
-      |31,Colecovision|
-      |40,Commodore 64|
-      |32,Intellivision|
-      |37,Macintosh|
-      |14,Xbox|
-      |15,Xbox 360|
-      |24,NeoGeo|
-      |3,Nintendo 64|
-      |8,Nintendo DS|
-      |7,NES|
-      |4,Game Boy|
-      |5,Game Boy Advance|
-      |41,Game Boy Color|
-      |2,GameCube|
-      |9,Wii|
-      |38,Wii U|
-      |1,Windows|
-      |33,SEGA 32X|
-      |21,SEGA CD|
-      |16,Dreamcast|
-      |20,Game Gear|
-      |18,Genesis|
-      |35,SEGA Master System|
-      |36,SEGA Mega Drive|
-      |17,SEGA Saturn|
-      |10,Playstation|
-      |11,Playstation 2|
-      |12,Playstation 3|
-      |39,Playstation Vita|
-      |13,PSP|
-      |6,SNES|
-      |34,TurboGrafx-16|
-      ]]>
-    </set>
+    <!-- Try to lookup the TheGamesDb id of the search platform from the platforms retrieved above -->
+    <parse name="searchPlatformId" input="${platforms}" json="$..platforms..[?(@..name == '${search.platform}')]..id"/>
 
-    <set name="rxSearchPlatform"><![CDATA[[|]([^,\n]*),${search.platform}[|]]]></set>
-    <parse name="newSearchPlatform" input="${platformLookup}" regex="${rxSearchPlatform}" />
-    
-    <!-- Retrieve results using Title ${search.system:safe} -->
-    <retrieve name="search_page" url="https://api.thegamesdb.net/v1.1/Games/ByGameName?apikey=${api_key}&amp;name=${search.title:safe}&amp;filter%5Bplatform%5D=${newSearchPlatform[0][0]}" encoding="UTF-8"/>
+    <!-- Retrieve results using title ${search.title:safe} and the platform id -->
+    <retrieve name="search_page" url="https://api.thegamesdb.net/v1.1/Games/ByGameName?apikey=${api_key}&amp;name=${search.title:safe}&amp;filter%5Bplatform%5D=${searchPlatformId[0]}" encoding="UTF-8"/>
 
-    <!-- Search result page is used. -->
+    <!-- Select the search results from the returned json -->
     <parse name="game_details" input="${search_page}" json="$..games[*]" />
+
+    <!-- Loop through each returned game and add it to the results -->
     <loop name="curr_details" on="game_details">
+
+      <!-- TheGamesDb id for the game -->
       <set name="game[${count}].site_id" value="${game_details[${count}].id}"/>
+
+      <!-- Title -->
       <set name="game[${count}].title" value="${game_details[${count}].game_title:htmldecode}"/>
 
+      <!-- Year, parsed from release date -->
       <parse name="yearmade" input="${game_details[${count}].release_date}" regex="${rx_yearmade}"/>
       <set name="game[${count}].yearmade" value="${yearmade[0][0]}"/>
-            
-      <set name="game[${count}].system" value="${game_details[${count}].platform}"/>
 
-      <set name="rxPlatformLookup"><![CDATA[[|]${game_details[${count}].platform},([^|]*)[|]]]></set>
-      <parse name="newPlatform" input="${platformLookup}" regex="${rxPlatformLookup}" />
-      <if test="${newPlatform[0][0]}!=">
-        <set name="game[${count}].system" value="${newPlatform[0][0]}"/>
+      <!-- Lookup up the platform name from the platform id -->
+      <parse name="game_platform" input="${platforms}" json="$..platforms.${game_details[${count}].platform}.name" />
+      <if test="${game_platform[0]}!=">
+        <set name="game[${count}].system" value="${game_platform[0]}"/>
       </if>
-      
-      <set name="game[${count}].details_url" value="https://api.thegamesdb.net/Games/ByGameID?apikey=${api_key}&amp;id=${game_details[${count}].id}"/>
+
+      <!-- Url for the details for this game -->
+      <set name="game[${count}].details_url" value="https://api.thegamesdb.net/v1/Games/ByGameID?apikey=${api_key}&amp;id=${game_details[${count}].id}&amp;fields=genres%2Coverview"/>
     </loop>
   </action>
 
+  <!-- Retrieves details for a game, available parameters are
+       ${game.site_id} - TheGamesDb id of the game -->
   <action name="get_details">
 
+    <!-- TheGamesDb API key -->
     <set name="api_key">
       <![CDATA[f45deae02380f9171ceb6b93db79bb6241109906da7e3dab29b91b6827fea3ee]]>
     </set>
-      
+
+    <!-- Regex to parse the year from the release date -->
     <set name="rx_yearmade">
       <![CDATA[(\d\d\d\d)]]>
     </set>
-    
+
+    <!-- Get all available developers and genres for looking up names from ids, web requests are cached so these are only retrieved once, not per game -->
+    <retrieve name="developers" url="https://api.thegamesdb.net/v1/Developers?apikey=${api_key}" encoding="UTF-8"/>
+    <retrieve name="genres" url="https://api.thegamesdb.net/v1/Genres?apikey=${api_key}" encoding="UTF-8"/>
+
+    <!-- Get the details of the game -->
     <retrieve name="details_page" url="https://api.thegamesdb.net/v1/Games/ByGameID?apikey=${api_key}&amp;id=${game.site_id}&amp;fields=genres%2Coverview" encoding="UTF-8"/>
 
+    <!-- Select the game details from the returned json -->
     <parse name="game_details" input="${details_page}" json="$..games[*]" />
-    
+
+    <!-- Title -->
     <set name="game.title" value="${game_details[0].game_title}"/>
 
-    <!--<set name="game.company" value="${company[0]:htmldecode}"/>-->
-
+    <!-- Year, parsed from release date -->
     <parse name="yearmade" input="${game_details[0].release_date}" regex="${rx_yearmade}"/>
-    
     <set name="game.yearmade" value="${yearmade[0][0]}"/>
 
+    <!-- Description -->
     <set name="game.description" value="${game_details[0].overview:htmldecode}"/>
 
+    <!-- TheGamesDb no longer makes ratings available -->
     <!--<parse name="grade" input="${details_page}" xpath="//Rating"/>
     <set name="game.grade" value="${grade[0]}"/>-->
 
-    <!--<parse name="genre_block" input="${details_page}" xpath="//genre"/>
+    <!-- Developers are returned as an array of developer ids, loop through each one, lookup up the name, and append it to game.company -->
+    <set name="game.company" value=""/>
+    <loop name="currDeveloperId" on="game_details[0].developers">
+      <!-- Try and select the name of the developer with the given id from the developers retrieved above -->
+      <parse name="developer" input="${developers}" json="$..developers.${currDeveloperId}.name" />
+      <if test="${developer[0]}!=">
+        <!-- If this is not the first developer, append '|' as a delimeter -->
+        <if test="${game.company}!=">
+          <set name="game.company" value="${game.company}|"/>
+        </if>
+        <!-- Append the developer -->
+        <set name="game.company" value="${game.company}${developer[0]:htmldecode}"/>
+      </if>
+    </loop>
+
+    <!-- Genres are returned as an array of genre ids, loop through each one, lookup up the name, and append it to game.genre -->
     <set name="game.genre" value=""/>
-    <loop name="currGenre" on="genre_block">
-      <set name="game.genre" value="${game.genre}|${currGenre:htmldecode}"/>
-    </loop>-->
+    <loop name="currGenreId" on="game_details[0].genres">
+      <!-- Try and select the name of the genre with the given id from the genres retrieved above -->
+      <parse name="genre" input="${genres}" json="$..genres.${currGenreId}.name" />
+      <if test="${genre[0]}!=">
+        <!-- If this is not the first genre, append '|' as a delimeter -->
+        <if test="${game.genre}!=">
+          <set name="game.genre" value="${game.genre}|"/>
+        </if>
+        <!-- Append the genre -->
+        <set name="game.genre" value="${game.genre}${genre[0]:htmldecode}"/>
+      </if>
+    </loop>
   </action>
 
+  <!-- Retrieves cover art for a game, available parameters are
+       ${game.site_id} - TheGamesDb id of the game -->
   <action name="get_cover_art">
-    
+
+    <!-- TheGamesDb API key -->
     <set name="api_key">
       <![CDATA[f45deae02380f9171ceb6b93db79bb6241109906da7e3dab29b91b6827fea3ee]]>
     </set>
     
     <if test="${game.site_id}!=">
+      <!-- Retrieve all images for the game (not just covers) so that the cached result can be used when searching for other image types -->
       <retrieve name="details_page" url="https://api.thegamesdb.net/v1/Games/Images?apikey=${api_key}&amp;games_id=${game.site_id}" encoding="UTF-8"/>
+
+      <!-- Select the base url from the returned json -->
       <parse name="game.baseurl" input="${details_page}" json="$..base_url.medium"/>
       <set name="game.baseurl" value="${game.baseurl[0]:htmldecode}"/>
-      
+
+      <!-- Select the images from the returned json -->
       <parse name="images" input="${details_page}" json="$..images.${game.site_id}[*]"/>
+      
+      <!-- Loop through all images and select where side is either front or back as these are cover images -->
       <set name="game.images" value=""/>
       <loop name="image" on="images" limit="100">
         <if test="${images[${count}].side}=front">
@@ -151,18 +162,28 @@
       </loop>
     </if>
   </action>
-
+  
+  <!-- Retrieves screenshots for a game, available parameters are
+       ${game.site_id} - TheGamesDb id of the game -->
   <action name="get_screenshots">
+
+    <!-- TheGamesDb API key -->
     <set name="api_key">
       <![CDATA[f45deae02380f9171ceb6b93db79bb6241109906da7e3dab29b91b6827fea3ee]]>
     </set>
     
     <if test="${game.site_id}!=">
+      <!-- Retrieve all images for the game (not just screens) so that the cached result can be used when searching for other image types -->
       <retrieve name="details_page" url="https://api.thegamesdb.net/v1/Games/Images?apikey=${api_key}&amp;games_id=${game.site_id}" encoding="UTF-8"/>
+      
+      <!-- Select the base url from the returned json -->
       <parse name="game.baseurl" input="${details_page}" json="$..base_url.medium"/>
       <set name="game.baseurl" value="${game.baseurl[0]:htmldecode}"/>
-      
+
+      <!-- Select the images from the returned json -->
       <parse name="images" input="${details_page}" json="$..images.${game.site_id}[*]"/>
+      
+      <!-- Loop through all images and select where type is screenshot -->
       <set name="game.images" value=""/>
       <loop name="image" on="images" limit="100">
         <if test="${images[${count}].type}=screenshot">
@@ -172,17 +193,27 @@
     </if>
   </action>
 
+  <!-- Retrieves fanart for a game, available parameters are
+       ${game.site_id} - TheGamesDb id of the game -->
   <action name="get_fanart">
+    
+    <!-- TheGamesDb API key -->
     <set name="api_key">
       <![CDATA[f45deae02380f9171ceb6b93db79bb6241109906da7e3dab29b91b6827fea3ee]]>
     </set>
     
     <if test="${game.site_id}!=">
+      <!-- Retrieve all images for the game (not just fanart) so that the cached result can be used when searching for other image types -->
       <retrieve name="details_page" url="https://api.thegamesdb.net/v1/Games/Images?apikey=${api_key}&amp;games_id=${game.site_id}" encoding="UTF-8"/>
+      
+      <!-- Select the base url from the returned json -->
       <parse name="game.baseurl" input="${details_page}" json="$..base_url.medium"/>
       <set name="game.baseurl" value="${game.baseurl[0]:htmldecode}"/>
-      
+
+      <!-- Select the images from the returned json -->
       <parse name="images" input="${details_page}" json="$..images.${game.site_id}[*]"/>
+
+      <!-- Loop through all images and select where type is fanart -->
       <set name="game.images" value=""/>
       <loop name="image" on="images" limit="100">
         <if test="${images[${count}].type}=fanart">
@@ -192,5 +223,3 @@
     </if>
   </action>
 </ScriptableScraper>
-
-

@@ -165,8 +165,9 @@ namespace Cornerstone.ScraperEngine.Nodes {
 
         private void parseToken(Dictionary<string, string> variables, string name, JToken token, bool recursive)
         {
-            JObject jObject = token as JObject;
-            if (jObject != null)
+            JObject jObject;
+            JArray jArray;
+            if ((jObject = token as JObject) != null)
             {
                 if (jObject.Count > 0)
                 {
@@ -176,9 +177,21 @@ namespace Cornerstone.ScraperEngine.Nodes {
                         foreach (var child in jObject)
                         {
                             string varName = name + "." + child.Key;
-                            parseToken(variables, varName, child.Value, false);
+                            parseToken(variables, varName, child.Value, recursive);
                         }
                     }
+                }
+            }
+            else if ((jArray = token as JArray) != null)
+            {
+                setVariable(variables, name, jArray.ToString());
+                setVariable(variables, name + ".count", jArray.Count.ToString());
+                int current = 0;
+                foreach (var child in jArray)
+                {
+                    string varName = name + "[" + current.ToString() + "]";
+                    parseToken(variables, varName, child, recursive);
+                    current++;
                 }
             }
             else
