@@ -33,7 +33,7 @@ namespace MyEmulators2
                 {
                     string json;
                     using (WebClient client = new WebClient())
-                        json = client.DownloadString($"https://api.thegamesdb.net/Platforms?apikey={API_KEY}&fields={PLATFORM_FIELDS}");
+                        json = client.DownloadString($"https://api.thegamesdb.net/v1/Platforms?apikey={API_KEY}&fields={PLATFORM_FIELDS}");
                     platformResult = JsonConvert.DeserializeObject<PlatformResult>(json);
                 }
                 catch (Exception ex)
@@ -62,7 +62,7 @@ namespace MyEmulators2
             {
                 string json;
                 using (WebClient client = new WebClient())
-                    json = client.DownloadString($"https://api.thegamesdb.net/Platforms/Images?apikey={API_KEY}&platforms_id={platformId}");
+                    json = client.DownloadString($"https://api.thegamesdb.net/v1/Platforms/Images?apikey={API_KEY}&platforms_id={platformId}");
                 result = JsonConvert.DeserializeObject<ImageResult>(json);
             }
             catch (Exception ex)
